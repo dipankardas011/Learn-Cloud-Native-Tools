@@ -1,0 +1,36 @@
+datree test <yaml> -p <custom check>
+
+show of datree is:
+1> valid yaml
+2> valid kubernetes scheme
+3> policy check
+
+to get the policy as file
+dwnload from settings
+then to apply the changes from the yaml file
+we need to 
+datree publish <yaml policy file>
+
+where is the token stored
+if want to set the token to any other like in a company have common token
+
+vi ~/.datree/config.yaml
+
+or 
+datree config set token <token> # it will replace the token which is present in the config file
+
+
+to change the scheme we use 
+helm datree test --schema-version "1.21.0" .
+
+to specify the helm arguments
+helm datree test . -- {helm arguments}
+
+eg
+helm datree test . -- --values values.yaml --set name=test
+
+datreeio/examples
+
+the exaples from this examples
+helm datree test helm-chart/nginx/
+helm datree test helm-chart/nginx/values.yaml

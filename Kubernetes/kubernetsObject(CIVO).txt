@@ -1,0 +1,58 @@
+$ kubectl create deploy nginx --image=nginx --port=80
+
+$ kubectl get deploy
+
+$ kubectl delete deploy <name>
+
+
+to create using file
+$ kubectl create -f deploy.yaml
+
+$ kubectl api-resources
+
+$ for helm carts
+$ helm list
+$ helm delete <name>
+
+
+namespace
+unique name for same object but different -different name for other
+groups
+
+$ kubectl get ns
+$ kubectl create ns <name>
+
+to helps to have set quotas
+
+dev team, testing team having diff quotas
+$ kubectl create deploy nginx --image=nginx
+this is createing the default namespace of nginx as it is not providede
+
+for creating the pod in different namespace
+$ kubectl create deploy nginx --image=nginx -n dev
+
+// to view
+kubectl get pods -n dev
+
+to rem the pod from namespace
+$ kubectl delete deploy nginx -n dev
+to delete the namespace
+$ kubectl delete ns dev
+
+
+// by default the get pods gives the deafult namespce
+// inorder make other namespace by default
+$ kubectl config set-context --current --namespace=<namespace>
+
+// to view the dafult view of the namespace
+$ kubectl config view --minify | grep namespace
+
+labels
+are the key:value pair that are attached to kubernetes objects i.e. PODS
+
+
+it basilclly provides attributes which creates meaningful kubernetes cluster
+
+adding label after creating the pod
+$ kubectl label pod nginx demo=true
+

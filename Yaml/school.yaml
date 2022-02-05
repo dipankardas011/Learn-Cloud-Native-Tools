@@ -1,0 +1,17 @@
+School:
+  - name: KIIT
+    principal: adsdas
+    student:
+      - rno: 234
+        name: stud1
+        marks: 34
+      - rno: 2342
+        name: dd1
+        marks: 24
+
+  - name: DBMS
+    principal: dfacd
+    student:
+      - rno: 234
+        name: sad
+        marks: 245

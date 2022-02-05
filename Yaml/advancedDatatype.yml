@@ -1,0 +1,89 @@
+student: !!seq
+  - marks
+  - name
+  - roll_no
+
+cities: [new delhi, mumbai]
+
+# some of the key of the seq wil be empty
+#sparse seq
+spare seq:
+  - hey
+  - how
+  - 
+  - NULL
+  - ~
+  - sup
+
+---
+# nested sequence
+-
+  - mango
+  - apple
+  - banana
+-
+  - marks
+  - roll num
+  - date
+
+# maps
+# !!map
+---
+#nested maps
+name: dipankar das
+role:
+  age: 78
+  job: student
+---
+name: dipankar das
+role: {age: 78, job: student}
+
+# pairs key may have duplicate values
+# !!pairs
+pair example: !!pairs
+  - job: student
+  - job: teacher
+---
+# this will be an array of hashTable
+# same as 
+pair example: !!pairs [job: student, job: teacher]
+
+# !!set
+names: !!set
+  ? dipankar
+  ? hello
+  ? mamam
+
+---
+# the sequence by which it is represented
+people: !!omap
+  - Kunal:
+     name: k k
+     age: 23
+     height: 2342
+  - rahul:
+      name: 50
+      age: 50
+      height: 3242
+
+# reusing some properties
+# there are 5 people have same liking&dislik
+# using anchors
+liking: &likes
+  fav fruit: mango
+  dislike: grapes
+
+person1:
+  name: Dipankar das
+  <<: *likes
+
+person2:
+  name: rahul
+  <<: *likes
+  dislikes: berries # overriding
+
+# this will look like this
+# person2:
+#   name: rahul
+#   fav fruit: mango
+#   dislike: berires

@@ -1,0 +1,46 @@
+# String variables
+name: dipankar das
+fruit: "apple"
+job: 'SWE'
+
+bio: |
+  'Hey my name is dipankar das.'
+  'my age is 21'
+
+
+# in a single line
+message: >
+  'this will'
+  'all be in'
+  'a single line'
+---
+
+number: 23432
+marks: 98.2
+booleanValue: !!bool No
+
+# specify the type
+zero: !!int 0
+positiveNum: !!int 45
+negativeNum: !!int -45
+binaryNumber: !!int 0xb1101
+octalNum: !!int 0674
+hexa: !!int 0x45
+#540,00
+commaValue: !!int +540_000
+
+mark: !!float 56.89
+infinite: !!float .inf
+not a num: .nan
+message: !!str this is String
+
+# null
+surname: !!null NULL # or null NULL ~
+~: this is a null key
+
+# dates and time
+date: !!timestamp 2010-12-22
+india Time: 2001-12-15T29:83:34.10 +5:30
+no Timezone: 2001-12-15T29:83:34.10
+
+exponential number: 6.023e56

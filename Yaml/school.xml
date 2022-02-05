@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<School name="KIIT" principal="SSSS">
+  <students>
+    <student>
+      <rno>234</rno>
+      <name>"wefwfw"</name>
+      <marks>65</marks>
+    </student>
+  </students>
+</School>

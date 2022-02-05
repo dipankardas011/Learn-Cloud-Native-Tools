@@ -1,0 +1,16 @@
+city:
+  - new delhi
+  - mumbai
+  - kolkata
+# yaml lint
+---
+- apple
+- mango
+- banana
+# marks the end of file
+
+---
+cities: ["new delhi", "mumbai"]
+---
+{mango: "yellow fruit", age: 56}
+...

@@ -1,0 +1,35 @@
+what is a data serializations
+
+                                         YAML/JSON/XML
+                                        /
+object ---> serializer -> stream of bytes - database
+                                        \
+                                        memory
+the process of converting of data object which is a combination of code +data into
+serialize of bytes that saves the state of the object
+in a form that is easy to transmittable
+
+data serialization 
+the language which is used to represent the data in this text format
+are the data serialization language
+eg. yaml, json, XML
+object -> file serialization
+file -> object deserialization
+
+
+type of files
+* configuration files docker, kubernetes
+* logs, caches, etc
+
+
+benefits
+- simple and easy to read
+- strict syntax indentation imp
+- easy to convert to JSON, XML
+- most programming language use yaml
+- more powerful when representing complex data
+- passers, etc. various tools available
+- parsing is easy
+
+
+

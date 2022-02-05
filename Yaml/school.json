@@ -1,0 +1,20 @@
+{
+  "School": [
+    {
+      "name": "KIIT",
+      "principal": "ssss",
+      "students": [
+        {
+          "roll": 234,
+          "name": "sada",
+          "marks": 452
+        },
+        {
+          "roll": 324,
+          "name": "sdsada",
+          "marks": 345
+        }
+      ]
+    }
+  ]
+}
