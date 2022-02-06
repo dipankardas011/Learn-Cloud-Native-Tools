@@ -129,6 +129,11 @@ customRules:
     # if the message on failure is empty it will use this
     defaultMessageOnFailure: CPU limit b/w 200m-400m
     schema:
+    # the schema has property spec
+    # spec has proprty containers
+    # items in containers has property resources
+    # resources has property limits
+    # & limits has property named cpu
       properties:
         spec:
           properties:

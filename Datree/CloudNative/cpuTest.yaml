@@ -4,12 +4,21 @@ metadata:
   name: test
 spec: 
   containers:
-  - name: cpu-test
-    image: ubuntu:20.04
-    resources:
-      requests:
-        memory: "128Mi"
-        cpu: "300m"
-      limits:
-        memory: "256Mi"
-        cpu: "1G"
+    - name: cpu-test
+      image: ubuntu:20.04
+      resources:
+        requests:
+          memory: "128Mi"
+          cpu: "300m"
+        limits:
+          memory: "256Mi"
+          cpu: "1G"
+    - name: Hello
+      image: busybox
+      resources:
+        requests:
+          memory: "200Mi"
+          cpu: "400m"
+        limits:
+          memory: "400Mi"
+          cpu: "1M"

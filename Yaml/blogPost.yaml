@@ -1,0 +1,203 @@
+# Demo school information as API
+
+SUBS: &Subjects
+  Maths: !!bool no
+  English: !!bool no
+  CSE: !!bool no
+  Arts: !!bool no
+  DigitalElectronics: !!bool no
+  Biology: !!bool no
+
+enum: &status
+  intern: no
+  job: no
+  club: no
+  student: no
+
+School:
+  name: School private limited
+  location: New Delhi
+  country: India
+  established: !!timestamp 1960-12-25
+  about: |
+    "This a 50 year old school, Located in central town"
+    "We are proud to call our self to be 'THESS'"
+    "There are more than 1,000 alumins who got great success in their respective fields"
+
+  Principal:
+    name: XYZ
+    experience: !!int 15
+    qualification: M.S.
+    tenure: 5
+
+  student:
+    - roll: !!int 20051501
+      name: !!str Abcd1
+      age: !!int 21
+      gender: Male
+      branch: !!str CSE
+      joiningDate: !!timestamp 2020-1-21
+      carrier: !!str >
+        DevOps,
+        Operating Systems
+      <<: *status
+      intern: yes
+      <<: *Subjects
+      Maths: yes
+      English: yes
+      CSE: yes
+      location: !!str Jamshedpur
+      country: !!str India
+    - roll: !!int 20051502
+      name: !!str Abcd2
+      age: !!int 22
+      joiningDate: !!timestamp 2021-5-21
+      gender: Female
+      branch: !!str LAW
+      carrier: !!str >
+        Lawyer
+      <<: *status
+      club: yes
+      <<: *Subjects
+      English: yes
+      Arts: yes
+      Maths: yes
+      location: !!str Kolkata
+      country: !!str India
+    - roll: !!int 20051511
+      name: !!str Abc21
+      age: !!int 20
+      joiningDate: !!timestamp 2020-6-22
+      gender: Male
+      branch: !!str EEE
+      carrier: !!str >
+        Electric cars
+      <<: *status
+      student: yes
+      <<: *Subjects
+      Maths: yes
+      English: yes
+      DigitalElectronics: yes
+      location: !!str Mumbai
+      country: !!str India
+
+    - roll: !!int 3000001
+      name: !!str Abc313
+      age: !!int 24
+      joiningDate: !!timestamp 2021-2-21
+      gender: Female
+      branch: !!str CSE
+      carrier: !!str >
+        DevOps,
+        Operating Systems
+      <<: *status
+      job: yes
+      <<: *Subjects
+      Maths: yes
+      English: yes
+      CSE: yes
+      DigitalElectronics: yes
+      Biology: yes
+      location: !!str London
+      country: !!str England
+
+  Staff:
+    - id: 2001
+      name: teacher1
+      experience: !!int 5
+      position:
+        - assistant
+      qualification: M.Tech.
+      subjects:
+        - Maths,
+        - English
+        - Biology
+
+    - id: 2004
+      name: teacher2
+      experience: !!int 10
+      position:
+        - professor
+      qualification: B.Tech.
+      subjects:
+        - Computer Science
+        - English
+        - Physics
+    
+    - id: 20024
+      name: teacher3
+      qualification: B.A.
+      position:
+        - lecturer
+      experience: !!int 15
+      subjects:
+        - Chemistry
+        - Geography
+
+---
+
+# weather api response
+response:
+  coord:
+    lon: -122.08
+    lat: 37.39
+  weather:
+  - id: 800
+    main: Clear
+    description: clear sky
+    icon: 01d
+  base: stations
+  main:
+    temp: 282.55
+    feels_like: 281.86
+    temp_min: 280.37
+    temp_max: 284.26
+    pressure: 1023
+    humidity: 100
+  visibility: 16093
+  wind:
+    speed: 1.5
+    deg: 350
+  clouds:
+    all: 1
+  dt: 1560350645
+  sys:
+    type: 1
+    id: 5122
+    message: 0.0139
+    country: US
+    sunrise: 1560343627
+    sunset: 1560396563
+  timezone: -25200
+  id: 420006353
+  name: Mountain View
+  cod: 200
+
+---
+
+# Demo configuration for Kubernetes
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myWeb
+  labels:
+    name: myWeb
+spec:
+  replicas: 3
+  containers:
+    - name: myWeb
+      image: nginx:1.19.1
+      livenessProbe:
+        httpGet:
+          path: /healthz
+          port: 8080
+      readinessProbe:
+        tcpSocket:
+          port: 8081
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 80
+...
