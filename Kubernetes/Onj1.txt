@@ -1,0 +1,176 @@
+configuration management = immutability in runtime
+
+containers
+
+fault isolation
+
+how to manage
+
+as these applications are running in defferent ways
+
+how to communicate
+
+
+
+service mesh
+
+
+
+orchestrators -> help us in deploying manage containers dynamically
+
+cloud native application
+requirements
+- deploy
+- zero downtime
+- scale
+- self-heal containers
+- and can run in kubernetes
+- load balancing
+
+kubernetes is much more than container orchestrator
+
+you can run it in cloud, locally, migrate from one provider to another,
+services that kubernetes can replicate, scale, 0 downtime,
+self-heal, deploy, volumes, external storage, load balancing, logs
+secret information
+
+these are much more than orchestrator
+
+
+------------------------------------------------------------------------
+
+container runtime interface
+
+kubernets is allowing you to run various conatined, etc
+
+
+
+
+Archeticture
+
+cluster -> control plane + nodes
+
+nodes is like virtual machine
+control plane it was called before master node
+
+control plane with worker node(s)
+
+worker node is the place where your application will be running
+control plane is going to actually manage the worker node
+
+what is cluster
+it is a collection of the control plane and some worker nodes
+
+declaritive -> manifest files
+imperitive -> cli
+
+microservice is the worker nodes
+who is managing it -> control plane
+
+
+
+pod -> smallest scheduling unit
+
+node is a server
+
+good is that 1 pod is having 1 container
+
+
+========================================================
+
+steps for running application in kubernetes
+
+1> create microservice
+2> containersize each microservice
+3> put every container in their pods
+4> deploy these pods to *controller*
+
+deployment controllers
+
+control plane is a collection of various components that help 
+us in managing the overall health of the cluster is good state 
+all like expose ports, destroy pods 
+
+it manages every thing
+
+
+api server = all the communications that will happen will happen via the api server
+
+it basically it exposes a restfull api and then you can give it a post api
+over https you can give it some yaml files
+yaml files contains create a pod pod definition which
+container which image what will be run
+yaml files are called kubernetes manifest files
+
+etcd = it is like a database
+clusters store like it bascially stores the information about the cluster
+
+if api server whats any info about the server it communicates like etcd over here
+database which contains "state about like configuration about the entire cluster"
+
+controller = makes sure that the desired state you 
+want like 5 pods is mantained
+by who manages controller --->>> controller manager
+4 functionality
+
+* {desired state}
+* manages the {current state}
+* it constantly listening to the api server {differnece}
+* {make the changes}
+
+scheduler
+it is always listening to the api server
+scheduler will schedule the work to the worker nodes
+wich one is empty, best one
+
+container creating and scheduling and its pending state and
+if you cannot find a worker node for example 
+schedule 100 pods
+i can't find that many pods
+so then it is [pending] now
+
+whether we have to download the container images or networking things and much more
+
+
+CLOUD PROVIDERS will be using thir own control manager
+so that they can work with load balancing and all other additional stuff
+
+
+API server -> https/443
+
+worker node
+kube-proy ->>> api server
+kubelet --->>> api server
+container runtime <<<--- kubelet is constantly talking to container runtime
+
+kubelet is on every worker node
+
+it will basically listen to the api server
+
+kube proxy will provide IP address to each worker nodes
+
+it deals with netowking stuff
+
+k8s DNS
+core DNS
+
+for multi node architecture use cloud providers
+
+
+$ minikube start
+$ minikube status
+$ minikube ssh
+# docker ps  // this will show all the containers under each pods
+
+ kubectl config view
+$ kubectl get pods // gives the all the pods
+
+$ kubectl config current-context
+
+$ kubectl get all // will shpw all the services, pods, deployments that are currently running
+
+$ kubectl get deployments
+$ kubectl get pods -o wide
+$ kubectl get pods -o yaml
+$ kubectl describe pod <pod name>
+$ kubectl port-forward <pod name> host:container

@@ -34,3 +34,13 @@ datreeio/examples
 the exaples from this examples
 helm datree test helm-chart/nginx/
 helm datree test helm-chart/nginx/values.yaml
+
+promethus
+$ helm pull prometheus-community/prometheus
+$ tar -xvf prometheus-15.1.1.tgz
+$ cd prometheus
+
+$ helm datree test --schema-version "1.21.0" .   /// it is using kubernetes a particular scheme version
+
+helm install [RELEASE_NAME] prometheus-community/prometheus
+[RELEASE_NAME] = my-prometheus

@@ -1,0 +1,114 @@
+containers have
+1> orchestration
+2> engine
+3> runtime
+
+RUNTIME
+
+	* runc - it works with the OS and starts and stops the containers
+	* containerd - it is at a higher level, managing runc
+			and manages the container like how to interact with your container with the network like
+			how to get the information from the interet to the container
+ENGINE
+	here docker deamon
+
+ORCHESTRATION
+	kubernetes
+
+
+dockerfile -> image -> container
+easy explaination
+instructions	class		object
+
+to run mysql
+
+```
+➜ ~  docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql
+➜ ~  docker ps
+CONTAINER ID   IMAGE     COMMAND                  CREATED         STATUS         PORTS                 NAMES
+51cb4b8fdcd2   mysql     "docker-entrypoint.s…"   3 minutes ago   Up 3 minutes   3306/tcp, 33060/tcp   some-mysql
+➜ ~  docker exec -it some-mysql bash
+
+root@51cb4b8fdcd2:/# mysql -u root -p
+Enter password: 			////////// here use the same password when creating the container
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respec
+```
+
+
+
+
+docker command exec -it <container_id> bash
+
+docker ps -a to show all the stoped continaers
+docker ps //currently running
+docker inspect <continaer id>	// all the information of the continaer\
+
+docker logs <container id>  // all the outputs from a container even the dead ones
+
+// to delete all the stopped containers 
+docker container prune -f
+
+docker rmi <image>
+
+
+// how to start the continaer which is stoped and from the that state
+$ docker run -it ubuntu
+# cat > name.txt
+wff
+sfsv
+
+# exit
+$ docker ps -a
+$ docker start <containerid>
+$ docker exec -it <> bash
+
+// so want to add some stuff in container and make from it a new image 
+// here we use commit
+docker commit -m "ddsdfsdcds" <> <new_image_name>
+
+docker images -q // for listing all the image ids
+
+// to remove all the images
+docker rmi $(docker images -q)
+
+
+layers are nothing but file 
+when you first time download ubuntu the image then all the file a and file b or whatever that is required
+then when you download mongodb that is using the same file A that is in your local system which
+was downloaded when pulled ubuntu
+so the file is not download it again
+
+docker images -q --no-trunc
+
+
+docker architecture
+
+	docker client
+		|
+		|
+	     daemon	it is dockerd in linux
+		|	protocol used is grpc
+		|
+	   containerd
+	   /    |      \
+	shim	shim	shim
+	|	|	|
+	runc	runc	runc
+	|	|	|
+	[]	[]	[]  ---- containers
+runc creates the containers
+when the runc goes out of scope then shim takes over it is the time
+when container is already created and not been deleted
+
+these are daemon less containers SO when the daemon is down
+containers will still be running
+
+shim is docker container dsm
+runc docker runc
