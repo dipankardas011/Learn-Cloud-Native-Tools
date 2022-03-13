@@ -1,0 +1,24 @@
+{
+    "scanExcludes": [
+        "node_modules",
+        "**/.git",
+        "**/pkg/mod/**",
+        "**/.kube",
+        "**/*.swp"
+    ],
+    "fileIncludes": [
+        "*.yaml",
+        "*.yml"
+    ],
+    "folderReadsMaxDepth": 10,
+    "settings": {
+        "helmPreviewMode": "template",
+        "kustomizeCommand": "kubectl",
+        "createDefaultObjects": false,
+        "setDefaultPrimitiveValues": true
+    },
+    "kubeConfig": {
+        "path": "C:\\Users\\DipankarDas\\.kube\\config",
+        "currentContext": "docker-desktop"
+    }
+}
