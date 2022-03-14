@@ -19,6 +19,6 @@
     },
     "kubeConfig": {
         "path": "C:\\Users\\DipankarDas\\.kube\\config",
-        "currentContext": "docker-desktop"
+        "currentContext": "minikube"
     }
 }

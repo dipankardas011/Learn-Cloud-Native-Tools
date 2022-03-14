@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+  labels:
+    app: database
+spec:
+  containers:
+    - name: my-pod
+      image: redis
+      resources:
+        limits:
+          memory: 128Mi
+          cpu: 500m

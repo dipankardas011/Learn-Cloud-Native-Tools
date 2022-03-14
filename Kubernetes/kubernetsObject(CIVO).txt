@@ -100,3 +100,17 @@ mkdir -p $HOME/.kube
 sudo kubeadm join 10.0.0.4:6443 --token 4wdagw.upd0ovkbbsqcv2eu --discovery-token-ca-cert-hash sha256:2ad86df35a091248cc7343c2878729421b108737d246fc37e242ccd0e8e91460
 
 civo kubernetes create <cluster name> --size=g3.k3s.medium --nodes=2 --wait
+
+
+----------------------------------------------------------------------------------
+
+## objects
+
+kubectl get pods -o wide
+
+kubectl logs -f <pod name> // for the log files
+
+kubectl describe pod <pod name>// for the events in the pods
+
+kubectl delete <pod name>
+kubectl exec -it <pod name> bash
