@@ -101,7 +101,8 @@ sudo kubeadm join 10.0.0.4:6443 --token 4wdagw.upd0ovkbbsqcv2eu --discovery-toke
 
 civo kubernetes create <cluster name> --size=g3.k3s.medium --nodes=2 --wait
 
-
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+to solve the not ready state
 ----------------------------------------------------------------------------------
 
 ## objects
@@ -114,3 +115,6 @@ kubectl describe pod <pod name>// for the events in the pods
 
 kubectl delete <pod name>
 kubectl exec -it <pod name> bash
+
+
+kubeadm join 10.0.0.4:6443 --token bdw4lv.a6quoksex38khglg --discovery-token-ca-cert-hash sha256:199c07a21ad13ad9d93aed3129b01c9d18eef91532398fb0297a44b3eec6f879
