@@ -3,6 +3,9 @@ kind: Pod
 metadata:
   name: init-demo1
 spec:
+  volumes:  # volumes create a empty space before any containers and this space is refered to my the containers
+    - name: shared
+      emptyDir: {}
   containers:
     - name: nginx
       image: nginx
@@ -10,7 +13,7 @@ spec:
         - containerPort: 80
       volumeMounts:
         - name: shared
-          mountPath: /usr/share/nginx/html
+          mountPath: /usr/share/nginx/html    # similarly here also
   initContainers:
     - name: install
       image: busybox
@@ -21,7 +24,4 @@ spec:
         - https://www.civo.com/
       volumeMounts:
         - name: shared
-          mountPath: /shared
-  volumes:
-    - name: shared
-      emptyDir: {}
+          mountPath: /shared    # mounting the files of /shared dir to the volumes

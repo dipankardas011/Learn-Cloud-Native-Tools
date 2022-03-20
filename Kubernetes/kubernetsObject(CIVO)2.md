@@ -50,3 +50,58 @@ it can be used to delay the start up of the main container so that certain check
 
 first all the init container are done then only the main container will start
 there is 🚫 liveliness, readiness
+
+# Multiple container pod
+use cases
+
+* sidecar can be used to log the main application 
+* helper contaners can used to act as a reverse proxy
+  to get the static files
+![](./multicontainerpod.png)
+
+![](./multicontainerpodyaml1.png)
+![](./multicontainerpodyamlOutput.png)
+```shell
+kubectl exec -it multi-container -c nginx-container sh
+```
+
+![](./containerProbe.png)
+
+[startup probe]() its a special kind of liveliness probe
+where it halts the execution of other probes first the probe is executed unless it gets completed; if ✅ then [liveliness]() will continue execution
+
+## HTTP
+```yml
+- name: probes
+  livenessProbe:
+    httpGet:
+      path: /
+      port: 80
+```
+
+## TCP
+```yml
+- name: probes
+  livenessProbe:
+    tcpSocket:
+      port: 80
+```
+
+## HTTP
+```yml
+- name: probes
+  livenessProbe:
+    exec:
+      command:
+      - cat
+      - /usr/share/nginx/html/index.html
+```
+
+* `initialDelaySeconds` - before any probes starts time to delay its start cheeck
+* `periodSeconds` - time b/w one probe check to another
+* `timeoutSeconds` - [kubelet]() will wait for this much time for response
+* `successThreshold` - how many time we want the probe to be successful to mark as `SUCCESSFUL`
+* `failureThreahold` - how many failure will make kublet to restart the container
+
+# Container probes demo
+
