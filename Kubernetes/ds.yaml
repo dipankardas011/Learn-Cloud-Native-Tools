@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ds-demo
+  labels:
+    k8s-app: ds-demo
+spec:
+  selector:
+    matchLabels:
+      name: ds-demo
+  template:
+    metadata:
+      labels:
+        name: ds-demo
+    spec:
+      containers:
+        - name: ds-demo
+          image: saiyam911/daemonset:v1
+          imagePullPolicy: Always
+          env:
+            - name: PYTHONUNBUFFERED
+              value: "1"
