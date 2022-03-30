@@ -47,7 +47,7 @@ spec:
   type: NodePort
   ports:
     - port: 3000
-      targetPort: 8080d
+      targetPort: 8080
       protocol: TCP
       name: web
   selector:
