@@ -4,14 +4,15 @@ metadata:
   name: pod-using-nfs-demo
 spec:
   volumes:
-    - name: nfs-volume
+    - name: azure
       persistentVolumeClaim:
-        claimName: nfs-pvc-demo
+        claimName: pvc-azuredisk
   containers:
     - name: app
       image: alpine
       volumeMounts:
-        - name: nfs-volume
-          mountPath: /mnt
+      - name: azure
+        mountPath: /mnt/azure
       command: ["/bin/sh"]
       args: ["-c", "while true; do cat /proc/meminfo | grep MemFree >> /mnt/memory.txt; sleep 5; done"]
+...

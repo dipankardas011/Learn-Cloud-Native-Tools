@@ -1,15 +1,17 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: nfs-pv-demo
-  labels:
-    name: mynfs
+  name: pv-azuredisk
 spec:
-  storageClassName: manual
   capacity:
-    storage: 900Mi
+    storage: 100Gi
   accessModes:
     - ReadWriteMany
-  nfs:
-    server: 91.211.152.190
-    path: "/var/nfsshare"
+  persistentVolumeReclaimPolicy: Retain
+  csi:
+    driver: disk.csi.azure.com
+    readOnly: false
+    volumeHandle: /subscriptions/<subscriptionID>/resourceGroups/MC_myAKSCluster_myAKSCluster_eastus/providers/Microsoft.Compute/disks/myAKSDisk
+    volumeAttributes:
+      fsType: ext4
+...

@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nfs-pvc-demo
+  name: pvc-azuredisk
 spec:
-  storageClassName: manual
   accessModes:
     - ReadWriteMany
   resources:
     requests:
       storage: 900Mi
+  volumeName: pv-azuredisk
+  storageClassName: ""
