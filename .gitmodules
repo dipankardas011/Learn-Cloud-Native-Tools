@@ -1,0 +1,3 @@
+[submodule "academy"]
+	path = academy
+	url = https://github.com/dipankardas011/academy.git
