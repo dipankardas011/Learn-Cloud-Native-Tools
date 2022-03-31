@@ -20,6 +20,6 @@
     },
     "kubeConfig": {
         "path": "G:\\My Drive\\coding\\Devops\\Azure\\configK8s",
-        "currentContext": "docker-desktop"
+        "currentContext": "demo-k8s"
     }
 }
