@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv-demo
+  labels:
+    name: mynfs
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 900Mi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 91.211.152.190
+    path: "/var/nfsshare"
