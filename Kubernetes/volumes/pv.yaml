@@ -3,15 +3,16 @@ kind: PersistentVolume
 metadata:
   name: pv-azuredisk
 spec:
+  storageClassName: manual
   capacity:
-    storage: 100Gi
+    storage: 20Gi
   accessModes:
     - ReadWriteMany
   persistentVolumeReclaimPolicy: Retain
   csi:
     driver: disk.csi.azure.com
     readOnly: false
-    volumeHandle: /subscriptions/<subscriptionID>/resourceGroups/MC_myAKSCluster_myAKSCluster_eastus/providers/Microsoft.Compute/disks/myAKSDisk
+    volumeHandle: /subscriptions/1147ce22-56d4-4112-a560-ca6665862891/resourceGroups/MC_multiNodeKK2_demo-k8s_swedencentral/providers/Microsoft.Compute/disks/myAKSDisk
     volumeAttributes:
       fsType: ext4
 ...

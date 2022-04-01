@@ -84,3 +84,34 @@ A [PersistentVolume Claim]() (PVC) is a request for storage by a user. It is sim
 [Azure PV Disk for k8s](https://docs.microsoft.com/en-us/azure/aks/azure-disk-volume)
 
 refer to the Azure/ dir
+
+# Secrets and ConfigMaps
+
+* Secrets stors the secret information like username and are mounted as a volume to a container
+
+* configMaps are set of confugrations which are also mounted to the 
+![](./04.png)
+
+# Volumes
+![](./05.png)
+if in the [PVC]() there is [storage class]() then it is [Dynamic provisiong]() `otherwise` it is [Static provisiong]()
+
+[PVC]() is created first witout [stroage class]()  then it is unbound and after this [PV]() is created then [PVC]() gets bounded to the [PV]() ->>> `STATIC PROVISIONING`
+
+`DYNAMIC PROvISIONG` the stroage class / the [PV]() needed to be created by admin
+after this the user creats a [PVC]() by mentioning about the what storage, its type  && corresponding [PV]() automatically gets created
+
+### reclaim policy
+1. delete - [PV]() deleted once the [PVC]() gets deleted
+1. retain - [PV]() is retained when [PVC]() gets deleted
+1. recycle - [PV]() can be used by another [PVC]()
+
+## Storage class
+defines What kind of storage will be provisioned when a [PVC]() created `dynamically provisioning`
+incase of `static provisioning` we create the [PV]() manually
+
+[PVC]() by the user user need not know all the details just ask for a particular storage capacity
+with readWriteOnce / readWriteMany
+
+[PVC]() is helpful when the pod goes down and a new pod Comes up on a different node Then also reduces the same [PVC]() as it different kubernetes object independent of pod lifecycle
+

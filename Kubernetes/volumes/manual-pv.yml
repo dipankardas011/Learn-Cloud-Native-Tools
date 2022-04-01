@@ -1,0 +1,58 @@
+# Persistent volumes
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: demo-pv
+  labels:
+    type: local
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 2Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: demo-pvclaim
+spec:
+  storageClassName: manual
+  resources:
+    requests:
+      storage: 500Mi
+  accessModes:
+    - ReadWriteOnce
+
+---
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-ngnix-pod
+  labels:
+    name: demo-ngnix-pod
+spec:
+  volumes:
+  - name: pv-vol
+    persistentVolumeClaim:
+      claimName: demo-pvclaim
+  nodeName: minikube
+  # nodeName: aks-agentpool-28321527-vmss00000e
+
+  containers:
+  - name: demo-ngnix-pod
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    volumeMounts:
+      - mountPath: "/usr/share/nginx/html"
+        name: pv-vol
+    ports:
+      - containerPort: 80

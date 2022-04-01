@@ -1,0 +1,41 @@
+# kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
+
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: local-test
+spec:
+  selector:
+    matchLabels:
+      app: local-test
+  serviceName: "local-service"
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: local-test
+    spec:
+      containers:
+      - name: test-container
+        image: k8s.gcr.io/busybox
+        command: ["/bin/sh"]
+        args:
+          - "-c"
+          - "sleep 10000"
+        volumeMounts:
+        - name: local-vol
+          mountPath: /usr/test-pod
+  volumeClaimTemplates:
+  - metadata:
+      name: local-vol
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "local-path" # from the kubectl get sc
+      resources:
+        requests:
+          storage: 10Gi
+# kubectl get po -owide to see on which node it stored
+# cd /opt/local-path-provisioner/ by default the rancher file file localtion is - 
+# kubectl get statefulset
+# kubectl edit statefuleset <name>
+# after removing the a given pvc thedata from volume is also deleted
