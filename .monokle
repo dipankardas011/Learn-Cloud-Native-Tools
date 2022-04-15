@@ -19,7 +19,7 @@
         "setDefaultPrimitiveValues": true
     },
     "kubeConfig": {
-        "path": "G:\\My Drive\\coding\\Devops\\Azure\\configK8s",
-        "currentContext": "demo-k8s"
+        "path": "C:\\Users\\DipankarDas\\.kube\\config",
+        "currentContext": "minikube"
     }
 }
