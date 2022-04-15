@@ -16,20 +16,20 @@ When we
 kubectl apply -f <fileName> 
 ```
 then
-[kubectl]()  converts the `YAML` manifest to `JSON` file and sends it to [api server]()
+**kubectl**  converts the `YAML` manifest to `JSON` file and sends it to **api server**
 
 
-[api server]() authenticate using kubeconfig auth and checks whether the user is authorized or not to a particular functionality (i.e. creation, deletion) (i.e. RBAC) 
+**api server** authenticate using kubeconfig auth and checks whether the user is authorized or not to a particular functionality (i.e. creation, deletion) (i.e. RBAC) 
 
-when it is authorized, all that the data gets persisted to the [etcd]() 😇 here state becomes `Pending`
+when it is authorized, all that the data gets persisted to the **etcd** 😇 here state becomes `Pending`
 
-Now the [Scheduler]() comes and it finds the best match of the node where it will be running (i.e. iterate through all the nodes in the cluster to get the best possible Node based on the resources or images pulled )
+Now the **Scheduler** comes and it finds the best match of the node where it will be running (i.e. iterate through all the nodes in the cluster to get the best possible Node based on the resources or images pulled )
 
-after getting it sends the labels filled with spec <node name> to the [api server]() now that particular request is also stored on the [etcd]() 😇 here state becomes `Container Creating`
+after getting it sends the labels filled with spec <node name> to the **api** server now that particular request is also stored on the **etcd** 😇 here state becomes `Container Creating`
 
-[api server]() Instructs the [kubelet]() of that particular node about the pod spec which has to be created.
+**api server** instructs the **kubelet** of that particular node about the pod spec which has to be created.
 
-[kubelet]() is responsible to fetch the image from [image registry]() the [cri]() gets the ip attached to the pod which is in turn send to the [api server]() and again data is stored  in [etcd]() 😇 here state becomes `Running`
+**kubelet** is responsible to fetch the image from **image registry**. The **cri** gets the ip attached to the pod which is in turn send to the **api server** and again data is stored  in **etcd** 😇 here state becomes `Running`
 
 Whenever the container dies too many times then 😇 here state becomes `Crash loop back off`
 and whenever the container succeded then 😇 here state becomes `succeeded`
@@ -42,13 +42,13 @@ and whenever the container succeded then 😇 here state becomes `succeeded`
 
 actions that you want to before the container starts
 
-## Pre-stops hooks 
+**Pre-stops hooks**
 When the container has begun terminating then this command is executed
 
-## Post-start hook
+**Post-start hook**
 When the container starts then only this is executed
 
-## Init container
+**Init container**
 it runs before running the workload container(s)
 
 ---
@@ -57,7 +57,7 @@ it runs before running the workload container(s)
 
 They are container(s) that run to completion and run before the main container starts
 
-## use case
+**use case**
 * To change the file structure of the mounted volume
 * Added configuration to the mounted volume
 * It can be used to delay the start-up of the main container so that certain checks are done beforehand
@@ -69,7 +69,7 @@ there is 🚫 Liveliness, Readiness probe
 ---
 
 # Multiple container pod
-## use cases
+**use cases**
 
 * For logging purposes of the main application container
 * It can be used to act as a reverse proxy to get the static files
@@ -78,20 +78,20 @@ there is 🚫 Liveliness, Readiness probe
 
 # Health Checks
 
-## Liveliness probe
+**Liveliness probe**
 It checks whether the pod is alive or dead
 /health
 
-## Readiness probe
+**Readiness probe**
 It checks whether the pod can get or post requests.
 /ready
 
-## Startup probe
+**Startup probe**
 It checks whether the application within the container is started. All other probes are disabled if a startup probe is provided until it succeeds.
 
 if it fails then 😇 here state becomes `Crash loop back off`
 
-## http
+**http**
 ```yml
 - name: probes
   livenessProbe:
@@ -100,7 +100,7 @@ if it fails then 😇 here state becomes `Crash loop back off`
       port: 80
 ```
 
-## tcp
+**tcp**
 ```yml
 - name: probes
   livenessProbe:
@@ -108,7 +108,7 @@ if it fails then 😇 here state becomes `Crash loop back off`
       port: 80
 ```
 
-## exec
+**exec**
 ```yml
 - name: probes
   livenessProbe:
@@ -125,11 +125,11 @@ if it fails then 😇 here state becomes `Crash loop back off`
 * `failureThreahold` - how many failures will make kublet restart the container
 
 ## Limits
-### Memory
-If the current usage of memory is more than the allowed then OOME (Out Of Memory Exception) and then 😇 here `state` becomes [*Crash loop back off*]()
+**Memory**
+If the current usage of memory is more than the allowed then OOME (Out Of Memory Exception) and then 😇 here state becomes `Crash loop back off`
 
-### CPU
-If the current usage of CPU is more than the allowed then 😇 here `state` becomes [*Crash loop back off*]()
+**CPU**
+If the current usage of CPU is more than the allowed then 😇 here state becomes `Crash loop back off`
 
 [Resource management Link](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/)
 
