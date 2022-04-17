@@ -1,0 +1,12 @@
+favorite:
+  drink: coffee
+  food: pizza
+  0: dipankar
+pizzaToppings:
+  - mushrooms
+  - cheese
+  - peppers
+  - onions
+
+mysubchart:
+  dessert: ice cream

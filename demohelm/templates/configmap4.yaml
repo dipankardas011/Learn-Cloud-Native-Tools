@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: conf
+data:
+{{ (.Files.Glob "foo/*").AsConfig | indent 2 }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: very-secret
+type: Opaque
+data:
+{{ (.Files.Glob "bar/*").AsSecrets | indent 2 }}
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Release.Name }}-secret
+type: Opaque
+data:
+  token: |-
+        {{ .Files.Get "config1.toml" | b64enc }}
