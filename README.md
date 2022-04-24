@@ -9,18 +9,18 @@ This is the complete `DevOps roadmap 2022` for you to get into DevOps and cloud 
 Below are all the links from the video. 
 
 # Prerequisites ✅
-* Introduction to Linux - https://www.edx.org/course/introducti...
-* DevOps Prerequisite (freecodecamp) - https://youtu.be/Wvf0mBNGjXY
-* CCNA part 1 - https://youtu.be/rv3QK2UquxM
-* Golang complete course (techworldwithnana) - https://youtu.be/yyUHQIec83I
+* Introduction to Linux✅ - https://www.edx.org/course/introducti...
+* DevOps Prerequisite (freecodecamp)✅ - https://youtu.be/Wvf0mBNGjXY
+* CCNA part 1✅ - https://youtu.be/rv3QK2UquxM
+* Golang complete course (techworldwithnana✅) - https://youtu.be/yyUHQIec83I
 
 # YAML✅
-* Introduction to YAML - https://youtu.be/1uFVr15xDGg
+* Introduction to YAM✅L - https://youtu.be/1uFVr15xDGg
 
 # git✅
-* Git and GitHub crash course  (freecodecamp) - https://youtu.be/RGOj5yH7evk
-* Complete Git and GitHub Tutorial (Kunal Kushwaha) - https://youtu.be/apGV9Kg7ics
-* Git for Professionals (freecodecamp)  -https://youtu.be/Uszj_k0DGsg
+* Git and GitHub crash course  (freecodecamp)✅ - https://youtu.be/RGOj5yH7evk
+* Complete Git and GitHub Tutorial (Kunal Kushwaha)✅ - https://youtu.be/apGV9Kg7ics
+* Git for Professionals (freecodecamp)✅  -https://youtu.be/Uszj_k0DGsg
 
 # cloud🏃🏼‍♂️
 * AWS cloud practitioner (freecodecamp) - https://youtu.be/SOTamWNgDKc
@@ -28,7 +28,7 @@ Below are all the links from the video.
 # docker👍🏼
 * Docker playlist by Saloni✅ - https://youtube.com/playlist?list=PL5...
 * Docker ((freecodecamp)  - https://youtu.be/9zUHg7xjIqQ
-* Docker (Techworldwithnana) - https://youtu.be/3c-iBn73dDE
+* Docker (Techworldwithnana)✅ - https://youtu.be/3c-iBn73dDE
 * Docker deep dive by Nigel - https://youtu.be/GwXLNAcHk-k
 * Dockerfile best practices - https://youtu.be/JofsaZ3H1qM
 * Docker security essentials - https://youtu.be/KINjI1tlo2w
@@ -55,7 +55,7 @@ Below are all the links from the video.
 * ArgoCD✅
 
 # IAC tools
-* Terrafrom in 2 hours (freecodecamp) - https://youtu.be/SLB_c_ayRMo
+* Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
 * Hashicorp terraform accociate certification (freecodecamp) - https://youtu.be/V4waklkBC38
 * Crossplane CNCFMinutes - https://youtu.be/NLHmqVUvtkU
 * Crossplane deep dive - https://youtu.be/5lWUWat_bbY
