@@ -1,2 +1,6 @@
 Azure
 AWS
+IAC/terraform/awsLearn/.terraform
+IAC/terraform/awsLearn/terraform.tfstate
+IAC/terraform/awsLearn/terraform.tfstate.backup
+IAC/terraform/awsLearn/.terraform.lock.hcl
