@@ -16,36 +16,36 @@ provider "aws" {
 #   }
 # }
 
-variable "subnet_prefix" {
-  description = "subnet cidr block"
-  # default = "10.0.66.0/24"
-  # type = string
-  # type = list
-  type = any
-}
+# variable "subnet_prefix" {
+#   description = "subnet cidr block"
+#   # default = "10.0.66.0/24"
+#   # type = string
+#   # type = list
+#   type = any
+# }
 
-resource "aws_vpc" "prod-vpc" {
-  cidr_block = "10.0.0.0/16"
-  tags = {
-    Name = "production"
-  }
-}
-resource "aws_subnet" "subnet-1" {
-  vpc_id     = aws_vpc.prod-vpc.id
-  cidr_block = var.subnet_prefix[0].cidr_block
+# resource "aws_vpc" "prod-vpc" {
+#   cidr_block = "10.0.0.0/16"
+#   tags = {
+#     Name = "production"
+#   }
+# }
+# resource "aws_subnet" "subnet-1" {
+#   vpc_id     = aws_vpc.prod-vpc.id
+#   cidr_block = var.subnet_prefix[0].cidr_block
 
-  tags = {
-    Name = var.subnet_prefix[0].name
-  }
-}
-resource "aws_subnet" "subnet-2" {
-  vpc_id     = aws_vpc.prod-vpc.id
-  cidr_block = var.subnet_prefix[1].cidr_block
+#   tags = {
+#     Name = var.subnet_prefix[0].name
+#   }
+# }
+# resource "aws_subnet" "subnet-2" {
+#   vpc_id     = aws_vpc.prod-vpc.id
+#   cidr_block = var.subnet_prefix[1].cidr_block
 
-  tags = {
-    Name = var.subnet_prefix[1].name
-  }
-}
+#   tags = {
+#     Name = var.subnet_prefix[1].name
+#   }
+# }
 # --------------------------------------------
 # first we need to set up the Key pairs to acces the resources
 

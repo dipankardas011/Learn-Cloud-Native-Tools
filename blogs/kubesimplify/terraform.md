@@ -43,43 +43,53 @@ Lets get right into it
 ![](../05.png)
 
 ## Lets create simple resource
+
+## terraform.tfvars
+```terraform
+client-ip-access = {
+  ssh = "0.0.0.0/0"
+  https = "0.0.0.0/0"
+}
+```
+
+## main.tf
 ```terraform
 provider "aws" {
   region  = "us-east-1"
-  access_key = "<provide the keys>"
-  secret_key = "<provide the keys>"
+  access_key = "<provide the key>"
+  secret_key = "<provide the key>"
 }
 
-# 1. create vpc
+
+# vpc
 resource "aws_vpc" "prod-vpc" {
   cidr_block = "10.0.0.0/16"
-
   tags = {
-    "Name" = "production"
+    Name = "prod-vpc"
   }
 }
 
-# 2. create internet gateway
+# internet gateway
 resource "aws_internet_gateway" "gw" {
   vpc_id = aws_vpc.prod-vpc.id
 
   tags = {
-    Name = "ig"
+    Name = "prod-gateway"
   }
 }
 
-# 3. create custom route table
-resource "aws_route_table" "prod-route-table" {
+# route table
+resource "aws_route_table" "prod-rt" {
   vpc_id = aws_vpc.prod-vpc.id
 
   route {
-    cidr_block = "0.0.0.0/0"
+    cidr_block = "0.0.0.0/0" # any ip can access
     gateway_id = aws_internet_gateway.gw.id
   }
 
   route {
     ipv6_cidr_block        = "::/0"
-    gateway_id             = aws_internet_gateway.gw.id
+    gateway_id = aws_internet_gateway.gw.id
   }
 
   tags = {
@@ -87,11 +97,10 @@ resource "aws_route_table" "prod-route-table" {
   }
 }
 
-# 4. create a subnet
-resource "aws_subnet" "subnet-1" {
+# subnets
+resource "aws_subnet" "prod-subnet" {
   vpc_id     = aws_vpc.prod-vpc.id
-  # cidr_block = "10.0.1.0/24"
-  cidr_block = var.subnet_prefix
+  cidr_block = "10.0.1.0/24"
   availability_zone = "us-east-1a"
 
   tags = {
@@ -99,16 +108,21 @@ resource "aws_subnet" "subnet-1" {
   }
 }
 
-# 5. associate subnet with route table
+# join subnets and route table by association
 resource "aws_route_table_association" "a" {
-  subnet_id      = aws_subnet.subnet-1.id
-  route_table_id = aws_route_table.prod-route-table.id
+  subnet_id      = aws_subnet.prod-subnet.id
+  route_table_id = aws_route_table.prod-rt.id
 }
 
-# 6. create security group to allow port 22, 80, 443
-resource "aws_security_group" "allow_web" {
-  name        = "allow_web_traffic"
-  description = "Allow Web inbound traffic"
+variable "client-ip-access" {
+  description = "ip address for the client to access the host"
+  type = map(string)
+}
+
+# security
+resource "aws_security_group" "allow_http" {
+  name        = "allow-web-traffic"
+  description = "Network traffic allowed"
   vpc_id      = aws_vpc.prod-vpc.id
 
   ingress {
@@ -143,42 +157,51 @@ resource "aws_security_group" "allow_web" {
   }
 
   tags = {
-    Name = "allow_web"
+    Name = "prod-security"
   }
 }
 
-# 7. create a network interface with an ip in the subnet that was created in step 4
-resource "aws_network_interface" "web-server-nic" {
-  subnet_id       = aws_subnet.subnet-1.id
-  private_ips     = ["10.0.1.50"]
-  security_groups = [aws_security_group.allow_web.id]
-}
+# elastic ip
+# It's recommended to denote that the AWS Instance or Elastic IP depends on the Internet Gateway. For example:
+resource "aws_eip" "bar" {
+  vpc = true
 
-# 8. assign an elastic ip to the network interface created in step 7
-resource "aws_eip" "one" {
-  depends_on = [
-    aws_internet_gateway.gw
-  ]
-  vpc                       = true
-  network_interface         = aws_network_interface.web-server-nic.id
   associate_with_private_ip = "10.0.1.50"
-}
+  network_interface = aws_network_interface.prod-nic.id
+  depends_on                = [aws_internet_gateway.gw]
 
-output "server_public_ip" {  # it will print when terrafrom apply
-  value = aws_eip.one.public_ip
-}
-
-# 9. create ubuntu server and install/enable apache2
-
-resource "aws_instance" "web-server-ec2" {
-  ami = "ami-04505e74c0741db8d"
-  instance_type = "t2.micro"
-  availability_zone = "us-east-1a" # it is hardcoded as aws will make different zones to subnet and ec2 Thus, Causing Errors
-  key_name = "terraform-access-ec2"
-  network_interface {
-    device_index = 0
-    network_interface_id = aws_network_interface.web-server-nic.id
+  tags = {
+    "Name" = "prod-eip"
   }
+}
+
+# network interface
+resource "aws_network_interface" "prod-nic" {
+  subnet_id       = aws_subnet.prod-subnet.id
+  private_ips     = ["10.0.1.50"]
+  security_groups = [aws_security_group.allow_http.id]
+
+  tags = {
+    "Name" = "prod-nic"
+  }
+}
+
+# ec2
+resource "aws_instance" "prod-ec2" {
+  ami           = "ami-04505e74c0741db8d" 
+  instance_type = "t2.micro"
+  availability_zone = "us-east-1a"
+
+  network_interface {
+    network_interface_id = aws_network_interface.prod-nic.id
+    device_index         = 0
+  }
+
+  tags = {
+    "Name" = "prod-ec2"
+  }
+
+  key_name = "terraform-access-ec2"
 
   user_data = <<-EOF
     #!/bin/bash
@@ -187,25 +210,31 @@ resource "aws_instance" "web-server-ec2" {
     sudo systemctl start apache2
     sudo bash -c 'echo your very first web server > /var/www/html/index.html'
     EOF
-
-  tags = {
-    "Name" = "web-server"
-  }
-}
-# terraform state list
-# terraform state show <name of resource>
-
-output "server_private_ip" {
-  value = aws_instance.web-server-ec2.private_ip
 }
 
-output "server_id" {
-  value = aws_instance.web-server-ec2.id
+output "server_public_ip" {
+  value = aws_eip.bar.public_ip
 }
-
 ```
 
+# Lets Deploy
+
+![](../out1.png)
+```bash
+terraform init
+```
+
+![](../out2.png)
+```bash
+terraform apply
+```
+
+![](../ot3.png)
+
+![](../oo2.png)
 # References
+* [Terraform Blog](https://kubesimplify.com/introduction-to-terraform)
+* [Terrafrom in 2 hours (freecodecamp)](https://youtu.be/SLB_c_ayRMo)
 
 
 Hope it helps
