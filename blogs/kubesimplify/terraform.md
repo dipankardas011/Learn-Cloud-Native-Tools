@@ -8,43 +8,51 @@ Terraform is an (**IAC**)infrastructure as code tool that lets you define both c
 ![](https://mktg-content-api-hashicorp.vercel.app/api/assets?product=terraform&version=refs%2Fheads%2Fstable-website&asset=website%2Fimg%2Fdocs%2Fintro-terraform-apis.png)
 
 ## The core Terraform workflow
-* Write: You define resources, which may be across multiple cloud providers and services. For example, you might create a configuration to deploy an application on virtual machines in a Virtual Private Cloud (VPC) network with security groups and a load balancer.
-* Plan: Terraform creates an execution plan describing the infrastructure it will create, update, or destroy based on the existing infrastructure and your configuration.
-* Apply: On approval, Terraform performs the proposed operations in the correct order, respecting any resource dependencies. For example, if you update the properties of a VPC and change the number of virtual machines in that VPC, Terraform will recreate the VPC before scaling the virtual machines.
+* **Write**: You define resources, which may be across multiple cloud providers and services.
+* **Plan**: Terraform creates an execution plan describing the infrastructure it will create, update, or destroy based on the existing infrastructure and your configuration.
+* **Apply**: On approval, Terraform performs the proposed operations in the correct order, respecting any resource dependencies.
 
 [Link for the AWS resource definitions](https://registry.terraform.io/providers/hashicorp/aws/latest/docs)
 
 # How to setup AWS
 ## Setup Access Key
-![](../01.png)
+
+
+![01.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289735623/e_ACFucj_.png)
+
 1. To create one or more IAM users (console)
   1. Sign in to the AWS Management Console and open the IAM console at [**AWS IAM**](https://console.aws.amazon.com/iam/)
-  2. expand the list **Access keys (access key ID and secret access key)** ![](../02.png)
-  3. **Store the keys**  ![](../03.png)
+  2. expand the list **Access keys (access key ID and secret access key)** 
+![02.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289655500/YXYd5Ngm3.png)
+  3. **Store the keys**  ![03.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289665115/avb_Z7igl.png)
 2. Installation of Terraform CLI
   [Download Link](https://www.terraform.io/downloads)
 
-![](../04.png)
 
-# Lets Learn by Doing
-Lets get right into it
+![04.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289759449/hVJ2mLetO.png)
 
-## Resources to create web server
-1. EC2 - virtual machine
-2. VPC - Virtual Private Cloud
-3. Internet Gateway - to allow network traffic to reach the inside vpc
-4. Subnet - It creates Network inside VPC thus reducing the network hopping
-5. RouteTable - It stores destination addr where network traffic from your subnet or gateway is to be directed to.
-6. Associate the RouteTable and Subnet - connect both of them
-7. Security Group - to Allow which port and from what Client ip address it came
-8. Network Interface - It allows communications between computers connected to the Subnet
-9. Elastic IP - its a service by AWS which provides the dynamic IP during creation.
+# Let's Learn by Doing
+Let us get right into it
 
-![](../05.png)
+## Resources to create a web server
+1. **EC2** - virtual machine on AWS
+2. **VPC** - Virtual Private Cloud is the isolation of the cloud for your resources to run. This is a logical way of separating of network
+3. **Internet Gateway** - to allow network traffic to reach inside vpc
+4. **Subnet** - It creates Network inside VPC thus reducing the network hopping
+5. **RouteTable** - It stores the destination address where network traffic from your subnet or gateway is to be directed.
+6. **Associate the RouteTable and Subnet** - connect both of them
+7. **Security Group** - to Allow which port and from what Client IP address it came
+8. **Network Interface** - It allows communications between computers connected to the Subnet
+9. **Elastic IP** - it's a service by AWS which provides the dynamic IP during creation.
 
-## Lets create simple resource
 
-## terraform.tfvars
+![05.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289770062/d1QJMEjbY.png)
+
+
+## Let's write the configuration files
+
+### terraform.tfvars
+
 ```terraform
 client-ip-access = {
   ssh = "0.0.0.0/0"
@@ -52,12 +60,13 @@ client-ip-access = {
 }
 ```
 
-## main.tf
+### main. tf
+
 ```terraform
 provider "aws" {
   region  = "us-east-1"
-  access_key = "<provide the key>"
-  secret_key = "<provide the key>"
+  access_key = "<provider access key>"
+  secret_key = "<provider secret key>"
 }
 
 
@@ -67,6 +76,11 @@ resource "aws_vpc" "prod-vpc" {
   tags = {
     Name = "prod-vpc"
   }
+}
+
+variable "client-ip-access" {
+  description = "ip address for the client to access the host"
+  type = map(string)
 }
 
 # internet gateway
@@ -114,11 +128,6 @@ resource "aws_route_table_association" "a" {
   route_table_id = aws_route_table.prod-rt.id
 }
 
-variable "client-ip-access" {
-  description = "ip address for the client to access the host"
-  type = map(string)
-}
-
 # security
 resource "aws_security_group" "allow_http" {
   name        = "allow-web-traffic"
@@ -131,6 +140,7 @@ resource "aws_security_group" "allow_http" {
     to_port          = 443
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"] # so as to make anyone to reach the server
+    # cidr_blocks      = [var.client-ip-access.https]
   }
 
   ingress {
@@ -147,6 +157,7 @@ resource "aws_security_group" "allow_http" {
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["0.0.0.0/0"] # so as to make anyone to reach the server
+    # cidr_blocks      = [var.client-ip-access.ssh]
   }
 
   egress {
@@ -206,9 +217,8 @@ resource "aws_instance" "prod-ec2" {
   user_data = <<-EOF
     #!/bin/bash
     sudo apt update -y
-    sudo apt install apache2 -y
-    sudo systemctl start apache2
-    sudo bash -c 'echo your very first web server > /var/www/html/index.html'
+    sudo apt install nginx -y
+    sudo systemctl start nginx
     EOF
 }
 
@@ -219,19 +229,27 @@ output "server_public_ip" {
 
 # Lets Deploy
 
-![](../out1.png)
+
+![out1.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289802983/fPHP6aXqe.png)
 ```bash
 terraform init
 ```
 
-![](../out2.png)
+
+![out2.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289815214/EJ0iHoqr2.png)
 ```bash
 terraform apply
 ```
 
-![](../ot3.png)
 
-![](../oo2.png)
+![ot3.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289826529/XqveQnG20.png)
+
+
+![oo2.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289839206/7I2Uq5DLS.png)
+
+
+![ss.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1651289852350/Luh3VKJlv.png)
+
 # References
 * [Terraform Blog](https://kubesimplify.com/introduction-to-terraform)
 * [Terrafrom in 2 hours (freecodecamp)](https://youtu.be/SLB_c_ayRMo)
