@@ -38,7 +38,7 @@ Below are all the links from the video.
 
 # Kubernetes👍🏼
 * Civo Academy✅ - civo.com/academy
-* Kubernetes course (techworldwithnana) - https://youtu.be/X48VuDVv0do
+* Kubernetes course (techworldwithnana)✅ - https://youtu.be/X48VuDVv0do
 * Kube academy - https://kube.academy/
 * Introduction to Kubernetes (edx) - https://www.edx.org/course/introducti...
 * KCNA - https://youtu.be/iGkFHB1kFZ0
