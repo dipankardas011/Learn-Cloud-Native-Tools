@@ -15,6 +15,7 @@
     "settings": {
         "helmPreviewMode": "template",
         "kustomizeCommand": "kubectl",
+        "enableHelmWithKustomize": true,
         "createDefaultObjects": false,
         "setDefaultPrimitiveValues": true
     },
