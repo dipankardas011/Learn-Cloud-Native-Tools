@@ -1,0 +1,5 @@
+TOKEN=$(kubectl describe secrets "$(kubectl describe serviceaccount demo-serviceacc -n demo| grep -i Tokens | awk '{print $2}')" -n demo | grep token: | awk '{print $2}')
+kubectl config set-credentials test-user --token=$TOKEN
+kubectl config get-contexts
+kubectl config set-context demo --cluster=minikube --user=test-user --namespace=demo
+kubectl config use-context demo
