@@ -125,3 +125,8 @@ Can be used together
 role binding [or] cluster role binding can be created after first 3 commands
 [#$% link till where]()
 
+# New info
+* ClusterRole - create roles wrt to the whole cluster
+* Role - create roles wrt to the individual namespaces
+* RoleBinding - roles are assigned to the ServiceAccount/User used for a specific user in a specific namespace
+* ClusterRoleBinding - Just same a roleBinding addition is it provides access to groups inside cluster in any namespace

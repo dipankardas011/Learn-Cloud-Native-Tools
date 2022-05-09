@@ -84,7 +84,7 @@ deamon set is the node exporter
 when clusterIP is `None` means it is a headless service
 it is used for statful sets
 
-so as to access Graphana we can edit its network to `nodePort`
+> so as to access Graphana we can edit its network to `NodePort`
 
 ⚠️important config map⚠️
 prom-kube-prometheus-stack-prometheus
