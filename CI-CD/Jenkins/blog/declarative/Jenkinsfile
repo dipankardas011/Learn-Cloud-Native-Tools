@@ -1,0 +1,20 @@
+pipeline {
+  agent any
+  stages {
+    stage ('Build') {
+      step {
+        echo 'Nice World'
+      }
+    }
+    stage ('Testing') {
+      step {
+        echo 'Testing .......'
+      }
+    }
+    stage ('Deploy') {
+      step {
+        echo '☸️ 🐋🐳'
+      }
+    }
+  }
+}
