@@ -23,7 +23,7 @@ Below are all the links from the video.
 * Git for Professionals (freecodecamp)✅  -https://youtu.be/Uszj_k0DGsg
 
 # cloud🏃🏼‍♂️
-* AWS cloud practitioner (freecodecamp) - https://youtu.be/SOTamWNgDKc
+* AWS cloud practitioner (freecodecamp)📝 - https://youtu.be/SOTamWNgDKc
 
 # docker👍🏼
 * Docker playlist by Saloni✅ - https://youtube.com/playlist?list=PL5...
@@ -47,7 +47,7 @@ Below are all the links from the video.
 * CKS book - https://saiyampathak.gumroad.com/l/ck...
 
 # CI/CD👍🏼
-* Jenkins complete course - https://youtu.be/FX322RVNGj4
+* Jenkins complete course📝 - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
 * CI/CD week - https://youtube.com/playlist?list=PL5...
@@ -61,7 +61,7 @@ Below are all the links from the video.
 * Crossplane deep dive - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
-* Ansible⚠️
+* Ansible📝
 
 # Observability
 * Getting started with Jaeger - https://youtu.be/aMZoUIG-mgY
