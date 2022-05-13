@@ -49,3 +49,9 @@ It Virtualizes the OS
 ![](./Types%20of%20Cloud1.png)
 ![](./00013.png)
 
+# Budgets
+⚠️Beware that some servrices also charged
+They both creates a SNS(it is just a service notifier where it sends a email to notify about bills, anomilies)
+* Biling console(It has forecasting)
+* Cloud Watch(Billing allarms (They dont have forecasting))
+Both has its special utulity
