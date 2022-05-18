@@ -1,3 +1,6 @@
 [submodule "academy"]
 	path = academy
 	url = https://github.com/dipankardas011/academy.git
+[submodule "kubecon2022"]
+	path = kubecon2022
+	url = https://github.com/kubernetes101/kubecon2022.git
