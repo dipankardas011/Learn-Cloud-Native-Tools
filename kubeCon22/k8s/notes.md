@@ -13,14 +13,13 @@ LoadBalancer (NodePort + external loadbalancer) some plugin azurelB, GCPLB
 
 
 CLuster IP(parent)
-
 |
 |
 \/
 Node POrt(derived)
-
 |
 |
 \/
 Load balancer(derived)
 it chooses which node
+
