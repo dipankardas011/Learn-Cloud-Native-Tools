@@ -51,8 +51,8 @@ thanos makes promethus highly available, long term storage
 
 ![](./05.png)
 ```bash
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts\n
-helm repo update\n
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
 helm install prom prometheus-community/kube-prometheus-stack
 
 # checks the installs
