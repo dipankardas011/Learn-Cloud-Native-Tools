@@ -55,3 +55,8 @@ They both creates a SNS(it is just a service notifier where it sends a email to 
 * Biling console(It has forecasting)
 * Cloud Watch(Billing allarms (They dont have forecasting))
 Both has its special utulity
+
+
+# Innovation Waves
+![](./Screenshot%20from%202022-05-29%2023-10-44.png)
+![](./Screenshot%20from%202022-05-29%2023-11-12.png)
