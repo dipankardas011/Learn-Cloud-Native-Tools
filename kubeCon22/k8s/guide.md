@@ -707,6 +707,7 @@ Look for your service in the NAT table (again, be sure to use the IP address of 
 
 ```
 ubuntu@ip-172-31-24-84:~$ sudo iptables -L -vn -t nat | grep '10.111.148.30'
+its inside the kuberenetes (minikube ssh)
 
     1    60 KUBE-SVC-RYQJBQ5TR32XWAUN  tcp  --  *      *       0.0.0.0/0            10.111.148.30        
     /* default/website:http cluster IP */ tcp dpt:80

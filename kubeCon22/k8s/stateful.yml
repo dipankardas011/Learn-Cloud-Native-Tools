@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webstate
+spec:
+  ports:
+  - port: 80
+    name: webstate
+  clusterIP: None
+  selector:
+    app: webstate
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: webstate
+spec:
+  selector:
+    matchLabels:
+      app: webstate
+  serviceName: webstate
+  template:
+    metadata:
+      labels:
+        app: webstate
+    spec:
+      containers:
+      - name: nginx
+        image: k8s.gcr.io/nginx-slim:0.8

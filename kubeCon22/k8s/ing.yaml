@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+spec:
+  ingressClassName: ambassador
+  rules:
+  - http:
+      paths:
+      - path: /engine
+        pathType: Prefix
+        backend:
+          service:
+            name: engine
+            port:
+              number: 80
+
