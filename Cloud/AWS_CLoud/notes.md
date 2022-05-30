@@ -60,3 +60,50 @@ Both has its special utulity
 # Innovation Waves
 ![](./Screenshot%20from%202022-05-29%2023-10-44.png)
 ![](./Screenshot%20from%202022-05-29%2023-11-12.png)
+
+
+# Regions & Zones
+
+The subnet is like avability zone
+Regions
++------+  
+| (AZ) |
++------+
+AZ = avability zone
+
+In **EC2** we select the avability zone
+In **S3** bucket we dont select the avability zone but select the region
+in **Cloudfront** we are not selecting the region we are giving the geogrphic zones(like asia, north america)
+in **IAM** we dont specify anything as it is global
+
+![](./010.png)
+![](./011.png)
+![](./012.png)
+![](./013.png)
+![](./014.png)
+![](./015.png)
+![](./016.png)
+![](./017.png)
+![](./018.png)
+![](./019.png)
+![](./020.png)
+![](./021.png)
+![](./022.png)
+![](./023.png)
+![](./024.png)
+![](./025.png)
+![](./026.png)
+![](./027.png)
+![](./028.png)
+![](./029.png)
+![](./030.png)
+![](./031.png)
+![](./032.png)
+![](./033.png)
+![](./034.png)
+![](./035.png)
+![](./036.png)
+![](./037.png)
+![](./038.png)
+![](./039.png)
+![](./040.png)
