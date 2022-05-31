@@ -1,0 +1,24 @@
+# permissions for end users to edit basicapps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: basicapp-editor-role
+rules:
+- apiGroups:
+  - cache.basic.com
+  resources:
+  - basicapps
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - cache.basic.com
+  resources:
+  - basicapps/status
+  verbs:
+  - get

@@ -7,3 +7,6 @@
 [submodule "IAC/Terrafrom_Practice"]
 	path = IAC/Terrafrom_Practice
 	url = https://github.com/dipankardas011/Terrafrom_Practice.git
+[submodule "Kubernetes/Operator/build-your-operator"]
+	path = Kubernetes/Operator/build-your-operator
+	url = https://github.com/leszko/build-your-operator

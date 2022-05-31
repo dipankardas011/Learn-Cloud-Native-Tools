@@ -1,0 +1,6 @@
+apiVersion: cache.basic.com/v1alpha1
+kind: BasicApp
+metadata:
+  name: basicapp-sample
+spec:
+  # TODO(user): Add fields here

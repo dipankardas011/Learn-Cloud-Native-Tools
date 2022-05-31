@@ -1,0 +1,20 @@
+# permissions for end users to view basicapps.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: basicapp-viewer-role
+rules:
+- apiGroups:
+  - cache.basic.com
+  resources:
+  - basicapps
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - cache.basic.com
+  resources:
+  - basicapps/status
+  verbs:
+  - get
