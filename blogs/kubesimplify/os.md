@@ -134,18 +134,197 @@ to execute a user thread it is tranfer to kernel threads to execute it
 * One-One
 * Many-Many
 
-# Memory management
+# Process Syncronization / Concurrency
+There is problem when there are >2 processes; excute simultaneously and using a common resources then there are inconsistencies
+This is Race Condition
+
+there are 3 steps in each process
+```
+acuire_lock()
+----
+Critical section # where all the program logic happens
+----
+release_lock()
+``` 
+
+## Solutions
+1. Software Lock(Peterson's 2 process solution)
+If there are P0 and P1 processes
+then P0 gives chance to P1 and vice-versa therby maintaing consistency
+
+```cpp
+```
+limitations is only 2 process at a time
+
+2. Semaphores
+Semaphore is a variable along with 2 operators called wait() and signal() to achieve synchronous
+  ### Types
+  * Binary - only one process at a time can enter the critical section
+  * Counting - more than one process at a time can enter the critical section
+If one or more processes are waiting to get there turn thereby cpu burst time is wasted to check them so it is a spin lock situation
+to overcome we need the waiting queue
+## Bakery using semaphore
+
+```cpp
+```
+
+## Reader & Writer method
+When one or more process enters as read mode then no process can enter as write mode in the critical section
+and when write mode process is inside critical section no read mode process are allowed to enter
+only 1 write mode by N read mode
+
+## Dinning philosophere
+
+philosophere
+```
+think()
+# aquire_chopsticks
+eat()
+# release_chopsticks
+```
+
+3. Monitors
+it is a high level programming language construct to achieve synchronous
+Block
+-----
+lock
+shared variable
+atomic function
+conditional variables
+
 
 # deadlock
+a set of processes are said to be in deadlock if every process belongs to this set holds a resource and waiting for another resource which is currently held by other process belongs to this same set
 
-# concurrency
+## handling
+1. Deadlock prevention - prior to deadlock
+make anyone of the following true:
+  * no mutual exclusion
+  * no hold & wait
+  * no preemtion
+  * no circular wait
 
-# memory
+1. Deadlock avoidance - prior to deadlock
+dynamically verify the resource allocation state
+using
+Allocated resource count, available resources, need of that process
+
+single instatnce resource - resource allocation graph
+multiple instance resource - bankers algorithm
+--example for each--
+
+1. Deadlock detection - deadlock occured
+system has to know information required t ofind deadlock
+* allocation
+* request
+* availability
+
+* single instance resource - Wait for graph
+* Multiple instance resource - Banker's algo
+
+1. Deadlock recovery - deadlock occured
+how to resolve it
+* assume that there is no deadlock
+  * resource preemption
+  * process termination (all or some selected till it is deadlock free)
+
+# Memory management
+functions of it:-
+* keep track of free space
+* allocation memory to process whenever they need it
+* protection of memory of one process from another
+
+creation of executable file
+* without linking
+* with linking
+  * static linking the libray files are added after linking process
+  * dynamic linking the library file are fetches as needed during execution
+
+> Virtual Memory - 
+
+## Mapping of instructions
+--examples--
+1. Compile time binding
+each line mapped to the physical memory
+Compiler must know where the space is available 
+
+2. Load time binding
+Base register is provided by the OS and 
+Base register + index gives the physical memory
+
+3. Execution time binding
+during the execution the instruction can move from one memory location to another
+
+## Types of allocation
+* Monoprogramming systems (compile time binding )
+* multiprogramming 
+  * Contigous
+    1. fixed partioning
+      whole memory is divided in fixed sized chunks
+      it causes internal fragmentation
+    1. variable partioning
+      it is not divied but the program is stored in continuous memory location of its size
+      it causes external fragmentation
+  * Non contiguous
+    it solves the external fragmenation
+    > logical address
+    > page table
+    > RAM
+    
+    1. paging
+      1. Single page table
+      1. Multiple page table
+    1. segmentation
+## additional bits
+- valid bit
+1 -> valid if the page is used by the program
+otherwise 0
+
+- protection bit
+read, write, execute
+code segment must be read, execute
+data segment must be read, write
+- Reference bit
+whether this page is curently accessed in CPU or not 
+even reading or writing is known here as refered
+- dirty bit
+if that page is modified in in the ram but not written back to the virtual memory then dirty bit is set to 1
+so when the page has to be removed from the ram then:
+if the dirty bit == 1 then
+  it is saved to the swap area
+else
+  it is saved to the hard drive
+
+> TLB (translation look aside buffer)
+
+## Replacement algo
+1. FIFO - the first one in has to be replaced
+1. optimal - in the near future whichever page is not going to be used
+1. LRU - replace with the page which hs not been used recently
+1. Approx LRU
+  * uses the reference bit
+  * if reference bit = 0 then replace it; otherwise not
+1. additional refernce bit algo
+1. second chance algo
+1. Counting Algo
 
 # IO
+## Disk
+1. sector/block
+2. Head
+3. track
+4. cylinder
+
+## Scheduling in Disk
+
+## How files are stored (Linux File System) 
+
 Buffer is used to speed up the process because the I/O significantly slower compared to the CPU so CPU had to wait.
 * Single buffer
 * Double Buffer
 * circular buffer
+
+# Protections & security
+
 
 # Conclusion
