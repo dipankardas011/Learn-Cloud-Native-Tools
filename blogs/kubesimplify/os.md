@@ -11,7 +11,7 @@ user application are provided API's by OS to talk with the hardware.
 
 How does the Computer Boots
 
-![](./boot.png) # TODO bootsequence
+![](./boot.png)
 
 for example.
 How the print statement is evaluated in a Operating System
@@ -19,13 +19,16 @@ How the print statement is evaluated in a Operating System
 
 ## Components
 1. Process management
+it manages the processes and there resources
 1. File management
+it manages the file Read, Write, Execute, Permissions and sharing
 1. Memory management
+it counts how much is free, makes memory available & dealloc, and memory isolation, mapping
 1. I/O management
+it handles interrupts, device drivers, bus, buffers, etc
 
 
 # What is Process 
---PCB--
 a process is the instance of a computer program that is being executed by one or many threads.
 OS represents each process tracked with PCB(Process Control Block)
 * Process ID (**Linux** it is represented by 16 bits)
@@ -87,7 +90,6 @@ it is called by:-
 1. Mid Term Scheduler - used for swap area. but some dont use as logn term can be extended to fit its purpose 
 
 > Context switch - mechanism to change the control of the CPU from one process to another
-
 > Premeptive - control can be transfered to another process even if the process is not completed 
 > Non-premeptive - control can be transfered to another process when the process is completed
 
@@ -103,6 +105,8 @@ scheduler decides according to the burst time required by the process
 each process is given priority
 the lower priority process is given the preference
 
+to avoid starvation we can use the ageing method where at each clock cycle the priority of processes in queue are reduced
+
 4. Round Robin [premptive]
 Here there is fixed Quantum time
 its like a circular queue where each process gets Qt amount of time, if not completed then it is reinserted at the back
@@ -111,7 +115,12 @@ it has least waiting time. So used in interactive tasks (UI)
 
 ## Hybrid of these are there
 5. Round Robin with priority
+Here it compares the priority of runnnable process with other runnable processes
 6. multilevel feedback Queue
+ready queue is divided into >= 2 queues
+1st queue = Highest Priority (Interractive processes like UI)
+latest queue = Lowest priority (Background processes)
+and other queue for the (system process)
 
 # Thread
 Its is lighweight process
@@ -128,14 +137,8 @@ the stack is stored in parent process Heap address space
 * kernel thread - it is in kernel space and is handled by the Operating System
 to execute a user thread it is tranfer to kernel threads to execute it
 
-![](./types of treads mapping)
-* Many-One
-* One-Many
-* One-One
-* Many-Many
-
 # Process Syncronization / Concurrency
-There is problem when there are >2 processes; excute simultaneously and using a common resources then there are inconsistencies
+There is problem when there are > 2 processes; excute simultaneously and using a common resources then there are inconsistencies
 This is Race Condition
 
 there are 3 steps in each process
@@ -153,6 +156,19 @@ If there are P0 and P1 processes
 then P0 gives chance to P1 and vice-versa therby maintaing consistency
 
 ```cpp
+// Process 0
+flag[0] = True
+turn = 1;
+
+while (flag[1] == True && turn == 1);
+```
+
+```cpp
+// Process 1
+flag[1] = True
+turn = 0;
+
+while (flag[0] == True && turn == 0);
 ```
 limitations is only 2 process at a time
 
@@ -164,14 +180,51 @@ Semaphore is a variable along with 2 operators called wait() and signal() to ach
 If one or more processes are waiting to get there turn thereby cpu burst time is wasted to check them so it is a spin lock situation
 to overcome we need the waiting queue
 ## Bakery using semaphore
+multiple producer can put there item to the rack, and multiple consumer can eat item
 
 ```cpp
+// Producer
+wait(empty)
+  wait(mutex)
+    insert(rack, p_item)
+  signal(mutex)
+signal(full)
+
+// Consumer
+wait(full)
+  wait(mutex)
+    remove(rack)
+  signal(mutex)
+signal(empty)
+
 ```
 
 ## Reader & Writer method
 When one or more process enters as read mode then no process can enter as write mode in the critical section
 and when write mode process is inside critical section no read mode process are allowed to enter
 only 1 write mode by N read mode
+
+```cpp
+// writer
+wait(wr)
+  write()
+signal(wr)
+
+// reader
+wait(mutex)
+  count++
+  if (count == 1)
+    wait(wr)
+signal(mutex)
+
+read()
+
+wait(mutex)
+  count--
+  if (count == 0)
+    signal(wr)
+signal(mutex)
+```
 
 ## Dinning philosophere
 
@@ -181,6 +234,48 @@ think()
 # aquire_chopsticks
 eat()
 # release_chopsticks
+```
+
+```cpp
+
+enum STATE{
+  HUNGARY, EATING, THINKING
+}
+semaphore p[5] = {0}
+mutex = 1
+int state[5]
+
+void philosopherWork(int i) {
+  while (1) {
+    think(i)
+    takeChopsticks(i)
+    eat(i)
+    releaseChopsticks(i)
+  }
+}
+
+void takeChopsticks(int i) {
+  wait(mutex)
+    state[i] = HUNGARY
+    test(i)
+  signal(mutex)
+  signal(p[i])
+}
+// 4 Philosopheres
+void test(int i) {
+  if (state[i] == HUNGARY && state[(i+1) % 5] != EATING && state[(i+4) % 5] != EATING) {
+    state[i] = EATING
+    signal(p[i])
+  }
+}
+
+void releaseChopsticks(int i) {
+  wait(mutex)
+    state[i] = THINKING
+    test((i+1) % 5)
+    test((i+4) % 5)
+  signal(mutex)
+}
 ```
 
 3. Monitors
@@ -193,7 +288,7 @@ atomic function
 conditional variables
 
 
-# deadlock
+# Deadlock
 a set of processes are said to be in deadlock if every process belongs to this set holds a resource and waiting for another resource which is currently held by other process belongs to this same set
 
 ## handling
@@ -211,10 +306,9 @@ Allocated resource count, available resources, need of that process
 
 single instatnce resource - resource allocation graph
 multiple instance resource - bankers algorithm
---example for each--
 
 1. Deadlock detection - deadlock occured
-system has to know information required t ofind deadlock
+system has to know information required to find deadlock
 * allocation
 * request
 * availability
@@ -240,17 +334,20 @@ creation of executable file
   * static linking the libray files are added after linking process
   * dynamic linking the library file are fetches as needed during execution
 
-> Virtual Memory - 
+> Virtual Memory - it is used to expanded the available memory resource than it is. 
+
 
 ## Mapping of instructions
 --examples--
 1. Compile time binding
 each line mapped to the physical memory
 Compiler must know where the space is available 
+![](./compileb.png)
 
 2. Load time binding
 Base register is provided by the OS and 
 Base register + index gives the physical memory
+![](./loadb.png)
 
 3. Execution time binding
 during the execution the instruction can move from one memory location to another
@@ -267,6 +364,7 @@ during the execution the instruction can move from one memory location to anothe
       it causes external fragmentation
   * Non contiguous
     it solves the external fragmenation
+    TODO: start from here
     > logical address
     > page table
     > RAM
