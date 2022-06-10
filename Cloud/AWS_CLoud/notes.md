@@ -76,6 +76,25 @@ In **S3** bucket we dont select the avability zone but select the region
 in **Cloudfront** we are not selecting the region we are giving the geogrphic zones(like asia, north america)
 in **IAM** we dont specify anything as it is global
 
+VPC is regionaly scoped service meaning it sits across all availability zones within that region
+subnets are availability zone scoped means they sit in individual avilibility zones
+multiple subnets in different availbility zones in a single VPC. multiple VPCs in the same region or diff region however NO VPC can span multiple regions
+VPC's can connect to each other means VPC connectoins can span multiple regions
+so we have ability to peer VPC together to expand our environment if necssary
+
+the use of route tables, network interfaces and interface endpoints gives complete control over the security configuration and connectivity of resources in our VPC
+
+by default all incomming connections are **BLOCKED!!** & all outgoing connections are **ALLOWED!!**
+
+to distribute traffic among a single region we need elastic load balancer(ELB)
+to distrubte traffic among different regions er need Amazon Route 53
+
+undifferenciated heavy lifting that is we manage all the physical stuff for you
+
+a user is a permenanent identity and roles are temporary identity
+
+
+
 ![](./010.png)
 ![](./011.png)
 ![](./012.png)
