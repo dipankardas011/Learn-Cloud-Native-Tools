@@ -17,3 +17,7 @@ Role Based Access Plugin
 
 * Project roles
 * Global role
+
+![](./Screenshot%20from%202022-06-11%2021-23-03.png)
+![](./Screenshot%20from%202022-06-11%2021-23-19.png)
+![](./Screenshot%20from%202022-06-11%2021-23-33.png)
