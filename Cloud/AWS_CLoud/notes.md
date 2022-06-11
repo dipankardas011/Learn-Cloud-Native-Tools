@@ -94,7 +94,7 @@ undifferenciated heavy lifting that is we manage all the physical stuff for you
 a user is a permenanent identity and roles are temporary identity
 
 
-
+<!-- 
 ![](./010.png)
 ![](./011.png)
 ![](./012.png)
@@ -138,4 +138,10 @@ a user is a permenanent identity and roles are temporary identity
 ![](./051.png)
 ![](./052.png)
 ![](./053.png)
-![](./054.png)
+![](./054.png) -->
+
+# Cloud architecture
+to have highly available in EC2 where every instance is one AZ so we need to have deploy EC2 with different AZs and have elastic ip where load balcned
+we can instead use elaastic beanstalk
+
+place the info here
