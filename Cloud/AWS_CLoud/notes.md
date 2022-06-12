@@ -145,3 +145,54 @@ to have highly available in EC2 where every instance is one AZ so we need to hav
 we can instead use elaastic beanstalk
 
 place the info here
+
+# IAC
+Cloud Formation
+```yml
+# Yaml for the cloudformation in s3 bucket
+# template.yaml
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  HelloBucket:
+    Type: 'AWS::S3::Bucket'
+Outputs:
+    HelloBucketDomain:
+        Description: The domain of the bucket
+        Value: !GetAtt HelloBucket.DomainName
+```
+```sh
+# here we are using AWS cli to create the cloudformation stack in the template
+aws cloudformation create-stack \
+  --stack-name myStack232 \
+  --template-body file://Demo_files/template.yaml
+```
+
+cloud development Kit
+it is cloudformation but we use programming language
+[https://github.com/aws/aws-cdk/blob/main/README.md]()
+
+cloud9 is a IDE in aws
+![](./Screenshot%20from%202022-06-12%2009-17-17.png)
+![](./Screenshot%20from%202022-06-12%2009-18-53.png)
+![](./Screenshot%20from%202022-06-12%2009-19-49.png)
+![](./Screenshot%20from%202022-06-12%2010-09-46.png)
+![](./Screenshot%20from%202022-06-12%2010-08-51.png)
+![](./Screenshot%20from%202022-06-12%2010-09-46.png)
+![](./Screenshot%20from%202022-06-12%2010-09-56.png)
+![](./Screenshot%20from%202022-06-12%2011-23-38.png)
+
+# Management and deployment
+access keys
+![](./Screenshot%20from%202022-06-12%2011-25-34.png)
+![](./Screenshot%20from%202022-06-12%2011-26-44.png)
+![](./Screenshot%20from%202022-06-12%2011-44-57.png)
+![](./Screenshot%20from%202022-06-12%2011-48-24.png)
+
+
+
+# documentations
+
+you can contribute in the docs
+aws labs github
+[Github Link](https://github.com/awslabs)
+
