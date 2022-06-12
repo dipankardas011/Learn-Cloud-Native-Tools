@@ -7,9 +7,4 @@ docker container run -d \
     jenkins/jenkins
 
 # Tomcat server
-docker run -d --rm -p 8081:8080 -v tomcat:/usr/local/tomcat/ tomcat
-
-docker container run -d \
-    -p 8081:8080 -p 50001:50000 \
-    --name jenkins-worker \
-    jenkins/jenkins
+docker run -d --rm -p 8081:8080 -v tomcat-vol:/usr tomcat

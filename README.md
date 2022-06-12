@@ -33,8 +33,8 @@ Below are all the links from the video.
 * Dockerfile best practices - https://youtu.be/JofsaZ3H1qM
 * Docker security essentials - https://youtu.be/KINjI1tlo2w
 * Auditing Docker security - https://youtu.be/mQkVB6KMHCg
-* Docker in a visual way - https://aurelievache.gumroad.com/l/un...
-* Ivan container articles - https://iximiuz.com/en/categories/?ca...
+* Docker in a visual way - https://aurelievache.gumroad.com/l/understanding-docker-visual-way
+* Ivan container articles📝  - https://iximiuz.com/en/
 
 # Kubernetes👍🏼
 * Civo Academy✅ - civo.com/academy
@@ -47,7 +47,7 @@ Below are all the links from the video.
 * CKS book - https://saiyampathak.gumroad.com/l/ck...
 
 # CI/CD👍🏼
-* Jenkins complete course📝 - https://youtu.be/FX322RVNGj4
+* Jenkins complete course✅ - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
 * CI/CD week - https://youtube.com/playlist?list=PL5...

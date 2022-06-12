@@ -1,0 +1,39 @@
+pipeline {
+	agent none
+		stages {
+			stage('Non-Parallel stage') {
+				agent {
+					label 'master'
+				}
+
+				steps {
+					echo 'This stage will be executed first'
+				}
+			}
+
+
+			stage('Run tests') {
+				parallel {
+					stage ('Test On Windows') {
+						agent {
+							label 'Windows-agent'
+						}
+
+						steps {
+							bat "a.exe"
+						}
+					}
+
+					stage ('Test On master') {
+						agent {
+							label "master"
+						}
+
+						steps {
+							echo "Task on master"
+						}
+					}
+				}
+			}
+		}
+}
