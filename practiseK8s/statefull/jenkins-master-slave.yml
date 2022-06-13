@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: jenkins-master
+spec:
+  selector:
+    matchLabels:
+      app: jenkins
+  serviceName: jenkins-service
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - name: jenkins
+        image: docker.io/jenkins/jenkins
+        ports:
+        - containerPort: 8080
+          name: dashboard
+        - containerPort: 31000
+          name: connector
+        volumeMounts:
+        - name: www
+          mountPath: /var/jenkins_home
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 8080
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: jenkins-exporter
+spec:
+  type: NodePort
+  selector:
+    app: jenkins
+  ports:
+  - name: main
+    port: 9090
+    targetPort: dashboard
+    nodePort: 31010
+  - port: 31000
+    name: conn
+    targetPort: connector
+
+# look at the image
+...
