@@ -195,3 +195,6 @@ pipeline {
 		}
 }
 [Github Link](https://github.com/simplilearn-github/Pipeline_Script)
+
+
+[K8s with Jenkins](https://blog.knoldus.com/how-to-setup-jenkins-build-agents-on-kubernetes-pods/)

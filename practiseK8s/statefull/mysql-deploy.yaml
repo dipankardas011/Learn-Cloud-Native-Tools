@@ -28,6 +28,15 @@ spec:
         volumeMounts:
         - name: www
           mountPath: /var/lib/mysql
+        ports:
+          - containerPort: 3306
+            name: connector
+        livenessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
         env:
           - name: "MYSQL_ROOT_PASSWORD"
             valueFrom:
@@ -45,3 +54,19 @@ spec:
 # docker run -e MYSQL_ROOT_PASSWORD='1234' -d mysql
 # docker ps then docker exec -it <> bash
 # mysql -uroot -p
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-exporter
+spec:
+  ports:
+  - name: mysql-conn
+    port: 3306
+    targetPort: connector
+    nodePort: 31010
+  type: NodePort
+  selector:
+    app: mysqldbms
+...
