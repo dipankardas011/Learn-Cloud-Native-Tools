@@ -1,7 +1,5 @@
 {
     "k8sVersion": "1.23.3",
     "settings": {},
-    "kubeConfig": {
-        "currentContext": "minikube"
-    }
+    "kubeConfig": {}
 }

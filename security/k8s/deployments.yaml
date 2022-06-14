@@ -1,0 +1,83 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nginx-sa
+automountServiceAccountToken: false
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+ name: pod-reader
+rules:
+- apiGroups: [""] # "" indicates the core API group
+  resources: ["pods"]
+  verbs: ["get", "watch", "list"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: read-pods
+  namespace: default
+subjects:
+  - kind: ServiceAccount
+    name: nginx-sa
+    namespace: default
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      serviceAccountName: nginx-sa
+      securityContext:
+        runAsUser: 1000
+        runAsGroup: 3000
+        fsGroup: 2000
+      containers:
+      - name: nginx
+        image: nginx:alpine
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80
+        securityContext:
+          allowPrivilegeEscalation: false
+          # readOnlyRootFilesystem: true
+          seccompProfile:
+            type: RuntimeDefault
+          capabilities:
+            add: ["NET_ADMIN", "SYS_TIME"]
+          seLinuxOptions:
+            level: "s0:c123,c456"
+
+...
+
+# https://www.armosec.io/blog/secure-kubernetes-deployment/
+# - Use service accounts per application and bind the service account with minimal roles and privilege requirements to achieve your objectives.
+# - Don’t automount the service account token if it’s not required in your application.
+# - Use security contexts to implement various techniques, such as preventing containers from running as the root user in privilege mode, using SELinux or AppArmor profiles, and more.
+# - Make sure the source of your container images is trustworthy, and if possible, store them in private registries.
+# - Try to use container-optimized images that reduce surface area to minimize threats.
+# - Deploy a continuous vulnerability scanning solution, not only in CI/CD but in the cluster as well, that can monitor and take action in real-time.
+# - Use a Pod Security admission profile and model to provide different isolation levels to your workload.
+# - Use Secrets to store sensitive information, and apply least-privilege RBAC to restrict user/SA secret access.
