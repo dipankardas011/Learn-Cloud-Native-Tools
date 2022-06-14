@@ -1,0 +1,68 @@
+# LoadBalancer
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-svc
+#   namespace: demo
+# spec:
+#   type: LoadBalancer
+#   selector:
+#     app: nginx
+#   ports:
+#   - port: 9000
+#     nodePort: 30008
+#     targetPort: nginx-port
+#     protocol: TCP
+
+# ---
+# # CLusterIP
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: nginx-svc
+#   namespace: demo
+# spec:
+#   type: ClusterIP
+#   selector:
+#     app: nginx
+#   ports:
+#   - port: 9000
+#     targetPort: nginx-port
+#     protocol: TCP
+# ---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx-svc
+  namespace: demo
+spec:
+  selector:
+    app: nginx
+  ports:
+  # Default port used by the image
+  - port: 9000
+    targetPort: nginx-port
+
+---
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-igx
+  namespace: demo
+spec:
+  rules:
+  # - host: localhost
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: nginx-svc
+            port: 
+              number: 9000
+# curl localhost/
+# kubectl run -it agent --image=busybox
