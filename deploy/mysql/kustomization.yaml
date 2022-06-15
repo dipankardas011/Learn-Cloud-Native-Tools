@@ -1,0 +1,4 @@
+resources:
+- secret-mysql.yaml
+- essentials-mysql.yaml
+- mysql-server.yaml

@@ -1,5 +1,7 @@
 {
     "k8sVersion": "1.23.3",
     "settings": {},
-    "kubeConfig": {}
+    "kubeConfig": {
+        "currentContext": "kind-kind"
+    }
 }

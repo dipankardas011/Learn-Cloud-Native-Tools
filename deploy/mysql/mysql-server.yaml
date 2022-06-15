@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-server
+  labels:
+    db: mysql
+  namespace: mysql-ns
+spec:
+  selector:
+    matchLabels:
+      server: mysql
+  serviceName: mysql-server
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        server: mysql
+    spec:
+      containers:
+      - name: mysql
+        image: docker.io/mysql:latest
+        ports:
+        - containerPort: 3306
+          name: mysql-port
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        volumeMounts:
+        - name: www
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: www
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim
