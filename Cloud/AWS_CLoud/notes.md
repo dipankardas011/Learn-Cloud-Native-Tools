@@ -196,3 +196,10 @@ you can contribute in the docs
 aws labs github
 [Github Link](https://github.com/awslabs)
 
+# responsibility
+IaaS
+PaaS
+SaaS
+FaaS
+
+AWS CLoud trail logging events

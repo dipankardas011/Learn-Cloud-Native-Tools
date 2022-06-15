@@ -32,7 +32,7 @@ Below are all the links from the video.
 * Docker deep dive by Nigel - https://youtu.be/GwXLNAcHk-k
 * Dockerfile best practices - https://youtu.be/JofsaZ3H1qM
 * Docker security essentials - https://youtu.be/KINjI1tlo2w
-* Auditing Docker security - https://youtu.be/mQkVB6KMHCg
+* Auditing Docker security✅ - https://youtu.be/mQkVB6KMHCg, [TODO]
 * Docker in a visual way ✅ - https://aurelievache.gumroad.com/l/understanding-docker-visual-way
 * Ivan container articles📝  - https://iximiuz.com/en/
 
