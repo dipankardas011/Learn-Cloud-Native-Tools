@@ -10,3 +10,9 @@
 [submodule "Kubernetes/Operator/build-your-operator"]
 	path = Kubernetes/Operator/build-your-operator
 	url = https://github.com/leszko/build-your-operator
+[submodule "security/docker/docker-bench-security"]
+	path = security/docker/docker-bench-security
+	url = https://github.com/docker/docker-bench-security.git
+[submodule "security/docker/cis-docker-benchmark"]
+	path = security/docker/cis-docker-benchmark
+	url = https://github.com/dev-sec/cis-docker-benchmark.git
