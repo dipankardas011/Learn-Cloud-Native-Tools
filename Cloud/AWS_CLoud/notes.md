@@ -203,3 +203,36 @@ SaaS
 FaaS
 
 AWS CLoud trail logging events
+
+# Edge COMPUTING
+wavelength (where we create a subnet which is close to the providers with choosing zones then running EC2 instances on these VPC's or subnets)
+
+as AWS Lambdas causes cold start so we use aws cloudfrontfunction if will have cold start but be a lot faster for the fact that its in the edge 
+
+# STORAGE
+## S3
+llifecycle management where we can make a file or all inside bucket to move from one storage class to another 
+MAX 10 buckets
+
+there is a service limit page / **Service Quotoes**
+it provides the service limits for each AWS resources
+
+## EBS
+For the attachnig to the EC2
+
+## EFS
+for sharing volume to multiple VMs
+
+# Databases
+
+# Networking
+
+[Visualize CIDR](https://cidr.xyz/)
+
+Security group only give options to allow not to block
+Network Access (ACLs) we can allow and block
+
+first DELETE EC2 then GATEWAY then SUBNETS then VPC then ROUTE TABLE
+
+## CloudFront
+used to take data from resource(like S3) then cache it everywhere
