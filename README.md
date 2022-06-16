@@ -64,7 +64,7 @@ Below are all the links from the video.
 * Ansible📝
 
 # Observability
-* Getting started with Jaeger - https://youtu.be/aMZoUIG-mgY
+* Getting started with Jaeger✅ - https://youtu.be/aMZoUIG-mgY
 * Getting dirty with Monitoring and Autoscaling Features for Self Managed Kubernetes cluster - https://youtu.be/TqfIfUuuPdE
 * Intro to Kubernetes monitoring - https://youtu.be/B5UY-qeW96I
 * Prometheus CNCFMinutes - https://youtu.be/llwxJ0VdYWY

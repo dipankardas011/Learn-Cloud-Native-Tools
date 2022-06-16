@@ -1,0 +1,17 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "192.168.49.2",
+      "port": 31001,
+      "driver": "MySQL",
+      "name": "mysql-minikube",
+      "username": "root",
+      "password": "dipankar",
+      "database": "learning"
+    }
+  ]
+}

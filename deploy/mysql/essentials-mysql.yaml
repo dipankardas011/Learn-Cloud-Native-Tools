@@ -33,3 +33,24 @@ spec:
   resources:
     requests:
       storage: 2Gi
+# ---
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: mysql-ingress
+#   labels:
+#     ingress: mysql
+#   namespace: mysql-ns
+# spec:
+#   rules:
+#   - host: mysql-server-local.com
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: mysql-server
+#             port: 
+#               number: 3306
+# ...
