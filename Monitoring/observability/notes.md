@@ -94,3 +94,26 @@ statefulsets managed by the operators
 
 ![](./parca.png)
 here comparing 2 nodes cpu utilising
+
+
+
+# Trafefw
+```sh
+helm repo add influxdata https://helm.influxdata.com/
+helm upgrade --install my-release influxdata/influxdb2
+helm upgrade --install telegraf-ds influxdata/telegraf-ds
+# create cluster role for the required access 
+kubectl edit cm telegraf-ds
+
+kubectl get svc
+
+Admin password for Influx dashboard -> 
+echo $(kubectl get secret my-release-influxdb2-auth -o "jsonpath={.data['admin-password']}" --namespace default | base64 --decode)
+```
+
+**jaeger** for _tracing_
+**loki** for _logging_
+**parcq** for _profiling_
+**prometheus** for _metrics_
+**grafana** for _viewing_
+

@@ -57,7 +57,7 @@ Below are all the links from the video.
 # IAC tools
 * Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
 * Hashicorp terraform accociate certification (freecodecamp) - https://youtu.be/V4waklkBC38
-* Crossplane CNCFMinutes - https://youtu.be/NLHmqVUvtkU
+* Crossplane CNCFMinutes✅ - https://youtu.be/NLHmqVUvtkU
 * Crossplane deep dive - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
@@ -72,28 +72,29 @@ Below are all the links from the video.
 * Thanos deep dive - https://youtu.be/nYV_wU7_Xm0
 
 # Chaos engineering
-* Chaos mesh CNCFMinutes - https://youtu.be/HAU_cjW1bMw
+* Chaos mesh CNCFMinutes ✅ - https://youtu.be/HAU_cjW1bMw
 * Chaos mesh 2.0 - https://youtu.be/HmQ9cFwxF7g
-* Litmus CNCFMinutes - https://youtu.be/rDQ9XKbSJIc
+* Litmus CNCFMinutes ✅ - https://youtu.be/rDQ9XKbSJIc
 * Cloud native chaos paradigms - https://youtu.be/uBGPFfTu6TU
 
 # Policy engines
-* Kyverno CNCFMinutes - https://youtu.be/Bo8KhWhNY6g
+* Kyverno CNCFMinutes✅ - https://youtu.be/Bo8KhWhNY6g
 * Datree✅
 * Kyverno deep dive - https://youtu.be/QR-iBeh9Vy0
 * Kyverno courses - https://learn.nirmata.com/courses/
 * jsPolicy - https://youtu.be/AzPczzKW71A
 * Kubewarden - https://youtu.be/b14YkyrLFcs
-* OPA CNCFMinutes - https://youtu.be/49my68py3KY
+* OPA CNCFMinutes ✅ - https://youtu.be/49my68py3KY
 * OPA deep dive - https://youtu.be/J6tM9O-0LvI
 * Various policy engines for Kubernetes - https://youtu.be/gKQOq7904h8
 * Styra Academy - https://academy.styra.com/courses/opa...
 
 # Servicemesh
-* Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introducti...
+* Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introduction-to-service-mesh-with-linkerd?index=product&queryID=9dbd5c6fb61e09299c3422cd6fe02793&position=1
 
 # Networking
 * Cilium
 * Flanned
 
-Support my work - https://saiyampathak.com/membership
+# Extras
+[HTTPS Server in GO](https://riptutorial.com/go/example/3248/create-a-https-server)
