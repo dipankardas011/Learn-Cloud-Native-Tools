@@ -19,6 +19,7 @@ spec:
       nodePort: 31001
   selector:
     server: mysql
+    app.kubernetes.io/name: mysql-pod
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim

@@ -9,12 +9,14 @@ spec:
   selector:
     matchLabels:
       server: mysql
+      app.kubernetes.io/name: mysql-pod
   serviceName: mysql-server
   replicas: 1
   template:
     metadata:
       labels:
         server: mysql
+        app.kubernetes.io/name: mysql-pod
     spec:
       containers:
       - name: mysql
@@ -22,6 +24,13 @@ spec:
         ports:
         - containerPort: 3306
           name: mysql-port
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 10m
+          limits:
+            memory: 500Mi
+            cpu: 500m
         env:
         - name: MYSQL_ROOT_PASSWORD
           valueFrom:

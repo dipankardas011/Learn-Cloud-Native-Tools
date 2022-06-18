@@ -22,3 +22,9 @@
 [submodule "Kubernetes/advanceCluster/autoscaler"]
 	path = Kubernetes/advanceCluster/autoscaler
 	url = https://github.com/kubernetes/autoscaler
+[submodule "policy/kyverno/policies"]
+	path = policy/kyverno/policies
+	url = https://github.com/kyverno/policies
+[submodule "docker-development-youtube-series"]
+	path = docker-development-youtube-series
+	url = https://github.com/marcel-dempers/docker-development-youtube-series.git
