@@ -46,3 +46,6 @@ nodes:
 networking:
   disableDefaultCNI: true
 ```
+
+
+[Cluster-AutoScaler](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)

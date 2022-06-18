@@ -236,3 +236,31 @@ first DELETE EC2 then GATEWAY then SUBNETS then VPC then ROUTE TABLE
 
 ## CloudFront
 used to take data from resource(like S3) then cache it everywhere
+
+# EC2
+IAM instancerole
+SSM-role (AmazonSSMManagedInstanceCore)
+
+## Elastic IP
+to get the static IP for the Ec2 we need the elastic IP first allocate then associate with the resource
+
+reallocate the 
+
+## AMI create and AMI templates
+
+## ASG(auto scaling group)
+
+for high avability we need atleat 3 AZs
+
+if ASG then Load balancer ✅ (must)
+
+LB must be in same AZ's
+then we need target Group for setup of ALB
+then after target group and Load balancer we edit the ASG and link the target group
+
+then copy the DNS of LB
+
+Load balancer -> target groups -> Auto Scaling -> instance
+
+### Cleanup
+AutoScaling then load balancer & target groups

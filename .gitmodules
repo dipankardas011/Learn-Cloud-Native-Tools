@@ -16,3 +16,9 @@
 [submodule "security/docker/cis-docker-benchmark"]
 	path = security/docker/cis-docker-benchmark
 	url = https://github.com/dev-sec/cis-docker-benchmark.git
+[submodule "Monitoring/Telegraf/influxdb-examples"]
+	path = Monitoring/Telegraf/influxdb-examples
+	url = https://github.com/saiyam1814/influxdb-examples.git
+[submodule "Kubernetes/advanceCluster/autoscaler"]
+	path = Kubernetes/advanceCluster/autoscaler
+	url = https://github.com/kubernetes/autoscaler
