@@ -28,3 +28,6 @@
 [submodule "docker-development-youtube-series"]
 	path = docker-development-youtube-series
 	url = https://github.com/marcel-dempers/docker-development-youtube-series.git
+[submodule "Monitoring/Prometheus/helm-charts"]
+	path = Monitoring/Prometheus/helm-charts
+	url = https://github.com/prometheus-community/helm-charts.git

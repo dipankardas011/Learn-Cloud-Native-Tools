@@ -47,3 +47,6 @@ scrape_configs:
 ```
 
 
+```promql
+increase(promhttp_metric_handler_requests_total{job="my-pdf-app"}[$__interval])
+```
