@@ -31,3 +31,6 @@
 [submodule "Monitoring/Prometheus/helm-charts"]
 	path = Monitoring/Prometheus/helm-charts
 	url = https://github.com/prometheus-community/helm-charts.git
+[submodule "Monitoring/Prometheus/kube-prometheus"]
+	path = Monitoring/Prometheus/kube-prometheus
+	url = https://github.com/prometheus-operator/kube-prometheus.git

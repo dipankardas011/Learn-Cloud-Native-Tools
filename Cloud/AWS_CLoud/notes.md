@@ -264,3 +264,5 @@ Load balancer -> target groups -> Auto Scaling -> instance
 
 ### Cleanup
 AutoScaling then load balancer & target groups
+
+> When we are attaching 2 resources like EC2 with S3 we have to create a **IAM ROLE**

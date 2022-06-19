@@ -50,3 +50,14 @@ scrape_configs:
 ```promql
 increase(promhttp_metric_handler_requests_total{job="my-pdf-app"}[$__interval])
 ```
+
+# Submodules
+* Kube-prometheus/ from the **coreos**
+* helm-charts/ from **kube-prometheus**
+
+# Ways to install Prometheus stack
+There are three different ways to setup the Prometheus monitoring stack in Kubernetes.
+1. Creating everything on your own
+2. Using Prometheus Operator
+3. Using Helm chart to deploy operator
+
