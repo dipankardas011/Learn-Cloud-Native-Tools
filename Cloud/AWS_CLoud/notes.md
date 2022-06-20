@@ -266,3 +266,86 @@ Load balancer -> target groups -> Auto Scaling -> instance
 AutoScaling then load balancer & target groups
 
 > When we are attaching 2 resources like EC2 with S3 we have to create a **IAM ROLE**
+
+Policy to access S3 to only list the buckets
+then we create a role for Ec2 where policy is mybucket
+then create EC2 with no Security policy and no .PEM key
+add the IAM Role during creation (AFTER creation modify the IAM to add it then restart the instance to get options)
+
+then upload files to folder in the S3 buckets
+then open the sessionManager in EC2
+
+```json
+// policy of S3
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListStorageLensConfigurations",
+                "s3:ListAccessPointsForObjectLambda",
+                "s3:GetAccessPoint",
+                "s3:PutAccountPublicAccessBlock",
+                "s3:GetAccountPublicAccessBlock",
+                "s3:ListAllMyBuckets",
+                "s3:ListAccessPoints",
+                "s3:PutAccessPointPublicAccessBlock",
+                "s3:ListJobs",
+                "s3:PutStorageLensConfiguration",
+                "s3:ListMultiRegionAccessPoints",
+                "s3:CreateJob"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::my-demo-32423423/enterprise-d/*",
+                "arn:aws:s3:::my-demo-32423423"
+            ]
+        },
+        {
+            "Effect": "Deny",
+            "Action": "s3:GetObject",
+            "Resource": [
+                "arn:aws:s3:::my-demo-32423423/downloads.pdf"
+            ]
+        }
+    ]
+}
+```
+
+# Application integrating
+## Simple queueing
+## Streaming
+Kinesis
+or we could use Kafka for streaming in queue (real time)
+## Pub/Sub
+publish and subscribe
+## API Gateway
+## State macheines
+## Event Bus and Amazon Event Bridge
+
+# Governance
+(CSC)Configuration vs code
+## AWS config
+
+[Conformation Pack](https://us-east-1.console.aws.amazon.com/config/home?region=us-east-1#/conformance-packs/deploy)
+when the particular config is violating then there are all the ways to remediate using the **Rules** in AWS Config like notify specif people ,etc,
+then there is a option to create custom rules for the config by use aws lamdas
+
+## Quick Starts
+uses the CloudFormation templates to speed up the process
+
+
+## Resource Group
+its in system manager or search in the resource groups
+its used to group similar labels resources to as to group and filter them together
+**Resource groups and tag**
+
+its also used for **Resource Groups for IAM Policies**
+basically when assigning roles to a user to a resource group and not individual resources
