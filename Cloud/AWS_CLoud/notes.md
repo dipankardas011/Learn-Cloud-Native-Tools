@@ -349,3 +349,16 @@ its used to group similar labels resources to as to group and filter them togeth
 
 its also used for **Resource Groups for IAM Policies**
 basically when assigning roles to a user to a resource group and not individual resources
+
+
+> AWS Amplify is for serveless web apps
+
+# Elastic Beanstalk
+
+# Serveless (More)
+* api gateway
+* app sync
+* amplify
+* App integration(SNS, SQS)
+
+Should have trail AWS Trail setup in the root account in the 
