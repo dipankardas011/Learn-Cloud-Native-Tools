@@ -362,3 +362,11 @@ basically when assigning roles to a user to a resource group and not individual 
 * App integration(SNS, SQS)
 
 Should have trail AWS Trail setup in the root account in the 
+
+# WellArchitected Tool
+[AWS WellArchitected Tool](https://docs.aws.amazon.com/wellarchitected/latest/framework/welcome.html)
+Whitepaper in AWS
+
+# AWS Calculator
+
+health dashboard
