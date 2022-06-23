@@ -23,7 +23,7 @@ Below are all the links from the video.
 * Git for Professionals (freecodecamp)✅  -https://youtu.be/Uszj_k0DGsg
 
 # cloud🏃🏼‍♂️
-* AWS cloud practitioner (freecodecamp)📝 - https://youtu.be/SOTamWNgDKc
+* AWS cloud practitioner (freecodecamp)✅ - https://youtu.be/SOTamWNgDKc
 
 # docker👍🏼
 * Docker playlist by Saloni✅ - https://youtube.com/playlist?list=PL5...

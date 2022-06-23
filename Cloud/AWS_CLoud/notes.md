@@ -94,52 +94,6 @@ undifferenciated heavy lifting that is we manage all the physical stuff for you
 a user is a permenanent identity and roles are temporary identity
 
 
-<!-- 
-![](./010.png)
-![](./011.png)
-![](./012.png)
-![](./013.png)
-![](./014.png)
-![](./015.png)
-![](./016.png)
-![](./017.png)
-![](./018.png)
-![](./019.png)
-![](./020.png)
-![](./021.png)
-![](./022.png)
-![](./023.png)
-![](./024.png)
-![](./025.png)
-![](./026.png)
-![](./027.png)
-![](./028.png)
-![](./029.png)
-![](./030.png)
-![](./031.png)
-![](./032.png)
-![](./033.png)
-![](./034.png)
-![](./035.png)
-![](./036.png)
-![](./037.png)
-![](./038.png)
-![](./039.png)
-![](./040.png)
-![](./041.png)
-![](./042.png)
-![](./043.png)
-![](./044.png)
-![](./045.png)
-![](./046.png)
-![](./048.png)
-![](./049.png)
-![](./050.png)
-![](./051.png)
-![](./052.png)
-![](./053.png)
-![](./054.png) -->
-
 # Cloud architecture
 to have highly available in EC2 where every instance is one AZ so we need to have deploy EC2 with different AZs and have elastic ip where load balcned
 we can instead use elaastic beanstalk
@@ -370,3 +324,11 @@ Whitepaper in AWS
 # AWS Calculator
 
 health dashboard
+
+# Security
+
+[Link](https://aws.amazon.com/compliance/programs/)
+PII = personal identitable identy
+[Link](https://aws.amazon.com/security/penetration-testing/)
+
+[AWS Artifacts](https://us-east-1.console.aws.amazon.com/artifact/home)
