@@ -1,6 +1,20 @@
 # setup & install
 
+you must be in pwd
+```sh
+Monitoring/Prometheus/custom-prometheus/manifests
+```
+
 1. setup
+
+```sh
+# for targets
+cd prometheus/
+kubectl create ns monitoring
+kubectl create secret generic additional-scrape-configs --from-file=prometheus-additional.yaml --dry-run -oyaml > additional-scrape-configs.yaml
+kubectl apply -f additional-scrape-configs.yaml -n monitoring
+# edited Monitoring/Prometheus/custom-prometheus/manifests/prometheus/prometheus-prometheus.yaml
+```
 
 ```sh
 kubectl create -f setup -n monitoring
