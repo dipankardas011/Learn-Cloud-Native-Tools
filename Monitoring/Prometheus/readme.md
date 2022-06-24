@@ -61,3 +61,13 @@ There are three different ways to setup the Prometheus monitoring stack in Kuber
 2. Using Prometheus Operator
 3. Using Helm chart to deploy operator
 
+# 3 types of monitoring
+1. application monitoring
+  - process monitoring (OS generates) cpu,memory,disk,network 
+  - custom monitoring 
+2. infrastructure monitoring
+  - Node exporter (how the nodes are performing in terms of Control plane)cpu,memory,disk,network
+3. Kubernetes monitoring
+  - Kube state metrics (pod,ingress,deployments cpu,memory,network)
+  - API server (lifecycle of our pods) (worload status)
+  - kubelet because it has some key container metrics

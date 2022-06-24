@@ -34,3 +34,6 @@
 [submodule "Monitoring/Prometheus/kube-prometheus"]
 	path = Monitoring/Prometheus/kube-prometheus
 	url = https://github.com/prometheus-operator/kube-prometheus.git
+[submodule "CI-CD/Flux/demo-repo"]
+	path = CI-CD/Flux/demo-repo
+	url = https://github.com/dipankardas011/demo-repo.git
