@@ -22,7 +22,7 @@ Below are all the links from the video.
 * Complete Git and GitHub Tutorial (Kunal Kushwaha)✅ - https://youtu.be/apGV9Kg7ics
 * Git for Professionals (freecodecamp)✅  -https://youtu.be/Uszj_k0DGsg
 
-# cloud🏃🏼‍♂️
+# cloud✅
 * AWS cloud practitioner (freecodecamp)✅ - https://youtu.be/SOTamWNgDKc
 
 # docker👍🏼
