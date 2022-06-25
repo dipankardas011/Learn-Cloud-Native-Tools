@@ -10,6 +10,7 @@ metadata:
   name: k8s
   namespace: monitoring
 spec:
+  # alerting is used for how to send and manage the alerts generated
   alerting:
     alertmanagers:
     - apiVersion: v2
@@ -46,6 +47,7 @@ spec:
   serviceMonitorNamespaceSelector: {}
   serviceMonitorSelector: {}
   version: 2.36.1
+  # ----------------additional Scraps------------------------
   additionalScrapeConfigs:
     name: additional-scrape-configs
     key: prometheus-additional.yaml

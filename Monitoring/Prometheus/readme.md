@@ -71,3 +71,5 @@ There are three different ways to setup the Prometheus monitoring stack in Kuber
   - Kube state metrics (pod,ingress,deployments cpu,memory,network)
   - API server (lifecycle of our pods) (worload status)
   - kubelet because it has some key container metrics
+
+[AlertManager Gmail&Slack](https://grafana.com/blog/2020/02/25/step-by-step-guide-to-setting-up-prometheus-alertmanager-with-slack-pagerduty-and-gmail/)
