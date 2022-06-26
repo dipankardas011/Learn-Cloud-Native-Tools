@@ -39,7 +39,7 @@ Below are all the links from the video.
 # Kubernetes👍🏼
 * Civo Academy✅ - civo.com/academy
 * Kubernetes course (techworldwithnana)✅ - https://youtu.be/X48VuDVv0do
-* Kube academy - https://kube.academy/
+* Kube academy📝 - https://kube.academy/
 * Introduction to Kubernetes (edx) - https://www.edx.org/course/introducti...
 * KCNA - https://youtu.be/iGkFHB1kFZ0
 * Hands on CKA/CKAD/CKS - https://youtu.be/jZOs8Oips7Q
@@ -50,7 +50,7 @@ Below are all the links from the video.
 * Jenkins complete course✅ - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
-* CI/CD week - https://youtube.com/playlist?list=PL5...
+* CI/CD week - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
 * Get Certified for GitOps with Argo - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
