@@ -50,13 +50,13 @@ Below are all the links from the video.
 * Jenkins complete course✅ - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
-* CI/CD week - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
+* CI/CD week📝 - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
 * Get Certified for GitOps with Argo - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
 # IAC tools
 * Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
-* Hashicorp terraform accociate certification (freecodecamp) - https://youtu.be/V4waklkBC38
+* Hashicorp terraform accociate certification (freecodecamp)📝 - https://youtu.be/V4waklkBC38
 * Crossplane CNCFMinutes✅ - https://youtu.be/NLHmqVUvtkU
 * Crossplane deep dive - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
