@@ -19,7 +19,7 @@ spec:
         ports:
         - containerPort: 8080
           name: dashboard
-        - containerPort: 31000
+        - containerPort: 50000
           name: connector
         volumeMounts:
         - name: www
@@ -52,7 +52,7 @@ spec:
     port: 9090
     targetPort: dashboard
     nodePort: 31010
-  - port: 31000
+  - port: 50000
     name: conn
     targetPort: connector
 

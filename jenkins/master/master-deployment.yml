@@ -4,22 +4,6 @@ metadata:
   name: jenkins
 
 ---
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: jenkins
-#   labels:
-#     type: local
-# spec:
-#   storageClassName: manual
-#   capacity:
-#     storage: 4Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   hostPath:
-#     path: "/mnt/data"
-
-# ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -55,14 +39,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: docker.io/jenkins/jenkins
-        env:
-        - name: JAVA_OPTS
-          value: -Xmx2048m -Dhudson.slaves.NodeProvisioner.MARGIN=50 -Dhudson.slaves.NodeProvisioner.MARGIN0=0.85
-        resources:
-          limits:
-            memory: "600Mi"
-            cpu: "800m"
+        image: jenkins/jenkins:lts
         ports:
         - name: http-port
           containerPort: 8080
@@ -71,10 +48,6 @@ spec:
         volumeMounts:
         - name: www
           mountPath: '/var/jenkins_home'
-      restartPolicy: Always
-      securityContext:
-        runAsUser: 0
-      terminationGracePeriodSeconds: 30
       volumes:
       - name: www
         persistentVolumeClaim:
@@ -97,33 +70,29 @@ spec:
   - name: jnlp
     port: 50000
     targetPort: 50000
-  - name: ui
-    port: 8080
-    targetPort: 8080
-    protocol: TCP
   selector:
     app.kubernetes/name: jenkins-control
 
----
+# ---
 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  labels:
-    app: jenkins-control
-  namespace: jenkins
-  name: jenkins-ingress
-spec:
-  rules:
-  - host: jenkins
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: jenkins-service
-            port: 
-              number: 8080
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   labels:
+#     app: jenkins-control
+#   namespace: jenkins
+#   name: jenkins-ingress
+# spec:
+#   rules:
+#   - host: jenkins
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: jenkins-service
+#             port: 
+#               number: 80
 
-...
+# ...

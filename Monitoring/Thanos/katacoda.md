@@ -571,8 +571,9 @@ config:
   secret_key: "melovethanos"
 ```
 Let's restart sidecar with updated configuration in backup mode.
-
+```sh
 docker stop prometheus-0-eu1-sidecar
+```
 Thanos sidecar allows to backup all the blocks that Prometheus persists to the disk. In order to accomplish this we need to make sure that:
 
 Sidecar has direct access to the Prometheus data directory (in our case host's /root/prom-eu1 dir) (--tsdb.path flag)
