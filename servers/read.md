@@ -1,0 +1,1 @@
+[Link of nginx docs LB](https://docs.nginx.com/nginx/admin-guide/load-balancer/)
