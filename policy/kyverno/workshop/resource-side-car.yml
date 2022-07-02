@@ -1,0 +1,23 @@
+# for the mutate policy
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx
+  namespace: default
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  replicas: 1
+  template:
+    metadata:
+      annotations:
+        vault.hashicorp.com/agent-inject: "true"
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx

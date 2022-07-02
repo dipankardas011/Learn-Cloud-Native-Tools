@@ -1,0 +1,29 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: disallow-host-port
+  annotations:
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Access to host port 80 is forbidden
+spec:
+  validationFailureAction: enforce
+  background: true
+  rules:
+    - name: host-ports
+      match:
+        resources:
+          kinds:
+          - Pod
+      validate:
+        message: >-
+          Use of host port 80 is disallowed. the fields spec.containers[*].ports[*].hostPort and spec.initcontainers[*].ports[*].hostPort must not be 80
+        pattern:
+          spec:
+            =(initContainers):
+              - =(ports):
+                - X(hostPort): 80
+            =(containers):
+              - =(ports):
+                - X(hostPort): 80

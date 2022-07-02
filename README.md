@@ -51,7 +51,7 @@ Below are all the links from the video.
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
 * CI/CD week📝 - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
-* Get Certified for GitOps with Argo - https://codefresh.learnworlds.com/
+* Get Certified for GitOps with Argo✅ - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
 # IAC tools
@@ -81,7 +81,7 @@ Below are all the links from the video.
 * Kyverno CNCFMinutes✅ - https://youtu.be/Bo8KhWhNY6g
 * Datree✅
 * Kyverno deep dive - https://youtu.be/QR-iBeh9Vy0
-* Kyverno courses - https://learn.nirmata.com/courses/
+* Kyverno courses📝 - https://learn.nirmata.com/courses/
 * jsPolicy - https://youtu.be/AzPczzKW71A
 * Kubewarden - https://youtu.be/b14YkyrLFcs
 * OPA CNCFMinutes ✅ - https://youtu.be/49my68py3KY
