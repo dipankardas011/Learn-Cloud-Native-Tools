@@ -4,9 +4,9 @@ author: `Dipankar Das`
 
 # References from the `Saiyam Pathak` youtube video
 
-This is the complete `DevOps roadmap 2022` for you to get into DevOps and cloud native and be job-ready. I call this - "Success Roadmap 2022" that will help you get jobs in the domain of cloud, DevOps, SRE, Kubernetes, Developer advocacy. 
+This is the complete `DevOps roadmap 2022` for you to get into DevOps and cloud native and be job-ready. I call this - "Success Roadmap 2022" that will help you get jobs in the domain of cloud, DevOps, SRE, Kubernetes, Developer advocacy.
 
-Below are all the links from the video. 
+Below are all the links from the video.
 
 # Prerequisites ✅
 * Introduction to Linux✅ - https://www.edx.org/course/introducti...
@@ -63,7 +63,7 @@ Below are all the links from the video.
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
 * Ansible📝
 
-# Observability✅ 
+# Observability✅
 * Getting started with Jaeger✅ - https://youtu.be/aMZoUIG-mgY
 * Getting dirty with Monitoring and Autoscaling Features for Self Managed Kubernetes cluster✅ - https://youtu.be/TqfIfUuuPdE
 * Intro to Kubernetes monitoring✅  - https://youtu.be/B5UY-qeW96I
@@ -81,7 +81,7 @@ Below are all the links from the video.
 * Kyverno CNCFMinutes✅ - https://youtu.be/Bo8KhWhNY6g
 * Datree✅
 * Kyverno deep dive - https://youtu.be/QR-iBeh9Vy0
-* Kyverno courses📝 - https://learn.nirmata.com/courses/
+* Kyverno courses✅ - https://learn.nirmata.com/courses/
 * jsPolicy - https://youtu.be/AzPczzKW71A
 * Kubewarden - https://youtu.be/b14YkyrLFcs
 * OPA CNCFMinutes ✅ - https://youtu.be/49my68py3KY
