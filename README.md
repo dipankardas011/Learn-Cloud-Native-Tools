@@ -34,12 +34,12 @@ Below are all the links from the video.
 * Docker security essentials - https://youtu.be/KINjI1tlo2w
 * Auditing Docker security✅ - https://youtu.be/mQkVB6KMHCg, [TODO]
 * Docker in a visual way ✅ - https://aurelievache.gumroad.com/l/understanding-docker-visual-way
-* Ivan container articles📝  - https://iximiuz.com/en/
+* Ivan container articles📖  - https://iximiuz.com/en/
 
 # Kubernetes👍🏼
 * Civo Academy✅ - civo.com/academy
 * Kubernetes course (techworldwithnana)✅ - https://youtu.be/X48VuDVv0do
-* Kube academy📝 - https://kube.academy/
+* Kube academy📖 - https://kube.academy/
 * Introduction to Kubernetes (edx) - https://www.edx.org/course/introducti...
 * KCNA - https://youtu.be/iGkFHB1kFZ0
 * Hands on CKA/CKAD/CKS - https://youtu.be/jZOs8Oips7Q
@@ -50,18 +50,18 @@ Below are all the links from the video.
 * Jenkins complete course✅ - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
-* CI/CD week📝 - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
+* CI/CD week📖 - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
 * Get Certified for GitOps with Argo✅ - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
 # IAC tools
 * Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
-* Hashicorp terraform accociate certification (freecodecamp)📝 - https://youtu.be/V4waklkBC38
+* Hashicorp terraform accociate certification (freecodecamp)📖 - https://youtu.be/V4waklkBC38
 * Crossplane CNCFMinutes✅ - https://youtu.be/NLHmqVUvtkU
 * Crossplane deep dive - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
-* Ansible📝
+* Ansible📖
 
 # Observability✅
 * Getting started with Jaeger✅ - https://youtu.be/aMZoUIG-mgY
@@ -91,10 +91,11 @@ Below are all the links from the video.
 
 # Servicemesh
 * Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introduction-to-service-mesh-with-linkerd?index=product&queryID=9dbd5c6fb61e09299c3422cd6fe02793&position=1
-* Istio
+* Istio📖
+* Linkerd📖
 
 # Networking
-* Cilium
+* Cilium📖
 * Flanned
 
 # Extras
