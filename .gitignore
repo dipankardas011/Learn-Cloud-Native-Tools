@@ -8,5 +8,6 @@ IAC/terraform/awsLearn/.terraform.lock.hcl
 *.key
 *.pem
 *.csr
+*.conf
 *.srl
 .vagrant
