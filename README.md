@@ -58,7 +58,7 @@ Below are all the links from the video.
 * Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
 * Hashicorp terraform accociate certification (freecodecamp)📖 - https://youtu.be/V4waklkBC38
 * Crossplane CNCFMinutes✅ - https://youtu.be/NLHmqVUvtkU
-* Crossplane deep dive - https://youtu.be/5lWUWat_bbY
+* Crossplane deep dive✅ - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
 * Ansible📖
