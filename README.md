@@ -34,7 +34,7 @@ Below are all the links from the video.
 * Docker security essentials - https://youtu.be/KINjI1tlo2w
 * Auditing Docker security✅ - https://youtu.be/mQkVB6KMHCg, [TODO]
 * Docker in a visual way ✅ - https://aurelievache.gumroad.com/l/understanding-docker-visual-way
-* Ivan container articles📖  - https://iximiuz.com/en/
+* Ivan container articles✅ - https://iximiuz.com/en/
 
 # Kubernetes👍🏼
 * Civo Academy✅ - civo.com/academy
