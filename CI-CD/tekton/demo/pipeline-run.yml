@@ -1,0 +1,12 @@
+apiVersion: tekton.dev/v1beta1
+kind: PipelineRun
+metadata:
+  name: hello-pipeline-run
+spec:
+  pipelineRef:
+    name: my-basic-pipeline
+  params:
+    - name: content0
+      value: 13
+    - name: content1
+      value: 11

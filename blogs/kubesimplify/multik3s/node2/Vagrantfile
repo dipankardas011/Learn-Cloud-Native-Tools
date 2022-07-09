@@ -18,9 +18,7 @@ Vagrant.configure("2") do |config|
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
-  config.ssh.dsa_authentication = false
   config.vm.hostname = "worker-02"
-
 
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
@@ -40,7 +38,7 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  config.vm.network "public_network", bridge: "wlp0s20f3", ip: "192.168.11.14"
+  config.vm.network "public_network", bridge: "wlp0s20f3"
 
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
@@ -70,6 +68,8 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL
     apt update
     apt install -y curl git wget vim nano
-    curl -sfL https://get.k3s.io | K3S_URL=https://192.168.11.12:6443 K3S_TOKEN= sh -
+    # demo
+    curl -sfL https://get.k3s.io | K3S_URL=<> K3S_TOKEN=<> sh -s - agent
+    sudo k3s agent -t <> --server https://<>:6443
   SHELL
 end

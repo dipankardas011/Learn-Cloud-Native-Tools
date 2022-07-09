@@ -1,0 +1,28 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: adder
+spec:
+  params:
+    - name: num0
+      type: string
+    - name: num1
+      type: string
+  steps:
+    - name: echo
+      image: alpine
+      args:
+        - $(params.num0)
+        - $(params.num1)
+      script: |
+        #!/bin/sh
+        echo "Adding Started"
+        #sum=expr $0 - $1
+        a=$1
+        b=$2
+        echo $a
+        echo "+"
+        echo $b
+        sum=`echo $a + $b | bc`
+        echo "SUM -> $sum"
+

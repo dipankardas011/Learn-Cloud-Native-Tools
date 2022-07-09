@@ -18,14 +18,12 @@ Vagrant.configure("2") do |config|
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
   # config.vm.box_check_update = false
-  config.ssh.dsa_authentication = false
   config.vm.hostname = "control-plane"
-
   # Create a forwarded port mapping which allows access to a specific port
   # within the machine from a port on the host machine. In the example below,
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # NOTE: This will enable public access to the opened port
-  config.vm.network "forwarded_port", guest: 80, host: 1234
+  config.vm.network "forwarded_port", guest: 80, host: 8080
   config.vm.network "forwarded_port", guest: 6443, host: 6443
 
   # Create a forwarded port mapping which allows access to a specific port
@@ -40,8 +38,7 @@ Vagrant.configure("2") do |config|
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
   # your network.
-  config.vm.network "public_network", bridge: "wlp0s20f3", ip: "192.168.11.12"
-
+  config.vm.network "public_network", bridge: "wlp0s20f3"
   # Share an additional folder to the guest VM. The first argument is
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
@@ -55,10 +52,10 @@ Vagrant.configure("2") do |config|
   config.vm.provider "virtualbox" do |vb|
     # Display the VirtualBox GUI when booting the machine
     # vb.gui = true
-    vb.cpus = "1"
+    vb.cpus = "2"
 
     # Customize the amount of memory on the VM:
-    vb.memory = "1024"
+    vb.memory = "2048"
   end
   #
   # View the documentation for the provider you are using for more
@@ -67,13 +64,12 @@ Vagrant.configure("2") do |config|
   # Enable provisioning with a shell script. Additional provisioners such as
   # Ansible, Chef, Docker, Puppet and Salt are also available. Please see the
   # documentation for more information about their specific syntax and use.
+
   config.vm.provision "shell", inline: <<-SHELL
     apt update
-    apt install -y curl git wget vim nano
-    curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--flannel-backend=none --disable-network-policy --cluster-cidr=192.168.0.0/16" sh -
-    echo "###############################################\nK3sTOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token) \n###############################################"
-    echo "\nIP control-plane = $(ip route | grep eth1 | awk '{print $9}')"
-    sudo kubectl create -f https://projectcalico.docs.tigera.io/manifests/tigera-operator.yaml
-    sudo kubectl create -f https://projectcalico.docs.tigera.io/manifests/custom-resources.yaml
+    apt install -y curl git vim
+    curl -sfL https://get.k3s.io | sh -
+    # XYZ=$(ip route | grep eth1 | awk '{print $9}')
+    # echo "###############################################\nUse to connect worker nodes \n \t curl -sfL https://get.k3s.io | K3S_URL=https://$XYZ:6443 K3S_TOKEN=$(sudo cat /var/lib/rancher/k3s/server/node-token) sh - \n###############################################"
   SHELL
 end

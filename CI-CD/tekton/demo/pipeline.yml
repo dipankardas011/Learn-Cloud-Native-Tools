@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: my-basic-pipeline
+spec:
+  params:
+    - name: content0
+      type: string
+      description: enter number1
+    - name: content1
+      type: string
+      description: enter number2
+
+  tasks:
+    - name: greet
+      taskRef:
+        name: greet
+    - name: adder
+      runAfter:
+        - greet
+      taskRef:
+        name: adder
+      params:
+        - name: num0
+          value: "$(params.content0)"
+        - name: num1
+          value: "$(params.content1)"
