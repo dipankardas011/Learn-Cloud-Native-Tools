@@ -22,3 +22,23 @@ so once the 1 process exec then no longer allowed
 ```sh
 sudo unshare --pid --fork sh
 ```
+
+
+## Chrooted environment for filesystem (behind the scenes)
+
+chroot - changing root
+if i change any directory in the file system
+you cannot view higher than that
+
+```sh
+cd /usr/bin
+# after this
+chroot
+
+# its used to change the root directory to the $pwd
+# then you neither view contents in /usr/ nor /
+```
+
+> So we can save alpine tar and extract to some location and then chroot to that path then it is basically create kind of a CONTAINER!!
+
+![Linux-Docker-Github](https://github.com/chadmcrowell/linux-docker)
