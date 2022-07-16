@@ -46,11 +46,11 @@ Below are all the links from the video.
 * Certs Magic show - https://www.youtube.com/playlist?app=desktop&list=PL5uLNcv9SibBz9WtAxydEEXauA0j6Km3A
 * CKS book - https://saiyampathak.gumroad.com/l/ck...
 
-# CI/CD👍🏼
+# CI/CD✅
 * Jenkins complete course✅ - https://youtu.be/FX322RVNGj4
 * Github actions (techworldwithnana)✅ - https://youtu.be/R8_veQiYBjI
 * GitHub actions with cloud run - https://youtu.be/eooi60Mks_0
-* CI/CD week📖 - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
+* CI/CD week✅ - https://www.youtube.com/playlist?list=PL5uLNcv9SibC0Osfk9Nhf7MgP2UNzZkDR
 * Get Certified for GitOps with Argo✅ - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
