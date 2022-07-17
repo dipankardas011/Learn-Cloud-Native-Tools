@@ -1,0 +1,21 @@
+---
+- name: My first play
+  hosts: myvirtualmachines
+  #  remote_user: root
+  become: true
+  tasks:
+   - name: Ping my hosts
+     ansible.builtin.ping:
+   - name: Print message
+     ansible.builtin.debug:
+       msg: Hello world!!!
+   - name: install nginx
+     apt:
+       name: nginx
+       state: latest
+   - name: run nginx
+     service: 
+        name: nginx
+        state: started
+   - name: execute shell scripts
+     shell: "cd ${HOME} && echo \"abce\" > nice.txt"

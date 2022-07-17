@@ -1,0 +1,28 @@
+---
+- name: My first play
+  # hosts: ec2
+  hosts: all
+  #  remote_user: root
+  become: true
+  tasks:
+  - name: Ping my hosts
+    ansible.builtin.ping:
+  - name: Print message
+    ansible.builtin.debug:
+      msg: Hello from preview runner!!!
+  - name: install docker
+    shell: "sudo apt update -y && sudo apt install docker.io -y"
+
+  - name: fix the permissions
+    shell: "sudo usermod -aG docker ${USER}"
+
+  - name: run container
+    shell: "sudo docker network create pdf ; sudo docker run --rm -d --net pdf -p 80:80 --name pdf dipugodocker/pdf-editor:0.8-frontend && sudo docker run --rm -d --net pdf -p 8080 --name backend dipugodocker/pdf-editor:0.8-backend"
+
+  - name: "GET docker compose file" # demonstration of how to copy files
+    ansible.builtin.copy:
+      src: docker-compose.yml
+      dest: /home/ubuntu
+      owner: ubuntu
+      group: ubuntu
+      mode: '0744'

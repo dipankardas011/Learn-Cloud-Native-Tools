@@ -61,7 +61,7 @@ Below are all the links from the video.
 * Crossplane deep dive✅ - https://youtu.be/5lWUWat_bbY
 * Crossplane composition deepdive - https://youtu.be/78xR7ypzB4Q
 * Learn pulumi - https://youtu.be/vIjeiDcsR3Q
-* Ansible📖
+* Ansible✅
 
 # Observability✅
 * Getting started with Jaeger✅ - https://youtu.be/aMZoUIG-mgY
