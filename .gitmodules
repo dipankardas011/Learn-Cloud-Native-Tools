@@ -1,9 +1,6 @@
 [submodule "academy"]
 	path = academy
 	url = https://github.com/dipankardas011/academy.git
-[submodule "kubecon2022"]
-	path = kubecon2022
-	url = https://github.com/kubernetes101/kubecon2022.git
 [submodule "IAC/Terrafrom_Practice"]
 	path = IAC/Terrafrom_Practice
 	url = https://github.com/dipankardas011/Terrafrom_Practice.git
