@@ -13,4 +13,7 @@ sudo ln -sf /usr/share/zoneinfo/Asia/Jerusalem /etc/localtime
 date +%Z
 timedatectl
 
+
+# user without home
+useradd -M <>
 ```
