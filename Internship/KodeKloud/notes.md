@@ -17,3 +17,13 @@ timedatectl
 # user without home
 useradd -M <>
 ```
+
+how to disable direct root ssh login
+
+```sh
+sudo vi /etc/ssh/sshd_config
+
+# here add PermitRootLogin no
+
+sudo systemctl restart sshd
+```
