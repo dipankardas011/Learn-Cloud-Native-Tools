@@ -1,0 +1,44 @@
+variables:
+  DOCKER_IMAGE: dipugodocker/pdf-editor
+  DOCKER_TAG: frontend
+
+stages:
+  - test
+  - build
+  - deploy
+
+
+run_test:
+  variables:
+    PORT: 8080
+  stage: test
+  image: node:18-alpine3.15
+  before_script:
+    - npm install
+  script:
+    - cd src/frontend
+    - npm run test
+
+
+docker_build:
+  stage: build
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  variables:
+    DOCKER_TLS_CERTDIR: "/certs"
+  before_script:
+    - docker login -u $DOCKER_REGISTRY_USER -p $DOCKER_REGISTRY_PASSWORD
+  script:
+    - cd /src/frontend
+    - docker build -t $DOCKER_IMAGE:$DOCKER_TAG .
+    - docker push $DOCKER_IMAGE:$DOCKER_TAG
+
+deploy_digitalocean:
+  stage: deploy
+  before_script:
+   - chmod 400 $SSH_KEY_FILE
+  script:
+  - ssh -o StrictHostChecking=no -i $SSH_KEY_FILE root@<> "
+    docker ps -aq | xargs docker stop | xargs docker rm &&
+    docker run -d -p 3034:80 $DOCKER_IMAGE:$DOCKER_TAG"

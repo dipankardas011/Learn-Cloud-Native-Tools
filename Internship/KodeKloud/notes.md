@@ -26,4 +26,10 @@ sudo vi /etc/ssh/sshd_config
 # here add PermitRootLogin no
 
 sudo systemctl restart sshd
+# --------------------------------
+# how to set expireation time of a user
+sudo usermod -e 2021-02-17 yousuf
+# to verify
+sudo chage -l yousuf
+
 ```
