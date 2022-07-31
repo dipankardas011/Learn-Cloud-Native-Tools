@@ -92,7 +92,7 @@ Below are all the links from the video.
 # Servicemesh
 * Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introduction-to-service-mesh-with-linkerd?index=product&queryID=9dbd5c6fb61e09299c3422cd6fe02793&position=1
 * Istio📖
-* Linkerd📖
+* Linkerd✅
 
 # Networking
 * Cilium📖

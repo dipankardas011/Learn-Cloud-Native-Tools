@@ -33,3 +33,11 @@ sudo usermod -e 2021-02-17 yousuf
 sudo chage -l yousuf
 
 ```
+
+to have folders to specific groups
+
+```sh
+sudo chgrp <target_group> -R <folder>
+
+sudo chmod <> -R <folder>
+```
