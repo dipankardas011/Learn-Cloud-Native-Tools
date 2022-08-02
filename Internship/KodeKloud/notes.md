@@ -41,3 +41,9 @@ sudo chgrp <target_group> -R <folder>
 
 sudo chmod <> -R <folder>
 ```
+
+to set default GUI in centos
+
+```sh
+sudo systemctl set-default graphical.target
+```
