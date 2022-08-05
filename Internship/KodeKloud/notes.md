@@ -47,3 +47,8 @@ to set default GUI in centos
 ```sh
 sudo systemctl set-default graphical.target
 ```
+
+to cp file not folders but keeping the folder structure same
+```sh
+find /home/usersdata -type f -user kareem -exec cp --parents {} /blog \;
+```
