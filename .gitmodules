@@ -34,3 +34,6 @@
 [submodule "CI-CD/Flux/demo-repo"]
 	path = CI-CD/Flux/demo-repo
 	url = https://github.com/dipankardas011/demo-repo.git
+[submodule "serverless/aws-lambda-developer-guide"]
+	path = serverless/aws-lambda-developer-guide
+	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
