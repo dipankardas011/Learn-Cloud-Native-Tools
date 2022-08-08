@@ -52,3 +52,11 @@ to cp file not folders but keeping the folder structure same
 ```sh
 find /home/usersdata -type f -user kareem -exec cp --parents {} /blog \;
 ```
+
+
+find and replace using sed
+
+```sh
+sudo sed '/code/d' BSD.txt > BSD_DELETE.txt # to delete the line containing code as word
+sed 's/ the / is /g' BSD.txt > BSD_REPLACE.txt # replace all the the worlds with is word
+```
