@@ -49,3 +49,8 @@ networking:
 
 
 [Cluster-AutoScaler](https://github.com/kubernetes/autoscaler/blob/master/cluster-autoscaler/FAQ.md)
+
+
+# Kubeadm approach
+
+[Link fof saiyam gist](https://gist.github.com/saiyam1814/801db1288c690a969e7174eca89c65b2)
