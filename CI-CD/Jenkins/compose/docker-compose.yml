@@ -1,0 +1,13 @@
+version: '3'
+
+volumes:
+  jenkins:
+
+services:
+  jenkins:
+    image: jenkins/jenkins
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins:/etc/default/jenkins:rw
