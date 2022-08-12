@@ -10,4 +10,4 @@ services:
       - "8080:8080"
       - "50000:50000"
     volumes:
-      - jenkins:/etc/default/jenkins:rw
+      - jenkins:/var/jenkins_home
