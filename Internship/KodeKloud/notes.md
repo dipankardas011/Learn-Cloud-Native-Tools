@@ -58,5 +58,11 @@ find and replace using sed
 
 ```sh
 sudo sed '/code/d' BSD.txt > BSD_DELETE.txt # to delete the line containing code as word
-sed 's/ the / is /g' BSD.txt > BSD_REPLACE.txt # replace all the the worlds with is word
+sed 's/the/is/g' BSD.txt > BSD_REPLACE.txt # replace all the the worlds with is word
+```
+
+
+copy the files
+```sh
+scp /tmp/nautilus.txt.gpg banner@stapp03:/home/webdata
 ```
