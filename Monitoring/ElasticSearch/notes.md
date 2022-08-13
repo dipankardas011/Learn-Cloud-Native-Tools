@@ -1,0 +1,1 @@
+[Official docs on the use of ES](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/getting-started.html#extract-fields)
