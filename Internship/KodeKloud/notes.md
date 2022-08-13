@@ -66,3 +66,19 @@ copy the files
 ```sh
 scp /tmp/nautilus.txt.gpg banner@stapp03:/home/webdata
 ```
+
+
+Resolve the issue with the dns resolution
+```conf
+$ cat /etc/resolv.conf
+
+search stratos.xfusioncorp.com
+nameserver 127.0.0.11
+options ndots:0
+
+# added GoogleDNS as nameserver
+
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+
+```
