@@ -7,7 +7,7 @@ services:
       context: .
     image: fluentd
     volumes:
-    # - /var/lib/docker/containers:/fluentd/log/containers # Example: Reading docker logs
+    - /var/lib/docker/containers:/fluentd/log/containers # Example: Reading docker logs
     - ./files:/fluentd/log/files #Example: Reading logs from a file
     - ./configurations:/fluentd/etc/
     - ./logs:/output/ # Example: Fluentd will collect logs and store it here for demo
