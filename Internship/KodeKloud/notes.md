@@ -82,3 +82,16 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 
 ```
+
+to have cronjobs
+```sh
+yum install -y cronie
+
+systemctl start crond
+systemctl status crond
+
+crontab -l
+
+crontab -e
+# */5 * * * * echo hello > /tmp/cron_text this is a demo
+```
