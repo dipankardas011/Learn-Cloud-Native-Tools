@@ -244,3 +244,45 @@ resource "aws_instance" "web-server-ec2" {
       group: ubuntu
       mode: '0744'
 ```
+
+
+# Ansible on ec2 instance
+
+Step1: start 2 aws ec2 instance
+step2:
+```sh
+# install ansible on both
+sudo yum install ansible
+-> sudo amazon-linux-extras install ansible2
+sudo useradd -m dipu
+sudo passwd dipu
+
+sudo visudo
+# here add the
+USER  ALL=(ALL) NOPASSWD: ALL
+
+cd /etc/ssh
+vim sshd_config
+# add this
+PasswordAuthentication yes
+
+
+# -------------
+# login to the USER
+ssh-keygen
+ssh-copy-id <ip of worker instance>
+
+# worker instance ifconfig -a
+ssh-copy-id <ip of the worker instance>
+vi /etc/ansible/hosts
+# add [any name]
+# <ip of the worker instance>
+
+
+ansible all -m ping
+ansible all -m yum -a "name=httpd status=latest"
+ansible-playbook -vvv cfg.yml
+ansible all -m shell -a "sudo yum install -y docker"
+ansible all -m shell -a "sudo usermod -aG docker <USERNAME>"
+ansible all -m shell -a "sudo systemctl status docker"
+```
