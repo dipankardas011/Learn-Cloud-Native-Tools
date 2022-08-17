@@ -95,3 +95,32 @@ crontab -l
 crontab -e
 # */5 * * * * echo hello > /tmp/cron_text this is a demo
 ```
+
+
+Installing SELinux for security but selinux policy should be disabled and can be trigered
+```
+
+yum install -y selinux*
+
+steve@stapp02 ~]$ cat /etc/selinux/config 
+
+# This file controls the state of SELinux on the system.
+# SELINUX= can take one of these three values:
+#     enforcing - SELinux security policy is enforced.
+#     permissive - SELinux prints warnings instead of enforcing.
+#     disabled - No SELinux policy is loaded.
+SELINUX=disabled
+# SELINUXTYPE= can take one of three values:
+#     targeted - Targeted processes are protected,
+#     minimum - Modification of targeted policy. Only selected processes are protected. 
+#     mls - Multi Level Security protection.
+SELINUXTYPE=targeted 
+
+
+[steve@stapp02 ~]$ sudo vim /etc/selinux/config 
+sudo: vim: command not found
+[steve@stapp02 ~]$ sudo vi /etc/selinux/config 
+[steve@stapp02 ~]$ sestatus
+SELinux status:                 disabled
+[steve@stapp02 ~]$ 
+```
