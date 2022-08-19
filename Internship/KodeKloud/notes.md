@@ -124,3 +124,17 @@ sudo: vim: command not found
 SELinux status:                 disabled
 [steve@stapp02 ~]$ 
 ```
+
+how to add message of day
+
+```sh
+cat > /etc/motd
+##################################
+# welcome the amazing #
+#################################
+```
+
+if the ssh not available
+```sh
+yum install openssh-clients
+```
