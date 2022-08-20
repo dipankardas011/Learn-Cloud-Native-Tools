@@ -5,9 +5,25 @@ class book:
     type = "book"
     author = ""
     pages = ""
+
+    def greet():
+        return "Hello from base class"
+
     def description(self):
         desc = "%s is a %s written by %s. It has %.0f pages." % (self.name, self.type, self.author, self.pages)
         return desc
+
+class Magazine(book):
+    edition=""
+    volume=""
+    url=""
+    category=""
+
+    def getGreet():
+        return self.greet()
+
+    def getCategory():
+        return magazine.category
 
 
 book1 = book()
@@ -28,3 +44,4 @@ book3.pages = 175
 print(book1.description())
 print(book2.description())
 print(book3.description())
+print()
