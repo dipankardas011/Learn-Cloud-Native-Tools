@@ -158,3 +158,11 @@ get the error msg that mysql is
 so mv /var/lib/mysqld /var/lib/mysql
 
 ```
+
+# Postfix mail server not working
+```sh
+systemctl status postfix -l
+
+vi /etc/postfix/main.cf
+# here comment out inet_interface=localhost
+```
