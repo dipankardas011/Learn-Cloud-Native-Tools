@@ -28,12 +28,12 @@
 [submodule "Monitoring/Prometheus/helm-charts"]
 	path = Monitoring/Prometheus/helm-charts
 	url = https://github.com/prometheus-community/helm-charts.git
-[submodule "Monitoring/Prometheus/kube-prometheus"]
-	path = Monitoring/Prometheus/kube-prometheus
-	url = https://github.com/prometheus-operator/kube-prometheus.git
 [submodule "CI-CD/Flux/demo-repo"]
 	path = CI-CD/Flux/demo-repo
 	url = https://github.com/dipankardas011/demo-repo.git
 [submodule "serverless/aws-lambda-developer-guide"]
 	path = serverless/aws-lambda-developer-guide
 	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
+[submodule "java/my-web-app"]
+	path = java/my-web-app
+	url = ""
