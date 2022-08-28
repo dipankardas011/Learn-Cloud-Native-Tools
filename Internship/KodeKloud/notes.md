@@ -166,3 +166,12 @@ systemctl status postfix -l
 vi /etc/postfix/main.cf
 # here comment out inet_interface=localhost
 ```
+
+# install squid and enable on restart
+
+```sh
+sudo yum install -y squid
+sudo systemctl start squid
+sudo systemctl enable squid
+
+```
