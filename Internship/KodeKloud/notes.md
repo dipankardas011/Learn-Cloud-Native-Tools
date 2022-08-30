@@ -175,3 +175,14 @@ sudo systemctl start squid
 sudo systemctl enable squid
 
 ```
+
+
+# Setup the jump server to ssh passwordless to all app server
+
+```sh
+ssh-keygen
+
+ssh-copy-id tony@stapp01
+ssh-copy-id steve@stapp02
+ssh-copy-id banner@stapp03
+```
