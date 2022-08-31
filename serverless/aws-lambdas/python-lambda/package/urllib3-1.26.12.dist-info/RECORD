@@ -1,10 +1,10 @@
-urllib3-1.26.11.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
-urllib3-1.26.11.dist-info/LICENSE.txt,sha256=w3vxhuJ8-dvpYZ5V7f486nswCRzrPaY8fay-Dm13kHs,1115
-urllib3-1.26.11.dist-info/METADATA,sha256=xO8r3tBQvMlpnhf_CWo7aEnJynMIWfDzjSFhqWbrRik,46736
-urllib3-1.26.11.dist-info/RECORD,,
-urllib3-1.26.11.dist-info/WHEEL,sha256=z9j0xAa_JmUKMpmz72K0ZGALSM_n-wQVmGbleXx2VHg,110
-urllib3-1.26.11.dist-info/top_level.txt,sha256=EMiXL2sKrTcmrMxIHTqdc3ET54pQI2Y072LexFEemvo,8
-urllib3/__init__.py,sha256=j3yzHIbmW7CS-IKQJ9-PPQf_YKO8EOAey_rMW0UR7us,2763
+urllib3-1.26.12.dist-info/INSTALLER,sha256=zuuue4knoyJ-UwPPXg8fezS7VCrXJQrAP7zeNuwvFQg,4
+urllib3-1.26.12.dist-info/LICENSE.txt,sha256=w3vxhuJ8-dvpYZ5V7f486nswCRzrPaY8fay-Dm13kHs,1115
+urllib3-1.26.12.dist-info/METADATA,sha256=z8RtNpb9x1iDCVZ86eU_xDg9pmSf4QXBddRTVPUh4bM,47076
+urllib3-1.26.12.dist-info/RECORD,,
+urllib3-1.26.12.dist-info/WHEEL,sha256=z9j0xAa_JmUKMpmz72K0ZGALSM_n-wQVmGbleXx2VHg,110
+urllib3-1.26.12.dist-info/top_level.txt,sha256=EMiXL2sKrTcmrMxIHTqdc3ET54pQI2Y072LexFEemvo,8
+urllib3/__init__.py,sha256=iXLcYiJySn0GNbWOOZDDApgBL1JgP44EZ8i1760S8Mc,3333
 urllib3/__pycache__/__init__.cpython-39.pyc,,
 urllib3/__pycache__/_collections.cpython-39.pyc,,
 urllib3/__pycache__/_version.cpython-39.pyc,,
@@ -17,7 +17,7 @@ urllib3/__pycache__/poolmanager.cpython-39.pyc,,
 urllib3/__pycache__/request.cpython-39.pyc,,
 urllib3/__pycache__/response.cpython-39.pyc,,
 urllib3/_collections.py,sha256=Rp1mVyBgc_UlAcp6M3at1skJBXR5J43NawRTvW2g_XY,10811
-urllib3/_version.py,sha256=fVlEVRWDvqZZi41K4iU6tkns-BDusUidAu5IsqRGkkI,64
+urllib3/_version.py,sha256=GhuGBUT_MtRxHEHDb-LYs5yLPeYWlCwFBPjGZmVJbVg,64
 urllib3/connection.py,sha256=8976wL6sGeVMW0JnXvx5mD00yXu87uQjxtB9_VL8dx8,20070
 urllib3/connectionpool.py,sha256=vEzk1iJEw1qR2vHBo7m3Y98iDfna6rKkUz3AyK5lJKQ,39093
 urllib3/contrib/__init__.py,sha256=47DEQpj8HBSa-_TImW-5JCeuQeRkm5NMpJWZG3hSuFU,0
@@ -37,7 +37,7 @@ urllib3/contrib/_securetransport/bindings.py,sha256=4Xk64qIkPBt09A5q-RIFUuDhNc9m
 urllib3/contrib/_securetransport/low_level.py,sha256=B2JBB2_NRP02xK6DCa1Pa9IuxrPwxzDzZbixQkb7U9M,13922
 urllib3/contrib/appengine.py,sha256=jz515jZYBDFTnhR4zqfeaCo6JdDgAQqYbqzHK9sDkfw,11010
 urllib3/contrib/ntlmpool.py,sha256=ej9gGvfAb2Gt00lafFp45SIoRz-QwrQ4WChm6gQmAlM,4538
-urllib3/contrib/pyopenssl.py,sha256=hoWQWNAWu88z6XUC7w18yCs7HiDCckrPFrOEuahA4EM,16873
+urllib3/contrib/pyopenssl.py,sha256=YeK9CA7D4MfdaqorAWZ8oGHfKnhHzASSUXa2GIftxsI,17156
 urllib3/contrib/securetransport.py,sha256=QOhVbWrFQTKbmV-vtyG69amekkKVxXkdjk9oymaO0Ag,34416
 urllib3/contrib/socks.py,sha256=aRi9eWXo9ZEb95XUxef4Z21CFlnnjbEiAo9HOseoMt4,7097
 urllib3/exceptions.py,sha256=0Mnno3KHTNfXRfY7638NufOPkUb6mXOm-Lqj-4x2w8A,8217
