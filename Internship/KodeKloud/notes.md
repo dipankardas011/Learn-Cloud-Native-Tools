@@ -186,3 +186,14 @@ ssh-copy-id tony@stapp01
 ssh-copy-id steve@stapp02
 ssh-copy-id banner@stapp03
 ```
+
+# to sync server time
+used network time protocol
+
+[GooglePublicNTP](https://developers.google.com/time/guides)
+```sh
+yum install -y ntp
+vi /etc/ntp.conf
+# add the server <Provided DNS>
+```
+
