@@ -34,3 +34,6 @@
 [submodule "serverless/aws-lambda-developer-guide"]
 	path = serverless/aws-lambda-developer-guide
 	url = https://github.com/awsdocs/aws-lambda-developer-guide.git
+[submodule "OCI/buildpack/CNB"]
+	path = OCI/buildpack/CNB
+	url = https://github.com/saiyam1814/CNB.git
