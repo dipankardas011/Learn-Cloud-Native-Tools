@@ -197,3 +197,22 @@ vi /etc/ntp.conf
 # add the server <Provided DNS>
 ```
 
+
+# Configure the Apache http server
+
+```sh
+sudo yum install -y httpd
+
+find / -type f -name httpd.conf
+
+vi <>
+Listen: 6000
+
+# message to display
+/var/www/html/index.html
+
+# at the end
+Header set X-XSS-Protection: "1; mode=block"
+Header set X-Frame-Options: "SAMEORIGIN"
+Header set X-Content-Type-Options: "nosniff"
+```
