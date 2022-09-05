@@ -23,15 +23,12 @@ jobs:
           image_deploy_tag=sha-${{ steps.vars.outputs.sha_short }}
 
     - name: Commit deploy manifest on local repo
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
         git commit -s -m "[skip ci] Generate deployment manifests"
-        git push origin main
+        git push
 
     # - name: Push deploy manifests to local repo
     #   uses: ad-m/github-push-action@master
