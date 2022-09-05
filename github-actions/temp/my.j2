@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pdfeditor-frontend
+spec:
+  selector:
+    matchLabels:
+      app: pdf-frontend
+  template:
+    metadata:
+      labels:
+        app: pdf-frontend
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: server
+        image: dipugodocker/pdf-editor:frontend-{{ image_deploy_tag }}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80
+        env:
+        - name: PORT
+          value: "80"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloservice
+spec:
+  selector:
+    app: pdf-frontend
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: NodePort
