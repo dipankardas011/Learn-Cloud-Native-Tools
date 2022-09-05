@@ -6,8 +6,7 @@ on:
 jobs:
   register:
     name: Package, Publish, and Register
-    runs-on:
-    - ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
     - id: checkout
       uses: actions/checkout@v2
@@ -18,7 +17,7 @@ jobs:
       uses: cuchi/jinja2-action@v1.1.0
       with:
         template: github-actions/temp/my.j2
-        output_file: github-actions/deploy/my.yml
+        output_file: github-actions/deploy/my.yaml
         strict: true
         variables: |
           image_deploy_tag=sha-${{ steps.vars.outputs.sha_short }}
