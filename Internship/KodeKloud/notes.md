@@ -216,3 +216,18 @@ Header set X-XSS-Protection: "1; mode=block"
 Header set X-Frame-Options: "SAMEORIGIN"
 Header set X-Content-Type-Options: "nosniff"
 ```
+
+# Increase the security of apache server
+- remove the display of apache version
+- disable the browsing of contents of a path in /var/www/blog
+```sh
+vi /etc/httpd/conf/httpd.conf
+
+# add thses in bottom
+ServerTokens Prod
+ServerSignature Off
+
+# to remove the browsing
+# comment
+Options Indexes FollowSymLinks
+```
