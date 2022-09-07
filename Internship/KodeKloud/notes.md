@@ -231,3 +231,10 @@ ServerSignature Off
 # comment
 Options Indexes FollowSymLinks
 ```
+
+# Due to some malicious things we need to copy all the *php files under /var/www/html/ to /blog keeping the folder structire same without copiing all the contents of /var/www/html/blogs
+```sh
+find /var/www/html/blog -type f -name *.php
+sudo find /var/www/html/blog -type f -name *.php -exec cp --parents {} /blog \;
+```
+
