@@ -238,3 +238,33 @@ find /var/www/html/blog -type f -name *.php
 sudo find /var/www/html/blog -type f -name *.php -exec cp --parents {} /blog \;
 ```
 
+# LogRotate
+
+[LogRoate ManPage](https://linux.die.net/man/8/logrotate)
+
+```sh
+sudo apt install logrotate
+sudo yum install logrotate
+
+vi /etc/logrotate.d/*
+
+# for httpd example
+# to rotate monthly and 3 log at a time
+cat /etc/logrotate.d/httpd
+```
+```diff
+/var/log/httpd/*log {
+	missingok
+	notifempty
+	sharedscripts
+	delaycompress
+- 
+-
++	rotate 3
++	monthly
+	postrotate
+		/bin/systemctl reload httpd.service > /dev/null 2>/dev/null | true
+	endscript
+}
+
+```
