@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: ecc-demo-service
+  labels:
+    app: ecc-demo-service
+spec:
+  selector:
+    matchLabels:
+      app: ecc-demo-service
+  endpoints:
+  - port: web

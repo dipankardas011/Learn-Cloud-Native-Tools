@@ -37,3 +37,6 @@
 [submodule "OCI/buildpack/CNB"]
 	path = OCI/buildpack/CNB
 	url = https://github.com/saiyam1814/CNB.git
+[submodule "workshops/kubesimplify/observability/k8s-o11y-2022"]
+	path = workshops/kubesimplify/observability/k8s-o11y-2022
+	url = https://gitlab.com/everyonecancontribute/workshops/kube-simplify/k8s-o11y-2022.git
