@@ -1,0 +1,27 @@
+{
+    "scanExcludes": [
+        "node_modules",
+        "**/.git",
+        "**/pkg/mod/**",
+        "**/.kube",
+        "**/*.swp",
+        ".monokle"
+    ],
+    "fileIncludes": [
+        "*.yaml",
+        "*.yml"
+    ],
+    "folderReadsMaxDepth": 10,
+    "k8sVersion": "1.24.2",
+    "settings": {
+        "helmPreviewMode": "template",
+        "kustomizeCommand": "kubectl",
+        "createDefaultObjects": false,
+        "setDefaultPrimitiveValues": true,
+        "allowEditInClusterMode": true
+    },
+    "kubeConfig": {
+        "path": "/home/dipankar/.kube/config",
+        "currentContext": "minikube"
+    }
+}

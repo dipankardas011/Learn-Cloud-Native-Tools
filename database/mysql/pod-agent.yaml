@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: agent-mysql
+  labels:
+    name: agent-mysql
+spec:
+  containers:
+  - name: agent-mysql
+    image: docker.io/dipugodocker/myapp:mysql
+    command:
+      - "sleep"
+    args:
+      - "10000"
+    imagePullPolicy: Always
