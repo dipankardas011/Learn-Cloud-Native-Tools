@@ -12,6 +12,9 @@ kubectl exec -it mysql-0 -- bash
 ```
 
 ```sql
+create database abcd;
+use abcd;
+
 CREATE TABLE IF NOT EXISTS test (
   no int,
   text varchar(20)

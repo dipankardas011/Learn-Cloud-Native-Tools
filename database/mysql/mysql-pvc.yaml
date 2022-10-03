@@ -4,7 +4,7 @@ metadata:
   name: mysql-pvc
   namespace: default
 spec:
-  storageClassName: standard
+  storageClassName: longhorn
   accessModes:
     - "ReadWriteOnce"
   resources:
