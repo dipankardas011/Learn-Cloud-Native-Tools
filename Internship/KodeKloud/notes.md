@@ -303,3 +303,22 @@ baseurl=file:///home/mypackage_dir/repository
 enabled=1
 gpgcheck=0
 ```
+
+
+## over http server
+
+```bash
+yum install httpd
+ln -s /var/www/html/repo /home/mypackage_dir/repo
+service httpd start
+
+vi /etc/yum.repos.d/
+
+[node1-repo]
+name=My RPM System Package Repo
+baseurl=http:///repo
+enabled=1
+gpgcheck=0
+
+yum repolist
+```
