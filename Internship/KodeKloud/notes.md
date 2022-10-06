@@ -268,3 +268,29 @@ cat /etc/logrotate.d/httpd
 }
 
 ```
+
+# Local YUM repo
+
+```bash
+# note the packages directory
+
+cd /etc/yum.repos.d/
+ls
+# total 0
+
+sudo vi <repo name>.repo
+```
+
+```conf
+[repo-name]
+Name=repo-name
+baseurl=file:///<local-path>/
+enabled=1
+gpgcheck=0
+```
+
+```bash
+sudo yum clean all
+
+# then install package present in this
+```
