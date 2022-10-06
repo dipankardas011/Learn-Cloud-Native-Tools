@@ -294,3 +294,12 @@ sudo yum clean all
 
 # then install package present in this
 ```
+
+```conf
+# vi /etc/yum.repos.d/customrepo.repo
+[local] # its the id
+name=My RPM System Package Repo
+baseurl=file:///home/mypackage_dir/repository
+enabled=1
+gpgcheck=0
+```
