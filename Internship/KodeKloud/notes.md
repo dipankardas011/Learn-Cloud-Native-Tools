@@ -322,3 +322,20 @@ gpgcheck=0
 
 yum repolist
 ```
+
+# Application IPtables configs
+
+```bash
+sudo systemctl start iptables
+
+ss -tnlp # to check the opeended/active socket and their port number (LISTENING)
+ss -tnlp | grep nginx
+ss -tnlp | grep httpd
+
+sudo su
+iptables -A INPUT -p tcp --dport <nginx-port> -j ACCEPT
+iptables -A INPUT -p tcp --dport <httpd-port> -j REJECT
+
+iptables -L
+```
+
