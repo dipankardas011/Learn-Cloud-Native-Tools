@@ -339,3 +339,23 @@ iptables -A INPUT -p tcp --dport <httpd-port> -j REJECT
 iptables -L
 ```
 
+# Apache server redirect
+
+# check the port on which it is listening
+cat /etc/httpd/conf/httpd.conf | grep ^Listen
+
+vi /etc/httpd/conf.d/main.conf
+```conf
+# permenant shift
+<VirtualHost *:3000>
+ServerName http://stapp02.stratos.xfusioncorp.com
+Redirect 301 / http://www.stapp02.stratos.xfusioncorp.com:3000/
+</VirtualHost>
+
+
+# termorary shift
+<VirtualHost *:3000>
+ServerName http://www.stapp02.stratos.xfusioncorp.com:3000/blog/
+Redirect 302 /blog/ http://www.stapp02.stratos.xfusioncorp.com:3000/news/
+</VirtualHost>
+```
