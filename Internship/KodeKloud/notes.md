@@ -8,7 +8,6 @@ Draft: false
 
 ```sh
 useradd -m <> -s /sbin/nologin # for non interactive shell
-
 usermod -aG sudo <> # add <> user to sudo group
 
 chmod +rx <> # for shell script that can be executed from anywhere
@@ -358,4 +357,13 @@ Redirect 301 / http://www.stapp02.stratos.xfusioncorp.com:3000/
 ServerName http://www.stapp02.stratos.xfusioncorp.com:3000/blog/
 Redirect 302 /blog/ http://www.stapp02.stratos.xfusioncorp.com:3000/news/
 </VirtualHost>
+```
+
+# Give sudo with passwordless access to user
+
+```bash
+sudo visudo
+
+# add
+<user> ALL=(ALL)	NOPASSWD: ALL
 ```
