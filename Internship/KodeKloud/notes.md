@@ -367,3 +367,18 @@ sudo visudo
 # add
 <user> ALL=(ALL)	NOPASSWD: ALL
 ```
+
+# GPG Encrypt and Decrypt
+
+```bash
+# not required gpg --import <public key>
+gpg --import <private key>
+
+gpg --list-keys
+gpg --list-secret-keys
+
+gpg -e -r kodekloud@kodekloud.com -o encrypt.asc encrypt.txt
+
+gpg -d -o decrypt.txt decrypt.asc
+# here will be asked for passcode enter the provided or which your set
+```
