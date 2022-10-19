@@ -382,3 +382,23 @@ gpg -e -r kodekloud@kodekloud.com -o encrypt.asc encrypt.txt
 gpg -d -o decrypt.txt decrypt.asc
 # here will be asked for passcode enter the provided or which your set
 ```
+
+# SSL (HTTPS) in NGINX
+
+```bash
+# install nginx
+
+vi /etc/nginx/nginx.conf
+
+#uncomment the server with ssl :443 section and change the ssl key and cert location such that its valid location 
+/etc/pki/CA/certs/*.crt
+/etc/pki/CA/private/*.key
+
+and move your SSL certs and keys to that location
+
+systemctl restart nginx
+
+curl -Ik https://<>
+
+
+```
