@@ -399,6 +399,47 @@ and move your SSL certs and keys to that location
 systemctl restart nginx
 
 curl -Ik https://<>
+```
 
+# POSTFIX and DOVECOT
+
+```bash
+
+# /etc/postfix/postfix.conf
+myhostname = mail.fedora
+mydomain = fedora
+
+inet_interfaces = all
+#inet_interfaces = $myhostname
+#inet_interfaces = $myhostname, localhost
+#inet_interfaces = localhost
+
+#mydestination = $myhostname, localhost.$mydomain, localhost
+mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+
+home_mailbox = Maildir/
+
+mail_spool_directory = /var/mail
+
+# -----------------------------------------------
+# /etc/dovecot/dovecot.conf
+protocols = imap pop3 lmtp submission
+
+# /etc/dovecot/conf.d/10-mail.conf
+   mail_location = maildir:~/Maildir
+
+
+# /etc/dovecot/conf.d/10-auth.conf
+disable_plaintext_auth = yes
+
+
+# /etc/dovecot/conf.d/10-master.conf
+service dict {
+unix_listener dict {
+	#mode = 0600
+	user = postfix
+	group = postfix
+}
+}
 
 ```
