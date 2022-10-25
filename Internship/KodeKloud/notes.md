@@ -443,3 +443,19 @@ unix_listener dict {
 }
 
 ```
+
+# Process Troubleshooting
+
+```bash
+# if the port is bound to other process free it
+ss -tnlp
+# get the pid
+kill -9 <>
+
+systemctl restart httpd
+
+systemctl status httpd -l
+# if there is some ServerName not found error then add this line
+# to tbe end of /etc/httpd/conf/httpd.conf
+ServerName 127.0.0.1
+```
