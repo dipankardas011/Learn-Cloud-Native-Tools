@@ -459,3 +459,31 @@ systemctl status httpd -l
 # to tbe end of /etc/httpd/conf/httpd.conf
 ServerName 127.0.0.1
 ```
+
+# SFTP server
+
+```bash
+useradd <>
+passwd <>
+
+# create the folder
+# example
+mkdir -p abcd/abcd/acbd
+chown root:root -p abcd/abcd/acbd
+chmod 755 abcd/abcd/acbd
+
+# now edit the /etc/ssh/sshd_config
+# comment the other Subsystem
+
+Subsystem       sftp    internal-sftp
+Match User <>
+ForceCommand internal-sftp
+PasswordAuthentication yes
+ChrootDirectory abcd/abcd/acbd
+PermitTunnel no
+AllowTcpForwarding no
+X11Forwarding no
+AllowAgentForwarding no
+
+# it will deny any ssh access and only allow sftp
+```
