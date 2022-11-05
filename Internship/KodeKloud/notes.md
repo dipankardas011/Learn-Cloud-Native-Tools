@@ -487,3 +487,43 @@ AllowAgentForwarding no
 
 # it will deny any ssh access and only allow sftp
 ```
+
+# Start Postgres server
+
+```bash
+
+sudo yum install -y postgresql-server postgresql-contrib
+
+postgresql-setup --initdb
+
+systemctl start postgresql.service
+
+su - postgres
+
+psql
+
+create user dipankar with password '1234';
+create database hello;
+grant all privileges on database hello to dipankar;
+
+# /var/lib/pgsql/
+
+#/var/lib/pgsql/data/postgresql.conf
+# uncomment the listen address=localhost
+
+#/var/lib/pgsql/data/pg_hba.conf
+
+changes from ident to md5
+local   all             all                                     md5
+# IPv4 local connections:
+host    all             all             127.0.0.1/32            md5
+# IPv6 local connections:
+host    all             all             ::1/128                 md5
+
+
+systemctl restart postgresql
+
+psql -U dipankar -d hello -h 127.0.0.1 -W
+
+
+```
