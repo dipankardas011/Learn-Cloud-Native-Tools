@@ -527,3 +527,27 @@ psql -U dipankar -d hello -h 127.0.0.1 -W
 
 
 ```
+
+
+# PAM Authentication in HTTPD
+```bash
+sudo subscription-manager repos --enable codeready-builder-for-rhel-8-$(arch)-rpms
+sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+sudo yum --enablerepo=epel -y install mod_authnz_external pwauth 
+sudo dnf install mod_ssl # for ssl certificate and run in :443
+cd /etc/httpd/
+sudo vi conf.d/authnz_external.conf 
+# Add
+# Previous section and change to Directory and specify the protected directory For ex: /var/www/html/pam
+# if the SSL Secureity not need you can keep it commented
+
+mkdir -p /var/www/html/pam
+sudo mkdir -p /var/www/html/pam
+sudo vi /var/www/html/pam/index.html
+
+sudo vi conf.d/ssl.conf #when you want the ssl
+# Add DocumentRoot "/var/www/html"
+
+sudo passwd $USER # optional step if you know the password then dont do this
+sudo systemctl restart httpd
+```
