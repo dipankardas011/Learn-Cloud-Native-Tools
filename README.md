@@ -95,6 +95,7 @@ Below are all the links from the video.
 * Linkerd✅
 
 # Networking
+* Computer Networking Full Course by kunal kushwaha - https://www.youtube.com/watch?v=IPvYjXCsTg8 
 * Cilium📖
 * Flanned
 
