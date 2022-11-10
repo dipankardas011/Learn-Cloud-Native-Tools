@@ -24,6 +24,8 @@ Below are all the links from the video.
 
 # cloud✅
 * AWS cloud practitioner (freecodecamp)✅ - https://youtu.be/SOTamWNgDKc
+* Azure Developer Associate (AZ-204)✅ - https://www.youtube.com/watch?v=jZx8PMQjobk
+
 
 # docker👍🏼
 * Docker playlist by Saloni✅ - https://youtube.com/playlist?list=PL5...
