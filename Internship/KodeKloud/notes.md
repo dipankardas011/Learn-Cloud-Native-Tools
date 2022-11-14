@@ -551,3 +551,21 @@ sudo vi conf.d/ssl.conf #when you want the ssl
 sudo passwd $USER # optional step if you know the password then dont do this
 sudo systemctl restart httpd
 ```
+
+# Tomcat Server config
+```bash
+sudo yum install -y tomcat
+mv <src> /usr/share/tomcat/webapps/<>
+
+# config the bashscript
+
+/usr/share/tomcat/conf/server.xml
+
+<!-- for non-SSL port-->
+<Connector port="xyz" ...>
+
+
+curl http://URL/PATH or no path is required
+```
+
+
