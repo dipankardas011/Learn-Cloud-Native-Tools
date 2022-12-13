@@ -568,4 +568,14 @@ mv <src> /usr/share/tomcat/webapps/<>
 curl http://URL/PATH or no path is required
 ```
 
+# IPtables config
+```bash
+yum install iptables-services -y
+systemctl start iptables && systemctl enable iptables
+# here the -A means append -p means protocol -s is source -R for replace -j jump
+iptables -A INPUT -p tcp --destination-port <target-port> -s <source-ip> -j ACCEPT
+iptables -A INPUT -p tcp --destination-port <target-port> -j DROP
 
+iptables -R INPUT 5 -p icmp -j REJECT
+service iptables save
+```
