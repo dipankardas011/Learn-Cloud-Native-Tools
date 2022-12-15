@@ -579,3 +579,10 @@ iptables -A INPUT -p tcp --destination-port <target-port> -j DROP
 iptables -R INPUT 5 -p icmp -j REJECT
 service iptables save
 ```
+
+# Create User with expiry
+```bash
+useradd -e YYYY-MM-DD <user-name>
+```
+
+
