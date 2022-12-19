@@ -40,3 +40,9 @@
 [submodule "workshops/kubesimplify/observability/k8s-o11y-2022"]
 	path = workshops/kubesimplify/observability/k8s-o11y-2022
 	url = https://gitlab.com/everyonecancontribute/workshops/kube-simplify/k8s-o11y-2022.git
+[submodule "IAC/kodekloud/ckad/kubernetes-the-hard-way"]
+	path = IAC/kodekloud/ckad/kubernetes-the-hard-way
+	url = https://github.com/mmumshad/kubernetes-the-hard-way.git
+[submodule "Kubernetes/cka/CKA-Exercises"]
+	path = Kubernetes/cka/CKA-Exercises
+	url = https://github.com/chadmcrowell/CKA-Exercises
