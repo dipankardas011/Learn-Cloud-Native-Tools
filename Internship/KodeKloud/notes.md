@@ -405,21 +405,37 @@ curl -Ik https://<>
 
 ```bash
 
-# /etc/postfix/postfix.conf
-myhostname = mail.fedora
-mydomain = fedora
+yum install dovcot postfix -y
+
+
+# /etc/postfix/main.cf
+
+myhostname = stmail01.stratos.xfusioncorp.com
+
+mydomain = stratos.xfusioncorp.com
+myorigin = $mydomain
 
 inet_interfaces = all
-#inet_interfaces = $myhostname
-#inet_interfaces = $myhostname, localhost
-#inet_interfaces = localhost
-
-#mydestination = $myhostname, localhost.$mydomain, localhost
 mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain
+mynetworks = 172.16.238.0/24, 127.0.0.0/8   # here the network subnet is specified
 
 home_mailbox = Maildir/
 
-mail_spool_directory = /var/mail
+useradd <>
+passwd <>
+
+
+systemctl start postfix
+
+telnet stmail01 25
+
+mail from:<>@stratos.xfusioncorp.com
+rcpt to:<>@stratos.xfusioncorp.com
+data
+hello
+.
+
+
 
 # -----------------------------------------------
 # /etc/dovecot/dovecot.conf
@@ -431,17 +447,45 @@ protocols = imap pop3 lmtp submission
 
 # /etc/dovecot/conf.d/10-auth.conf
 disable_plaintext_auth = yes
-
+auth_mechanisms = plain login
 
 # /etc/dovecot/conf.d/10-master.conf
-service dict {
-unix_listener dict {
-	#mode = 0600
-	user = postfix
-	group = postfix
-}
-}
 
+
+unix_listener auth-userdb {
+    #mode = 0666
+    user = postfix
+    group = postfix
+  }
+
+systemctl start dovecot
+
+[root@stmail01 groot]$ telnet stmail01 110
+Trying 172.16.238.17...
+Connected to stmail01.
+Escape character is '^]'.
++OK Dovecot ready.
+user john
++OK
+pass B4zNgHA7Ya
++OK Logged in.
+retr 1
++OK 502 octets
+Return-Path: <john@stratos.xfusioncorp.com>
+X-Original-To: john@stratos.xfusioncorp.com
+Delivered-To: john@stratos.xfusioncorp.com
+Received: from stmail01 (stmail01 [172.16.238.17])
+        by stmail01.stratos.xfusioncorp.com (Postfix) with SMTP id BC008195C4F0
+        for <john@stratos.xfusioncorp.com>; Wed, 28 Dec 2022 05:05:11 +0000 (UTC)
+Message-Id: <20221228050516.BC008195C4F0@stmail01.stratos.xfusioncorp.com>
+Date: Wed, 28 Dec 2022 05:05:11 +0000 (UTC)
+From: john@stratos.xfusioncorp.com
+
+hello
+.
+quit
++OK Logging out.
+Connection closed by foreign host.
 ```
 
 # Process Troubleshooting
