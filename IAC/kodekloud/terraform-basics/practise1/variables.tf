@@ -19,7 +19,7 @@ variable "prefix" {
 }
 
 variable "length" {
-  default     = 1
+  # default     = 1
   type        = number
   description = "length of the pet name"
 }
