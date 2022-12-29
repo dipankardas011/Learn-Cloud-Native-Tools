@@ -605,11 +605,12 @@ mv <src> /usr/share/tomcat/webapps/<>
 
 /usr/share/tomcat/conf/server.xml
 
+# look for the non ssl port part in the configureation and change the port to the given port number
 <!-- for non-SSL port-->
 <Connector port="xyz" ...>
 
 
-curl http://URL/PATH or no path is required
+curl http://URL/ no path is required
 ```
 
 # IPtables config
