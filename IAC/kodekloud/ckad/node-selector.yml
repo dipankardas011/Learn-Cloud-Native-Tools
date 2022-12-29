@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: abcd
+spec:
+  containers:
+    - name: data
+      image: data
+  nodeSelector:
+    label_key: abcd
+
