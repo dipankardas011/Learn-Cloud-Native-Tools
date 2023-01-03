@@ -1,0 +1,58 @@
+apiVersion: v2
+actions:
+  - name: "Deploy using helm"
+    events:
+      - name: "sh.keptn.event.deployment.triggered"
+    tasks:
+      - name: "Run helm"
+        files:
+          - /charts
+        env:
+          - name: IMAGE
+            value: "$.data.configurationChange.values.image"
+            valueFrom: event
+        image: "alpine/helm:3.7.2"
+        serviceAccount: "jes-deploy-using-helm"
+        cmd: ["helm"]
+        args: ["upgrade", "--create-namespace", "--install", "-n", "$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "$(KEPTN_SERVICE)", "/keptn/charts/$(KEPTN_SERVICE).tgz", "--set", "image=$(IMAGE)", "--wait"]
+
+  - name: "Rollback using helm"
+    events:
+      - name: "sh.keptn.event.rollback.triggered"
+    tasks:
+      - name: "Run helm"
+        serviceAccount: "jes-deploy-using-helm"
+        image: "alpine/helm:3.7.2"
+        cmd: ["helm"]
+        args: ["rollback", "-n", "$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "$(KEPTN_SERVICE)", "--wait"]
+
+  - name: "Scale using kubectl"
+    events:
+      - name: "sh.keptn.event.action.triggered"
+        jsonpath:
+          property: "$.data.action.action"
+          match: "scaling"
+    tasks:
+      - name: "Run kubectl"
+        serviceAccount: "jes-deploy-using-helm"
+        env:
+          - name: SCALING
+            value: $.data.action.value
+            valueFrom: event
+        image: "alpine/k8s:1.20.15"
+        cmd: ["sh"]
+        # Note: Hardcoded kubernetes namespace & KEPTN_SERVICE does most likely not match the deployment name
+        args: ["-c", "REPLICAS=$(kubectl -n ${KEPTN_PROJECT}-${KEPTN_STAGE} get deployment/${KEPTN_SERVICE} -o go-template='{{.spec.replicas}}');DESIRED=$((${SCALING}+${REPLICAS}));echo Scaling deployment to ${DESIRED} && kubectl -n ${KEPTN_PROJECT}-${KEPTN_STAGE} scale --replicas=${DESIRED} deployment/${KEPTN_SERVICE}"]
+
+  - name: "Run tests using locust"
+    events:
+      - name: "sh.keptn.event.test.triggered"
+    tasks:
+      - name: "Run locust"
+        files:
+          - locust/basic.py
+          - locust/locust.conf
+
+        image: "locustio/locust:2.8.6"
+        cmd: ["locust"]
+        args: ["--config", "/keptn/locust/locust.conf", "-f", "/keptn/locust/main.py", "--host", "http://$(KEPTN_SERVICE).$(KEPTN_PROJECT)-$(KEPTN_STAGE)", "--only-summary"]

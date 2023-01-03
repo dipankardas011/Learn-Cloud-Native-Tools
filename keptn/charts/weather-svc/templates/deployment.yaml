@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: weather-app
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app: weatherapp
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: weatherapp
+  template:
+    metadata:
+      labels:
+        app: weatherapp
+      annotations:
+        metrics.dynatrace.com/port: "9000"
+        metrics.dynatrace.com/scrape: "true"
+    spec:
+      terminationGracePeriodSeconds: 5
+      containers:
+      - name: server
+        image: {{ .Values.image}}
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 80

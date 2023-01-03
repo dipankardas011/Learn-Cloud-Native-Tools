@@ -1,0 +1,2 @@
+image: dipugodocker/weatherapp:v3
+replicaCount: 1

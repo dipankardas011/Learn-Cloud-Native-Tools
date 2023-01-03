@@ -1,0 +1,59 @@
+version: "3"
+services:
+  fluentd:
+    container_name: fluentd
+    user: root
+    build:
+      context: .
+    image: fluentdd
+    networks:
+      - elk
+    volumes:
+    - './conf:/fluentd/etc'
+    - './container-file:/fluentd/log/files/' # place where the logs are stored by the workload
+    - './logs:/output'
+
+
+  file-demo:
+    networks:
+      - elk
+    container_name: file-demo
+    image: alpine
+    volumes:
+    - './container-file/:/app'
+    command: [ '/bin/sh', '-c', 'cd /app && chmod +x main.sh && ./main.sh']
+
+  http-demo:
+    links:
+      - fluentd
+    container_name: http-demo
+    image: alpine
+    networks:
+      - elk
+    volumes:
+    - './container-http/:/app'
+    command: [ '/bin/sh', '-c', 'cd /app && chmod +x main.sh && ./main.sh']
+
+  # elasticsearch: # port 9200
+  #   image: elasticsearch:8.5.2
+  #   container_name: elasticsearch
+  #   ports:
+  #     - "9200:9200"
+  #   networks:
+  #     - elk
+  #   environment:
+  #   - "discovery.type=single-node"
+  #   - "node.name=elasticsearch"
+  # kibana:
+  #   image: kibana:8.5.2
+  #   container_name: kibana
+  #   networks:
+  #     - elk
+
+  #   ports:
+  #     - "5601:5601"
+  #   environment:
+  #     ELASTICSEARCH_URL: http://elasticsearch:9200
+  #     ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+networks:
+  elk:

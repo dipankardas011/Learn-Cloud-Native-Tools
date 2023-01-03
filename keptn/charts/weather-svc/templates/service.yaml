@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: weather-app
+  namespace: {{ .Release.Namespace }} 
+spec:
+  selector:
+    app: weatherapp
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  type: NodePort
