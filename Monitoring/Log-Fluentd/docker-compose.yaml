@@ -5,19 +5,55 @@ services:
     user: root
     build:
       context: .
-    image: fluentd
+    image: fluentdd
+    networks:
+      - elk
     volumes:
-    - /var/lib/docker/containers:/fluentd/log/containers # Example: Reading docker logs
-    - ./files:/fluentd/log/files #Example: Reading logs from a file
-    - ./configurations:/fluentd/etc/
-    - ./logs:/output/ # Example: Fluentd will collect logs and store it here for demo
-    logging:
-      driver: "local"
+    - './conf:/fluentd/etc'
+    - './container-file:/fluentd/log/files/' # place where the logs are stored by the workload
+    - './logs:/output'
 
-  # This app writes logs to a local file
-  file-myapp:
-    container_name: file-myapp
+
+  file-demo:
+    networks:
+      - elk
+    container_name: file-demo
     image: alpine
     volumes:
-    - ./files:/app
-    command: [ /bin/sh , -c , "chmod +x /app/app.sh && ./app/app.sh"]
+    - './container-file/:/app'
+    command: [ '/bin/sh', '-c', 'cd /app && chmod +x main.sh && ./main.sh']
+
+  http-demo:
+    links:
+      - fluentd
+    container_name: http-demo
+    image: alpine
+    networks:
+      - elk
+    volumes:
+    - './container-http/:/app'
+    command: [ '/bin/sh', '-c', 'cd /app && chmod +x main.sh && ./main.sh']
+
+  # elasticsearch: # port 9200
+  #   image: elasticsearch:8.5.2
+  #   container_name: elasticsearch
+  #   ports:
+  #     - "9200:9200"
+  #   networks:
+  #     - elk
+  #   environment:
+  #   - "discovery.type=single-node"
+  #   - "node.name=elasticsearch"
+  # kibana:
+  #   image: kibana:8.5.2
+  #   container_name: kibana
+  #   networks:
+  #     - elk
+
+  #   ports:
+  #     - "5601:5601"
+  #   environment:
+  #     ELASTICSEARCH_URL: http://elasticsearch:9200
+  #     ELASTICSEARCH_HOSTS: http://elasticsearch:9200
+networks:
+  elk:
