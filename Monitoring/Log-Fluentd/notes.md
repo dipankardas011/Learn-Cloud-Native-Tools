@@ -2,11 +2,3 @@
 ```sh
 cd Monitoring/Log-Fluentd
 ```
-
-# steps
-
-```bash
-docker build -t fluentdd .
-
-docker compose up -d
-```
