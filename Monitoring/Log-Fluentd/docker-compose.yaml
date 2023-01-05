@@ -5,6 +5,8 @@ services:
     user: root
     build:
       context: .
+    # ports:
+    # - "9000:9000"
     image: fluentdd
     networks:
       - elk
