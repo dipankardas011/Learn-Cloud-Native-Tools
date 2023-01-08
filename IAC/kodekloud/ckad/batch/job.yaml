@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: math-add
+spec:
+  completions: 3 # for 3 pods as jobs  (SEQUENCIAL)
+  parallelism: 3 # for the (PARRALLEL jobs)
+  template:
+    spec:
+      containers:
+        - name: add
+          image: ubuntu
+          command: ['expr', '3','+','3']
+      restartPolicy: Never
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: math-cron
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      completions: 3 # for 3 pods as jobs  (SEQUENCIAL)
+      parallelism: 3 # for the (PARRALLEL jobs)
+      template:
+        spec:
+          containers:
+            - name: add
+              image: ubuntu
+              command: ['expr', '3','+','3']
+          restartPolicy: Never
