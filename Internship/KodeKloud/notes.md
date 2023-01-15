@@ -584,6 +584,16 @@ sudo vi conf.d/authnz_external.conf
 # Add
 # Previous section and change to Directory and specify the protected directory For ex: /var/www/html/pam
 # if the SSL Secureity not need you can keep it commented
+<Directory /var/www/html/protected>
+AuthType Basic
+AuthName "PAM Authentication"
+AuthBasicProvider external
+AuthExternal pwauth
+require valid-user
+</Directory>
+
+EOF
+
 
 mkdir -p /var/www/html/pam
 sudo mkdir -p /var/www/html/pam

@@ -1,0 +1,159 @@
+# do
+# k create ns ingress-space
+# k create cm -n ingress-space nginx-configuration
+# k create sa -n ingress-space ingress-serviceaccount
+---
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2023-01-14T13:57:01Z"
+    name: default
+    namespace: ingress-space
+    resourceVersion: "4684"
+    uid: d8b6373a-8259-4d13-a767-a3cdf7ee41d2
+  secrets:
+  - name: default-token-9lbtq
+- apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    creationTimestamp: "2023-01-14T13:58:26Z"
+    name: ingress-serviceaccount
+    namespace: ingress-space
+    resourceVersion: "4789"
+    uid: c0466158-5bd7-4967-8e27-42ddf055c909
+  secrets:
+  - name: ingress-serviceaccount-token-p7mzm
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    creationTimestamp: "2023-01-14T13:58:35Z"
+    labels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+    managedFields:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/part-of: {}
+        f:roleRef:
+          f:apiGroup: {}
+          f:kind: {}
+          f:name: {}
+        f:subjects: {}
+      manager: python-requests
+      operation: Update
+      time: "2023-01-14T13:58:35Z"
+    name: ingress-role-binding
+    namespace: ingress-space
+    resourceVersion: "4801"
+    uid: 58a75a3c-46c6-47fb-a530-4863ebae891e
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: ingress-role
+  subjects:
+  - kind: ServiceAccount
+    name: ingress-serviceaccount
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    creationTimestamp: "2023-01-14T13:58:35Z"
+    labels:
+      app.kubernetes.io/name: ingress-nginx
+      app.kubernetes.io/part-of: ingress-nginx
+    managedFields:
+    - apiVersion: rbac.authorization.k8s.io/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/name: {}
+            f:app.kubernetes.io/part-of: {}
+        f:rules: {}
+      manager: python-requests
+      operation: Update
+      time: "2023-01-14T13:58:35Z"
+    name: ingress-role
+    namespace: ingress-space
+    resourceVersion: "4800"
+    uid: 52e0309b-0f82-4cab-871a-7bdb5d0ddbc3
+  rules:
+  - apiGroups:
+    - ""
+    resources:
+    - configmaps
+    - pods
+    - secrets
+    - namespaces
+    verbs:
+    - get
+  - apiGroups:
+    - ""
+    resourceNames:
+    - ingress-controller-leader-nginx
+    resources:
+    - configmaps
+    verbs:
+    - get
+    - update
+  - apiGroups:
+    - ""
+    resources:
+    - configmaps
+    verbs:
+    - create
+  - apiGroups:
+    - ""
+    resources:
+    - endpoints
+    verbs:
+    - get
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingress-controller
+  namespace: ingress-space
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: nginx-ingress
+  template:
+    metadata:
+      labels:
+        name: nginx-ingress
+    spec:
+      serviceAccountName: ingress-serviceaccount
+      containers:
+        - name: nginx-ingress-controller
+          image: quay.io/kubernetes-ingress-controller/nginx-ingress-controller:0.21.0
+          args:
+            - /nginx-ingress-controller
+            - --configmap=$(POD_NAMESPACE)/nginx-configuration
+            - --default-backend-service=app-space/default-http-backend
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: POD_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+          ports:
+            - name: http
+              containerPort: 80
+            - name: https
+              containerPort: 443
