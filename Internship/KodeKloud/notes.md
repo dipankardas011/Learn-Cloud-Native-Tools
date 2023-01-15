@@ -405,7 +405,7 @@ curl -Ik https://<>
 
 ```bash
 
-yum install dovcot postfix -y
+yum install dovecot postfix -y
 
 
 # /etc/postfix/main.cf
@@ -439,7 +439,7 @@ hello
 
 # -----------------------------------------------
 # /etc/dovecot/dovecot.conf
-protocols = imap pop3 lmtp submission
+protocols = imap pop3 lmtp
 
 # /etc/dovecot/conf.d/10-mail.conf
    mail_location = maildir:~/Maildir
@@ -575,8 +575,14 @@ psql -U dipankar -d hello -h 127.0.0.1 -W
 
 # PAM Authentication in HTTPD
 ```bash
+
+
 sudo subscription-manager repos --enable codeready-builder-for-rhel-8-$(arch)-rpms
 sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+# or
+sudo yum install epel-release
+
 sudo yum --enablerepo=epel -y install mod_authnz_external pwauth 
 sudo dnf install mod_ssl # for ssl certificate and run in :443
 cd /etc/httpd/
