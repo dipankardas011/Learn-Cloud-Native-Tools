@@ -41,7 +41,7 @@ spec:
           key: TIME_FREQ
 ```
 
-# 
+# Deploy Jenkins on Kubernetes
 
 ```yml
 ---
@@ -81,5 +81,48 @@ spec:
     - targetPort: 8080
       nodePort: 30008
       port: 8080
+...
+```
+
+# Ansible Setup Httpd and PHP
+
+```yml
+---
+- name: Setup Httpd and PHP
+  hosts: stapp03
+  become: yes
+  tasks:
+    - name: Install latest version of httpd and php
+      ansible.builtin.package:
+        name:
+          - httpd
+          - php
+        state: latest
+
+    - name: Replace default DocumentRoot in httpd.conf
+      ansible.builtin.replace:
+        path: /etc/httpd/conf/httpd.conf
+        regexp: 'DocumentRoot "\/var\/www\/html\"'
+        replace: 'DocumentRoot "/var/www/html/myroot"'
+
+    - name: Create the new DocumentRoot directory if it does not exist
+      ansible.builtin.file:
+        path: /var/www/html/myroot
+        state: directory
+        owner: apache
+        group: apache
+
+    - name: Use Jinja2 template to generate phpinfo.php
+      ansible.builtin.template:
+        src: /home/thor/playbooks/templates/phpinfo.php.j2
+        dest: /var/www/html/myroot/phpinfo.php
+        owner: apache
+        group: apache
+
+    - name: Start and enable service httpd
+      ansible.builtin.service:
+        name: httpd
+        state: started
+        enabled: yes 
 ...
 ```
