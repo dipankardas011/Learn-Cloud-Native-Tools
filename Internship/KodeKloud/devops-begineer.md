@@ -126,3 +126,62 @@ spec:
         enabled: yes 
 ...
 ```
+
+# Config ACL using ansible
+
+```yaml
+- name: Config for stapp01
+  hosts: stapp01
+  become: yes
+  tasks:
+    - name: Create the file
+      ansible.builtin.file:
+        path: /opt/sysops/blog.txt
+        state: touch
+        owner: root
+
+    - name: ACL permissions
+      ansible.posix.acl:
+        path: /opt/sysops/blog.txt
+        entity: tony
+        etype: group
+        permissions: r
+        state: present
+
+- name: Config for stapp02
+  hosts: stapp02
+  become: yes
+  tasks:
+    - name: Create the file
+      ansible.builtin.file:
+        path: /opt/sysops/story.txt
+        state: touch
+        owner: root
+
+    - name: ACL permissions
+      ansible.posix.acl:
+        path: /opt/sysops/story.txt
+        entity: steve 
+        etype: user
+        permissions: rw
+        state: present
+
+- name: Config for stapp03
+  hosts: stapp03
+  become: yes
+  tasks:
+    - name: Create the file
+      ansible.builtin.file:
+        path: /opt/sysops/media.txt
+        state: touch
+        owner: root
+
+    - name: ACL permissions
+      ansible.posix.acl:
+        path: /opt/sysops/media.txt
+        entity: banner
+        etype: group
+        permissions: rw
+        state: present
+
+```
