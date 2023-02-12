@@ -185,3 +185,56 @@ spec:
         state: present
 
 ```
+
+# Ansible Create Users and Groups
+
+```yaml
+- name: Config for stapp02
+  hosts: stapp02
+  become: yes
+  tasks:
+  - name: Create the developers group
+    ansible.builtin.group:
+      name: developers
+      state: present
+
+  - name: Create the admins group
+    ansible.builtin.group:
+      name: admins
+      state: present
+
+  - name: Add admin users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      groups: admins,wheel
+      state: present
+      password: "{{ 'B4zNgHA7Ya' | password_hash ('sha512') }}"
+    loop:
+      - rob
+      - joy
+      - david
+
+
+# -------------
+
+  - name: Add dev users
+    ansible.builtin.user:
+      name: "{{ item }}"
+      group: developers
+      home: "/var/www/{{ item }}"
+      state: present
+      password: "{{ 'LQfKeWWxWD' | password_hash ('sha512') }}"
+    loop:
+      - ray
+      - jim
+      - mark
+      - tim
+
+```
+
+cat ansible.cfg 
+```conf
+[defaults]
+host_key_checking = False
+vault_password_file=~/playbooks/secrets/vault.txt
+```
