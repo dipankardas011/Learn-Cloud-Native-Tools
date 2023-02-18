@@ -238,3 +238,112 @@ cat ansible.cfg
 host_key_checking = False
 vault_password_file=~/playbooks/secrets/vault.txt
 ```
+
+
+# Deploy Nginx and Phpfpm on Kubernetes
+
+```yaml
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: php-fms-service
+spec:
+  type: NodePort
+  selector:
+    app: abcd
+  ports:
+  - port: 8091
+    targetPort: 8091
+    nodePort: 30012
+---
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+data:
+  nginx.conf: |
+
+    events {
+    
+    }
+
+    http {
+      log_format main
+              'remote_addr:$remote_addr\t'
+              'time_local:$time_local\t'
+              'method:$request_method\t'
+              'uri:$request_uri\t'
+              'host:$host\t'
+              'status:$status\t'
+              'bytes_sent:$body_bytes_sent\t'
+              'referer:$http_referer\t'
+              'useragent:$http_user_agent\t'
+              'forwardedfor:$http_x_forwarded_for\t'
+              'request_time:$request_time';
+      access_log        /var/log/nginx/access.log main;
+      server {
+
+          listen 8091;
+          server_name localhost;
+
+          root /var/www/html;
+          index index.html index.htm index.php;
+
+          location / {
+          try_files $uri $uri/ =404;
+          }
+
+          location ~ \.php$ {
+          include fastcgi_params;
+          fastcgi_param REQUEST_METHOD $request_method;
+          fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+          fastcgi_pass 127.0.0.1:9000;
+
+          }
+      }
+    }
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-phpfpm
+  labels:
+    app: abcd
+spec:
+
+  volumes:
+  - name: shared-files
+    emptyDir: {}
+  - name: nginx-config-volume 
+    configMap:
+      name: nginx-config
+
+  containers:
+  - name: nginx-container
+    image: nginx:latest
+    volumeMounts:
+    - name: shared-files
+      mountPath: /var/www/html
+    - name: nginx-config-volume
+      mountPath: /etc/nginx/nginx.conf
+      subPath: nginx.conf
+    ports:
+    - containerPort: 8091
+
+# Our php-fpm application 
+  - name: php-fpm-container
+    image: php:7.3-fpm
+    volumeMounts:
+    - name: shared-files
+      mountPath: /var/www/html
+    ports:
+    - containerPort: 8091
+```
+
+```bash
+kubectl cp /opt/index.php nginx-phpfpm:/var/www/html -c nginx-container
+kubectl exec -it nginx-phpfpm nginx-container -- ls -la /var/www/html
+```
