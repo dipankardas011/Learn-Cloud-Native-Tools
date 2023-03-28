@@ -347,3 +347,16 @@ spec:
 kubectl cp /opt/index.php nginx-phpfpm:/var/www/html -c nginx-container
 kubectl exec -it nginx-phpfpm nginx-container -- ls -la /var/www/html
 ```
+
+# Ansible Config File Update
+
+need to change the default remote user from root -> XyZ
+
+```bash
+cd /etc/ansible/
+
+vi /etc/ansible/ansible.cfg
+
+# find and replace remote_user = XyZ
+
+```

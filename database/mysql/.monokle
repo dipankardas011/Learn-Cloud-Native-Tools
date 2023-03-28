@@ -21,7 +21,6 @@
         "allowEditInClusterMode": true
     },
     "kubeConfig": {
-        "path": "/home/dipankar/.kube/config",
-        "currentContext": "minikube"
+        "path": "/home/dipankar/.kube/config"
     }
 }
