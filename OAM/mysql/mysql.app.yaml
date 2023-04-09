@@ -1,0 +1,22 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: developer
+spec:
+  components:
+    - name: mysql
+      type: webservice
+      properties:
+        image: mysql:8.0
+        ports:
+          - port: 3306
+            expose: true
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "1234"
+      traits:
+        - type: napptive-ingress
+          properties:
+            port: 3306
+            path: /
+            targetServiceName: mysql
