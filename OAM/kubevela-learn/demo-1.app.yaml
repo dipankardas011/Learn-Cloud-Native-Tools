@@ -1,22 +1,22 @@
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
-  name: mysql
+  name: first-vela-app
 spec:
   components:
-    - name: mysql
+    - name: express-server
       type: webservice
       properties:
-        image: mysql:8.0
+        image: oamdev/hello-world
         ports:
-          - port: 3306
-            expose: true
-        env:
-          - name: MYSQL_ROOT_PASSWORD
-            value: "1234"
+         - port: 8000
+           expose: true
       traits:
+        - type: scaler
+          properties:
+            replicas: 1
         - type: gateway
           properties:
             class: nginx
             http:
-              "/": 3306
+              "/": 8000

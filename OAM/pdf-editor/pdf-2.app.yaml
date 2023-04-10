@@ -1,0 +1,144 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: pdf-editor
+spec:
+  # policies:
+  #   - name: healthscope-policy # policy name
+  #     type: health # set to health
+  #     properties:
+  #       probeInterval: 30 # (Required) health checking interval, 30s by default
+  #       probeTimeout: 10 # (Required) health checking timeout, 10s by default
+  components:
+    - name: usr-frontend
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-frontend
+        ports:
+          - port: 80
+            expose: true
+      traits:
+        - type: resource # Set to resource
+          properties:
+            requests: # (Optional) Specify resources in requests
+              cpu: 0.05 # (Optional) Specify the amount of cpu for requests. 1 by default
+              memory: "10Mi" # (Optional) Specify the amount of memory for requests. 2048Mi by default
+            limits: # (Optional) Specify resources in limits
+              cpu: 0.25 # (Optional) Specify the amount of cpu for limits. 1 by default
+              memory: "200Mi" # (Optional) Specify the amount of memory for limits. 2048Mi by default
+        - type: napptive-ingress
+          properties:
+            port: 80
+            path: /
+        # - type: lifecycle # Set to lifecycle
+        #   properties:
+        #     # no custom path to do  health check
+        #     postStart: # (Optional) action post start the container
+        #       httpGet: # (Optional) http get action
+        #         host: usr-frontend
+        #         port: 80
+        - type: scaler
+          properties:
+            replicas: 2
+
+    - name: backend-merge
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-backend-merge
+        ports:
+          - port: 8080
+            expose: true
+      traits:
+        - type: resource # Set to resource
+          properties:
+            requests: # (Optional) Specify resources in requests
+              cpu: 0.1 # (Optional) Specify the amount of cpu for requests. 1 by default
+              memory: "50Mi" # (Optional) Specify the amount of memory for requests. 2048Mi by default
+            limits: # (Optional) Specify resources in limits
+              cpu: 0.25 # (Optional) Specify the amount of cpu for limits. 1 by default
+              memory: "200Mi" # (Optional) Specify the amount of memory for limits. 2048Mi by default
+        - type: init-container
+          properties:
+            name: backend-merge-init
+            image: docker.io/dipugodocker/pdf-editor:1.0-backend-merge
+            cmd: ["cp", "-vR", ".", "/mnt"] # (Optional) commands run in the init container
+            mountName: "empty-vol-rotate" # (Required) mount name of shared volume. workdir by default
+            appMountPath:  "/go/src/" # (Required) mount path of app container
+            initMountPath: "/mnt" # (Required) mount path of init container
+        # - type: lifecycle # Set to lifecycle
+        #   properties:
+        #     postStart: # (Optional) action post start the container
+        #       httpGet: # (Optional) http get action
+        #         host: backend-merge                
+        #         scheme: "HTTP" # (Optional) schema (HTTP or HTTPS)
+        #         port: 8080
+        - type: scaler
+          properties:
+            replicas: 1
+
+
+
+    - name: backend-rotate
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-backend-rotate
+        ports:
+          - port: 8081
+            expose: true
+      traits:
+        - type: resource # Set to resource
+          properties:
+            requests: # (Optional) Specify resources in requests
+              cpu: 0.1 # (Optional) Specify the amount of cpu for requests. 1 by default
+              memory: "50Mi" # (Optional) Specify the amount of memory for requests. 2048Mi by default
+            limits: # (Optional) Specify resources in limits
+              cpu: 0.25 # (Optional) Specify the amount of cpu for limits. 1 by default
+              memory: "200Mi" # (Optional) Specify the amount of memory for limits. 2048Mi by default
+        - type: init-container
+          properties:
+            name: backend-rotate-init
+            image: docker.io/dipugodocker/pdf-editor:1.0-backend-rotate
+            cmd: ["cp", "-vR", ".", "/mnt"] # (Optional) commands run in the init container
+            mountName: "empty-vol-rotate" # (Required) mount name of shared volume. workdir by default
+            appMountPath:  "/go/src/" # (Required) mount path of app container
+            initMountPath: "/mnt" # (Required) mount path of init container
+        # - type: lifecycle # Set to lifecycle
+        #   properties:
+        #     postStart: # (Optional) action post start the container
+        #       httpGet: # (Optional) http get action
+        #         host: backend-rotate
+        #         scheme: "HTTP" # (Optional) schema (HTTP or HTTPS)
+        #         port: 8081
+        - type: scaler
+          properties:
+            replicas: 1
+
+  # workflow:
+  #   steps:
+  #   - name: step1
+  #     type: apply-component # set to apply-component
+  #     properties:
+  #       component: usr-frontend # (Required) component name
+  #   - name: step2
+  #     type: apply-component # set to apply-component
+  #     properties:
+  #       component: backend-merge
+  #   - name: step3
+  #     type: apply-component
+  #     properties:
+  #       component: backend-rotate
+  
+
+    # - name: slack-message
+    #   type: notification
+    #   properties:
+    #     slack: # set to slack  
+    #       # the Slack webhook address, please refer to: https://api.slack.com/messaging/webhooks
+    #       url:
+    #         # url can either specify in value or secretRef
+    #         value: "https://hooks.slack.com/services/AAABBBCdcddcde" # (Optional) slack url
+    #         secretRef: # (Optional) slack url in a secret
+    #           name: napptive-sc # (Required) secret name
+    #           key: url # (Required) secret key
+    #       message: # (Required) message to send
+    #         text: Deployed!! # (Optional) text

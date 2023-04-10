@@ -1,0 +1,102 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: pdf-editor
+spec:
+  components:
+    - name: usr-frontend
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-frontend
+        ports:
+          - port: 80
+            expose: true
+            protocol: TCP
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 80
+      traits:
+        - type: resource
+          properties:
+            requests:
+              cpu: 0.1
+              memory: 50Mi
+            limits:
+              cpu: 0.5
+              memory: 200Mi
+        - type: gateway
+          properties:
+            class: nginx
+            http:
+              "/": 80
+
+        - type: scaler
+          properties:
+            replicas: 3
+
+    - name: backend-merge
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-backend-merge
+        ports:
+          - port: 8080
+            expose: true
+        livenessProbe:
+          httpGet:
+            path: /greet
+            port: 8080
+
+      traits:
+        - type: resource
+          properties:
+            requests:
+              cpu: 0.1
+              memory: 50Mi
+            limits:
+              cpu: 0.2
+              memory: 200Mi
+        - type: init-container
+          properties:
+            name: backend-merge-init
+            image: docker.io/dipugodocker/pdf-editor:1.0-backend-merge
+            cmd: ["cp", "-vR", ".", "/mnt"] # (Optional) commands run in the init container
+            mountName: "empty-vol-rotate" # (Required) mount name of shared volume. workdir by default
+            appMountPath:  "/go/src/" # (Required) mount path of app container
+            initMountPath: "/mnt" # (Required) mount path of init container
+        - type: scaler
+          properties:
+            replicas: 2
+
+    - name: backend-rotate
+      type: webservice
+      properties:
+        image: docker.io/dipugodocker/pdf-editor:1.0-backend-rotate
+        ports:
+          - port: 8081
+            expose: true
+        livenessProbe:
+          httpGet:
+            path: /greet
+            port: 8081
+      traits:
+        - type: resource
+          properties:
+            requests:
+              cpu: 0.1
+              memory: 50Mi
+            limits:
+              cpu: 0.2
+              memory: 200Mi
+        - type: init-container
+          properties:
+            name: backend-rotate-init
+            image: docker.io/dipugodocker/pdf-editor:1.0-backend-rotate
+            cmd: ["cp", "-vR", ".", "/mnt"] # (Optional) commands run in the init container
+            mountName: "empty-vol-rotate" # (Required) mount name of shared volume. workdir by default
+            appMountPath:  "/go/src/" # (Required) mount path of app container
+            initMountPath: "/mnt" # (Required) mount path of init container
+        - type: scaler
+          properties:
+            replicas: 2
+
