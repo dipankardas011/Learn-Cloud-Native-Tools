@@ -14,7 +14,7 @@ spec:
       terminationGracePeriodSeconds: 5
       containers:
       - name: server
-        image: dipugodocker/pdf-editor:frontend-sha-ae244ef
+        image: dipugodocker/pdf-editor:frontend-sha-1762a8a
         imagePullPolicy: Always
         ports:
         - containerPort: 80
