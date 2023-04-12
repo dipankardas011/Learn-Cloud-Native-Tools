@@ -1,97 +1,12 @@
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kafka-zookeeper-scripts
-  namespace: default
-  labels:
-    app.kubernetes.io/name: zookeeper
-    app.kubernetes.io/instance: kafka
-    app.kubernetes.io/component: zookeeper
-data:
-  init-certs.sh: |-
-    #!/bin/bash
-  setup.sh: |-
-    #!/bin/bash
-
-    # Execute entrypoint as usual after obtaining ZOO_SERVER_ID
-    # check ZOO_SERVER_ID in persistent volume via myid
-    # if not present, set based on POD hostname
-    if [[ -f "/bitnami/zookeeper/data/myid" ]]; then
-        export ZOO_SERVER_ID="$(cat /bitnami/zookeeper/data/myid)"
-    else
-        HOSTNAME="$(hostname -s)"
-        if [[ $HOSTNAME =~ (.*)-([0-9]+)$ ]]; then
-            ORD=${BASH_REMATCH[2]}
-            export ZOO_SERVER_ID="$((ORD + 1 ))"
-        else
-            echo "Failed to get index from hostname $HOST"
-            exit 1
-        fi
-    fi
-    exec /entrypoint.sh /run.sh
----
-# Source: kafka/templates/scripts-configmap.yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: kafka-scripts
-  namespace: "default"
-  labels:
-    app.kubernetes.io/name: kafka
-    
-    app.kubernetes.io/instance: kafka
-    
-data:
-  setup.sh: |-
-    #!/bin/bash
-
-    ID="${MY_POD_NAME#"kafka-"}"
-    # If process.roles is not set at all, it is assumed to be in ZooKeeper mode.
-    # https://kafka.apache.org/documentation/#kraft_role
-
-    if [[ -f "/bitnami/kafka/data/meta.properties" ]]; then
-        if [[ $KAFKA_CFG_PROCESS_ROLES == "" ]]; then
-            export KAFKA_CFG_BROKER_ID="$(grep "broker.id" "/bitnami/kafka/data/meta.properties" | awk -F '=' '{print $2}')"
-        else
-            export KAFKA_CFG_BROKER_ID="$(grep "node.id" "/bitnami/kafka/data/meta.properties" | awk -F '=' '{print $2}')"
-        fi
-    else
-        export KAFKA_CFG_BROKER_ID="$((ID + 0))"
-    fi
-
-    if [[ $KAFKA_CFG_PROCESS_ROLES == *"controller"* ]]; then
-        node_id=0
-        pod_id=0
-        while :
-        do
-            VOTERS="${VOTERS}$node_id@kafka-$pod_id.kafka-headless.default.svc.cluster.local:9095"
-            node_id=$(( $node_id + 1 ))
-            pod_id=$(( $pod_id + 1 ))
-            if [[ $pod_id -ge 1 ]]; then
-                break
-            else
-                VOTERS="$VOTERS,"
-            fi
-        done
-        export KAFKA_CFG_CONTROLLER_QUORUM_VOTERS=$VOTERS
-    fi
-
-    # Configure zookeeper client
-
-    exec /entrypoint.sh /run.sh
----
 # Source: kafka/charts/zookeeper/templates/svc-headless.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: kafka-zookeeper-headless
-  namespace: default
   labels:
     app.kubernetes.io/name: zookeeper
-    
     app.kubernetes.io/instance: kafka
-    
     app.kubernetes.io/component: zookeeper
 spec:
   type: ClusterIP
@@ -117,12 +32,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kafka-zookeeper
-  namespace: default
   labels:
     app.kubernetes.io/name: zookeeper
-    
     app.kubernetes.io/instance: kafka
-    
     app.kubernetes.io/component: zookeeper
 spec:
   type: ClusterIP
@@ -148,12 +60,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kafka-headless
-  namespace: "default"
   labels:
     app.kubernetes.io/name: kafka
-    
     app.kubernetes.io/instance: kafka
-    
     app.kubernetes.io/component: kafka
 spec:
   type: ClusterIP
@@ -178,12 +87,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kafka
-  namespace: "default"
   labels:
     app.kubernetes.io/name: kafka
-    
     app.kubernetes.io/instance: kafka
-    
     app.kubernetes.io/component: kafka
 spec:
   type: ClusterIP
@@ -207,9 +113,7 @@ metadata:
   namespace: default
   labels:
     app.kubernetes.io/name: zookeeper
-    
     app.kubernetes.io/instance: kafka
-    
     app.kubernetes.io/component: zookeeper
     role: zookeeper
 spec:
