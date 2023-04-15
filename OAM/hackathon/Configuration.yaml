@@ -1,0 +1,49 @@
+
+apiVersion: core.oam.dev/v1beta1
+kind: ComponentDefinition
+metadata:
+  name: configmap
+spec:
+  schematic:
+    cue:
+      template: |
+        parameter: {
+          // +usage=Name of the ConfigMap
+          name: string
+          // +usage=Key-value pairs to be stored in the ConfigMap
+          data: [string]: string
+          // +usage=Key-value pairs for labels
+          labels: [string]: string
+        }
+        output: {
+          apiVersion: "v1"
+          kind: "ConfigMap"
+          metadata: {
+            name: parameter.name
+            labels: parameter.labels
+          }
+          data: parameter.data
+        }
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: demo
+spec:
+  components:
+    - name: my-config-custom
+      type: configmap
+      properties:
+        name: hello-demo
+        labels:
+          ancd: hello
+          dewf: abce
+        data:
+          hello: |-
+            #34e2wqe
+            echo "3rde"
+          demo.yaml: |-
+            apiVersion: v1
+            abcd: wedw
+
+

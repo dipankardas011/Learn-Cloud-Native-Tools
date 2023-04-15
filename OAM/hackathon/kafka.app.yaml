@@ -46,7 +46,7 @@ spec:
               labels:
                 app.kubernetes.io/name: kafka
                 app.kubernetes.io/instance: kafka
-                
+
             data:
               setup.sh: |-
                 #!/bin/bash
@@ -97,8 +97,10 @@ spec:
       traits:
         - type: security-context
           properties:
-            runAsUser:  1001
+            runAsUser: 1001
             fsGroup: 1001
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
 
         # - type: affinity
         #   properties:
@@ -211,6 +213,7 @@ spec:
               name: script
               mountPath: /scripts/setup.sh
               subPath: setup.sh
+              defaultMode: 0755
 
     - name: kafka
       type: statefulservice
@@ -218,8 +221,10 @@ spec:
       traits:
         - type: security-context
           properties:
-            runAsUser:  1001
+            runAsUser: 1001
             fsGroup: 1001
+            allowPrivilegeEscalation: false
+            runAsNonRoot: true
 
         # - type: affinity
         #   properties:
@@ -234,11 +239,11 @@ spec:
         #                 app.kubernetes.io/instance: kafka
         #                 app.kubernetes.io/component: kafka
 
-        # - type: labels
-        #   properties:
-        #     app.kubernetes.io/name: kafka
-        #     app.kubernetes.io/instance: kafka
-        #     app.kubernetes.io/component: kafka
+        - type: labels
+          properties:
+            app.kubernetes.io/name: kafka
+            app.kubernetes.io/instance: kafka
+            app.kubernetes.io/component: kafka
 
       properties:
         image: docker.io/bitnami/kafka:3.4.0-debian-11-r15
@@ -320,7 +325,7 @@ spec:
             value: "1073741824"
           - name: KAFKA_CFG_LOG_DIRS
             value: "/bitnami/kafka/data"
-          - name: KAFKA_CFG_cgr6talt998c97mful60_REPLICATION_FACTOR
+          - name: KAFKA_CFG_DEFAULT_REPLICATION_FACTOR
             value: "1"
           - name: KAFKA_CFG_OFFSETS_TOPIC_REPLICATION_FACTOR
             value: "1"
@@ -364,4 +369,5 @@ spec:
               name: script
               mountPath: /scripts/setup.sh
               subPath: setup.sh
+              defaultMode: 0755
 
