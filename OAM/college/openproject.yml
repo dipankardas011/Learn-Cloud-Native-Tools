@@ -17,7 +17,7 @@ spec:
           - name: OPENPROJECT_HOST__NAME
             value: "localhost:80"
           - name: OPENPROJECT_HTTPS
-            value: "false"
+            value: "true"
       traits:
         - type: napptive-ingress
           properties:
