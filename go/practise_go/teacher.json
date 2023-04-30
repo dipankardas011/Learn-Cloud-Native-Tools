@@ -1,0 +1,22 @@
+{
+  "teacher_name": "Teacher DEmo",
+  "teacher_empid": 23423432,
+  "answerkeys": [
+    {
+      "pages": 4,
+      "answers": "AAABAAEAAQAAAAEAAAAAAQAAAQA="
+    },
+    {
+      "pages": 0,
+      "answers": null
+    },
+    {
+      "pages": 0,
+      "answers": null
+    }
+  ],
+  "attandance": {
+    "demo": true,
+    "dipankardas": false
+  }
+}
