@@ -14,8 +14,8 @@ spec:
         env:
           - name: OPENPROJECT_SECRET_KEY_BASE
             value: "secret"
-          - name: OPENPROJECT_HOST__NAME
-            value: "localhost:80"
+          # - name: OPENPROJECT_HOST__NAME
+          #   value: "localhost:80"
           - name: OPENPROJECT_HTTPS
             value: "true"
       traits:
