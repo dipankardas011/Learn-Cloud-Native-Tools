@@ -360,3 +360,48 @@ vi /etc/ansible/ansible.cfg
 # find and replace remote_user = XyZ
 
 ```
+
+# Puppet setup database
+
+> Create a puppet programming file ecommerce.pp under /etc/puppetlabs/code/environments/production/manifests directory on puppet master node i.e on Jump Server. Define a class mysql_database in puppet programming code and perform below mentioned tasks:
+Install package mariadb-server (whichever version is available by default in yum repo) on puppet agent node i.e on DB Server also start its service.
+Create a database kodekloud_db2 , a database userkodekloud_roy and set passwordB4zNgHA7Ya for this new user also remember host should be localhost. Finally grant full permissions to this newly created user on newly created database.
+
+
+```bash
+# jump server
+sudo su
+cd /etc/puppetlabs/code/environments/production/manifests/
+
+vi ecommerce.pp
+
+cat ecommerce.pp << EOF
+class mysql_database {
+    package {'mariadb-server':
+      ensure => installed
+    }
+
+    service {'mariadb':
+        ensure    => running,
+        enable    => true,
+    }    
+
+    mysql::db { 'kodekloud_db2':
+      user     => 'kodekloud_roy',
+      password => 'B4zNgHA7Ya',
+      host     => 'localhost',
+      grant    => ['ALL'],
+    }
+}
+
+node 'stdb01.stratos.xfusioncorp.com' {
+  include mysql_database
+}
+EOF
+
+puppet parser validate ecommerce.pp
+
+# as the server db 1
+ssh peter@stdb01
+puppet agent -tv
+```
