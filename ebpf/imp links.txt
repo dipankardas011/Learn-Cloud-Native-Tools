@@ -1,0 +1,1 @@
+https://kubernetes.io/blog/2023/05/18/seccomp-profiles-edge/?s=09
