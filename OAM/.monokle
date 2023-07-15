@@ -12,7 +12,7 @@
         "*.yml"
     ],
     "folderReadsMaxDepth": 10,
-    "k8sVersion": "1.24.2",
+    "k8sVersion": "1.27.0",
     "settings": {
         "helmPreviewMode": "template",
         "kustomizeCommand": "kubectl",
