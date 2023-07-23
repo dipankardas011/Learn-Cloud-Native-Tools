@@ -11,3 +11,4 @@ IAC/terraform/awsLearn/.terraform.lock.hcl
 creds.conf
 *.srl
 .vagrant
+*.tar.xz
