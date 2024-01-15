@@ -27,7 +27,7 @@ Below are all the links from the video.
 * Azure Developer Associate (AZ-204)✅ - https://www.youtube.com/watch?v=jZx8PMQjobk
 
 
-# docker👍🏼
+# docker✅
 * Docker playlist by Saloni✅ - https://youtube.com/playlist?list=PL5...
 * Docker ((freecodecamp)  - https://youtu.be/9zUHg7xjIqQ
 * Docker (Techworldwithnana)✅ - https://youtu.be/3c-iBn73dDE
@@ -38,7 +38,7 @@ Below are all the links from the video.
 * Docker in a visual way ✅ - https://aurelievache.gumroad.com/l/understanding-docker-visual-way
 * Ivan container articles✅ - https://iximiuz.com/en/
 
-# Kubernetes👍🏼
+# Kubernetes✅
 * Civo Academy✅ - civo.com/academy
 * Kubernetes course (techworldwithnana)✅ - https://youtu.be/X48VuDVv0do
 * Kube academy📖 - https://kube.academy/
@@ -56,7 +56,7 @@ Below are all the links from the video.
 * Get Certified for GitOps with Argo✅ - https://codefresh.learnworlds.com/
 * ArgoCD✅
 
-# IAC tools
+# IAC tools✅
 * Terrafrom in 2 hours (freecodecamp)✅ - https://youtu.be/SLB_c_ayRMo
 * Hashicorp terraform accociate certification (freecodecamp)📖 - https://youtu.be/V4waklkBC38
 * Crossplane CNCFMinutes✅ - https://youtu.be/NLHmqVUvtkU
@@ -79,7 +79,7 @@ Below are all the links from the video.
 * Litmus CNCFMinutes ✅ - https://youtu.be/rDQ9XKbSJIc
 * Cloud native chaos paradigms - https://youtu.be/uBGPFfTu6TU
 
-# Policy engines
+# Policy engines✅
 * Kyverno CNCFMinutes✅ - https://youtu.be/Bo8KhWhNY6g
 * Datree✅
 * Kyverno deep dive - https://youtu.be/QR-iBeh9Vy0
@@ -91,15 +91,15 @@ Below are all the links from the video.
 * Various policy engines for Kubernetes - https://youtu.be/gKQOq7904h8
 * Styra Academy - https://academy.styra.com/courses/opa...
 
-# Servicemesh
-* Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introduction-to-service-mesh-with-linkerd?index=product&queryID=9dbd5c6fb61e09299c3422cd6fe02793&position=1
+# Servicemesh✅
+* Introduction to Service mesh with Linkerd  - https://www.edx.org/course/introduction-to-service-mesh-with-linkerd?index=product&queryID=9dbd5c6fb61e09299c3422cd6fe02793&position=1✅
 * Istio📖
 * Linkerd✅
 
-# Networking
-* Computer Networking Full Course by kunal kushwaha - https://www.youtube.com/watch?v=IPvYjXCsTg8 
+# Networking✅
+* Computer Networking Full Course by kunal kushwaha - https://www.youtube.com/watch?v=IPvYjXCsTg8 ✅
 * Cilium📖
-* Flanned
+* Flanned✅
 
 # Extras
 [HTTPS Server in GO](https://riptutorial.com/go/example/3248/create-a-https-server)

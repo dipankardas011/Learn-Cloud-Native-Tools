@@ -13,5 +13,6 @@
       "password": "dipankar",
       "database": "learning"
     }
-  ]
+  ],
+  "ansible.python.interpreterPath": "/bin/python"
 }

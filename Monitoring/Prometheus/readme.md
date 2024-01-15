@@ -9,6 +9,10 @@ $ cd prometheus-*
 $ ./prometheus --config.file=config.yml
 ```
 
+> NOte for the kube-prometheus-stack to identify the servicemonitor (custom created)
+need to [make it false](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack?modal=values&path=prometheus.prometheusSpec.serviceMonitorSelectorNilUsesHelmValues)
+
+
 [Getting Started](https://prometheus.io/docs/prometheus/latest/getting_started/)
 
 # for the password protected
@@ -63,8 +67,8 @@ There are three different ways to setup the Prometheus monitoring stack in Kuber
 
 # 3 types of monitoring
 1. application monitoring
-  - process monitoring (OS generates) cpu,memory,disk,network 
-  - custom monitoring 
+  - process monitoring (OS generates) cpu,memory,disk,network
+  - custom monitoring
 2. infrastructure monitoring
   - Node exporter (how the nodes are performing in terms of Control plane)cpu,memory,disk,network
 3. Kubernetes monitoring
